@@ -2,13 +2,15 @@
 
 **Purpose:** Codex implementation handoff for building a modern NFL analytics solution in Microsoft Fabric, Power BI, and Fabric Data Agent.
 
-**Primary goal:** Acquire modern nflverse data with Python, land it in a Fabric Lakehouse, transform it into an efficient Bronze/Silver/Gold model, build a fast Power BI semantic model, and configure a Fabric Data Agent that can answer realistic Seattle Seahawks natural-language questions for the 2008–2025 seasons.
+**Primary goal:** Acquire modern nflverse data with Python, land it in a Fabric Lakehouse, transform it into an efficient Bronze/Silver/Gold model, build a fast Power BI semantic model, and configure a Fabric Data Agent that can answer realistic Seattle Seahawks natural-language questions for the 1999–2025 seasons.
 
 **Recommended source path:** Use `nflreadpy`, the modern Python package for downloading nflverse data.
 
 **Team focus:** Seattle Seahawks (`SEA`), while retaining full-league data for rankings, league averages, opponent analysis, and comparison questions.
 
-**Season range:** 2008 through 2025 inclusive.
+**Season range:** 1999 through 2025 inclusive.
+
+**Current implementation status:** Full-league `nflreadpy` data for 1999 through 2025 has been acquired locally and imported into the Bronze schema of the Fabric Lakehouse.
 
 ---
 
@@ -85,7 +87,7 @@ Even though the initial analytics focus is Seattle, many user questions require 
 - “Best/worst season” comparisons across teams.
 - Defensive ranking where lower EPA allowed is better.
 
-Therefore, fetch and retain the full league for 2008–2018.
+Therefore, fetch and retain the full league for 1999–2025.
 
 ---
 
@@ -94,8 +96,8 @@ Therefore, fetch and retain the full league for 2008–2018.
 ### 3.1 Seasons
 
 ```text
-Start season: 2008
-End season:   2018
+Start season: 1999
+End season:   2025
 Inclusive:    yes
 ```
 
@@ -176,16 +178,16 @@ nflverse_local/
   raw/
     nflverse/
       pbp/
-        season=2008/
-          play_by_play_2008.parquet
-        season=2009/
-          play_by_play_2009.parquet
+        season=1999/
+          play_by_play_1999.parquet
+        season=2000/
+          play_by_play_2000.parquet
         ...
-        season=2018/
-          play_by_play_2018.parquet
+        season=2025/
+          play_by_play_2025.parquet
 
       schedules/
-        schedules_2008_2018.parquet
+        schedules_1999_2025.parquet
 
       teams/
         teams.parquet
@@ -194,47 +196,47 @@ nflverse_local/
         players.parquet
 
       rosters/
-        season=2008/
-          rosters_2008.parquet
+        season=1999/
+          rosters_1999.parquet
         ...
-        season=2018/
-          rosters_2018.parquet
+        season=2025/
+          rosters_2025.parquet
 
       rosters_weekly/
-        season=2008/
-          rosters_weekly_2008.parquet
+        season=2002/
+          rosters_weekly_2002.parquet
         ...
-        season=2018/
-          rosters_weekly_2018.parquet
+        season=2025/
+          rosters_weekly_2025.parquet
 
       player_stats_weekly/
-        season=2008/
-          player_stats_weekly_2008.parquet
+        season=1999/
+          player_stats_weekly_1999.parquet
         ...
-        season=2018/
-          player_stats_weekly_2018.parquet
+        season=2025/
+          player_stats_weekly_2025.parquet
 
       team_stats_weekly/
-        season=2008/
-          team_stats_weekly_2008.parquet
+        season=1999/
+          team_stats_weekly_1999.parquet
         ...
-        season=2018/
-          team_stats_weekly_2018.parquet
+        season=2025/
+          team_stats_weekly_2025.parquet
 
       player_stats_season/
         summary_level=reg/
-          player_stats_reg_2008_2018.parquet
+          player_stats_reg_1999_2025.parquet
         summary_level=post/
-          player_stats_post_2008_2018.parquet
+          player_stats_post_1999_2025.parquet
 
       team_stats_season/
         summary_level=reg/
-          team_stats_reg_2008_2018.parquet
+          team_stats_reg_1999_2025.parquet
         summary_level=post/
-          team_stats_post_2008_2018.parquet
+          team_stats_post_1999_2025.parquet
 ```
 
-Design principle: keep the local raw layer as close to source as possible. Do not drop columns from raw Parquet files.
+Design principle: keep the local raw layer as close to source as possible. Do not drop columns from raw Parquet files. Weekly rosters begin in 2002 because that is the first season available from `nflreadpy`.
 
 ---
 
@@ -250,8 +252,8 @@ acquire_nflverse.py
 
 ```bash
 python acquire_nflverse.py \
-  --start-season 2008 \
-  --end-season 2018 \
+  --start-season 1999 \
+  --end-season 2025 \
   --out ./nflverse_local \
   --cache ./nflverse_local/cache/nflreadpy \
   --force
@@ -261,8 +263,8 @@ python acquire_nflverse.py \
 
 | Argument | Default | Purpose |
 |---|---:|---|
-| `--start-season` | `2008` | First season to fetch |
-| `--end-season` | `2018` | Last season to fetch |
+| `--start-season` | `1999` | First season to fetch |
+| `--end-season` | `2025` | Last season to fetch |
 | `--out` | `./nflverse_local` | Output root |
 | `--cache` | `./nflverse_local/cache/nflreadpy` | `nflreadpy` cache directory |
 | `--force` | `False` | Re-fetch and overwrite existing files |
@@ -320,7 +322,7 @@ acquire_nflverse.py
 Fetch nflverse data with nflreadpy for local staging before Fabric upload.
 
 Target:
-- Seasons 2008 through 2018 inclusive
+- Seasons 1999 through 2025 inclusive
 - Full league data, not only Seahawks
 - Output raw Parquet files suitable for upload to Fabric Lakehouse
 """
@@ -341,8 +343,8 @@ from nflreadpy.config import update_config
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Acquire nflverse data with nflreadpy.")
-    parser.add_argument("--start-season", type=int, default=2008)
-    parser.add_argument("--end-season", type=int, default=2018)
+    parser.add_argument("--start-season", type=int, default=1999)
+    parser.add_argument("--end-season", type=int, default=2025)
     parser.add_argument("--out", type=Path, default=Path("./nflverse_local"))
     parser.add_argument("--cache", type=Path, default=Path("./nflverse_local/cache/nflreadpy"))
     parser.add_argument("--force", action="store_true")
@@ -702,7 +704,7 @@ Before uploading to Fabric, validate these checks.
 
 | Check | Rule |
 |---|---|
-| Season coverage | Every season from 2008 through 2018 has a PBP Parquet file |
+| Season coverage | Every season from 1999 through 2025 has a PBP Parquet file |
 | Row count | Every PBP season has more than zero rows |
 | Core columns | PBP contains `season`, `season_type`, `week`, `game_id`, `play_id`, `home_team`, `away_team`, `posteam`, `defteam`, `play_type`, `epa`, `wpa` |
 | Valid seasons | No PBP rows outside the expected season partition |
@@ -1392,7 +1394,7 @@ Use the Gold tables only.
 
 ### 15.1 Storage mode recommendation
 
-For 2008–2018 NFL data, the model should be small enough for Import mode or Direct Lake over materialized Gold Delta tables.
+For 1999–2025 NFL data, the model should be small enough for Import mode or Direct Lake over materialized Gold Delta tables.
 
 Recommendation:
 
@@ -1679,20 +1681,20 @@ When a user asks for rankings, rank all qualifying NFL teams for the requested s
 Create Verified Answers for these questions:
 
 ```text
-1. How did the Seahawks rank in offensive EPA per play each season from 2008 through 2018?
-2. How did the Seahawks rank in defensive EPA allowed per play each season from 2008 through 2018?
-3. Show Seattle’s EPA differential per play by season from 2008 to 2018.
+1. How did the Seahawks rank in offensive EPA per play each season from 1999 through 2025?
+2. How did the Seahawks rank in defensive EPA allowed per play each season from 1999 through 2025?
+3. Show Seattle’s EPA differential per play by season from 1999 to 2025.
 4. Which Seahawks season had the best offense by EPA per play?
 5. Which Seahawks season had the best defense by EPA allowed per play?
 6. Compare Seattle’s offensive EPA per play to league average by season.
-7. What was Russell Wilson’s EPA per dropback by season from 2012 to 2018?
+7. What was Russell Wilson’s EPA per dropback by season from 2012 to 2021 while with Seattle?
 8. Which Seahawks receivers had the most targets by season?
 9. How did Seattle’s rushing EPA per play rank by season?
 10. What was Seattle’s third-down conversion rate by season?
 11. How did Seattle perform in the red zone by season?
 12. Which opposing quarterbacks generated the most EPA against Seattle?
 13. Which Seahawks games had the largest positive WPA swing?
-14. What were Seattle’s top 10 plays by WPA from 2008 to 2018?
+14. What were Seattle’s top 10 plays by WPA from 1999 to 2025?
 15. How many accepted penalties did Seattle commit by season?
 ```
 
@@ -1706,36 +1708,36 @@ Use this as the initial Data Agent and semantic model evaluation suite.
 
 ### 17.1 Team performance and trends
 
-1. How did the Seahawks rank in offensive EPA per play each season from 2008 through 2018?
-2. How did the Seahawks rank in defensive EPA allowed per play each season from 2008 through 2018?
-3. Show Seattle’s EPA differential per play by season from 2008 to 2018.
-4. Which Seahawks season from 2008 to 2018 had the best offense by EPA per play?
-5. Which Seahawks season from 2008 to 2018 had the best defense by EPA allowed per play?
-6. Compare Seattle’s offensive EPA per play to the league average for each season from 2008 to 2018.
-7. Compare Seattle’s defensive EPA allowed per play to the league average for each season from 2008 to 2018.
+1. How did the Seahawks rank in offensive EPA per play each season from 1999 through 2025?
+2. How did the Seahawks rank in defensive EPA allowed per play each season from 1999 through 2025?
+3. Show Seattle’s EPA differential per play by season from 1999 to 2025.
+4. Which Seahawks season from 1999 to 2025 had the best offense by EPA per play?
+5. Which Seahawks season from 1999 to 2025 had the best defense by EPA allowed per play?
+6. Compare Seattle’s offensive EPA per play to the league average for each season from 1999 to 2025.
+7. Compare Seattle’s defensive EPA allowed per play to the league average for each season from 1999 to 2025.
 8. In which seasons did Seattle finish top 5 in defensive EPA allowed per play?
 9. In which seasons did Seattle finish bottom half of the league in offensive success rate?
 10. Show Seattle’s win-loss record, point differential, EPA differential, and success-rate differential by season.
 
 ### 17.2 Passing offense
 
-11. Who led the Seahawks in passing EPA in each season from 2008 to 2018?
-12. What was Russell Wilson’s EPA per dropback by season from 2012 to 2018?
-13. How did Seattle’s pass rate change from 2012 through 2018?
-14. How did Seattle perform on early-down passes compared with early-down runs from 2012 to 2018?
+11. Who led the Seahawks in passing EPA in each season from 1999 to 2025?
+12. What was Russell Wilson’s EPA per dropback by season from 2012 to 2021 while with Seattle?
+13. How did Seattle’s pass rate change from 2012 through 2021?
+14. How did Seattle perform on early-down passes compared with early-down runs from 2012 to 2021?
 15. Which Seahawks receivers had the most targets by season?
 16. Which Seahawks receivers had the highest receiving EPA per target, minimum 50 targets?
 17. Show Seattle’s deep passing EPA by season, where deep pass means air yards of 20 or more.
 18. How often did Seattle use shotgun on pass plays by season?
-19. What was Seattle’s EPA per play on no-huddle plays from 2008 to 2018?
-20. Which games had Russell Wilson’s highest WPA added from 2012 to 2018?
+19. What was Seattle’s EPA per play on no-huddle plays from 1999 to 2025?
+20. Which games had Russell Wilson’s highest WPA added from 2012 to 2021 while with Seattle?
 
 ### 17.3 Rushing offense
 
-21. How did Seattle’s rushing EPA per play rank by season from 2008 to 2018?
+21. How did Seattle’s rushing EPA per play rank by season from 1999 to 2025?
 22. Which Seahawks running backs had the most rushing attempts by season?
 23. Which Seahawks running backs had the highest rushing success rate, minimum 100 carries?
-24. Compare Seattle’s designed runs versus QB scrambles by EPA per play from 2012 to 2018.
+24. Compare Seattle’s designed runs versus QB scrambles by EPA per play from 2012 to 2021.
 25. How did Seattle perform on runs up the middle versus outside runs?
 26. What was Seattle’s rushing EPA per play in the red zone by season?
 27. How often did Seattle run on 2nd-and-short, and how successful was it?
@@ -1746,7 +1748,7 @@ Use this as the initial Data Agent and semantic model evaluation suite.
 29. What was Seattle’s EPA per play on third down by season?
 30. What was Seattle’s third-down conversion rate by season?
 31. What was Seattle’s EPA per play on fourth down by season?
-32. How often did Seattle go for it on fourth down from 2008 to 2018?
+32. How often did Seattle go for it on fourth down from 1999 to 2025?
 33. What was Seattle’s fourth-down conversion rate when going for it?
 34. How did Seattle perform in the red zone by season?
 35. How did Seattle perform in goal-to-go situations by season?
@@ -1758,7 +1760,7 @@ Use this as the initial Data Agent and semantic model evaluation suite.
 
 ### 17.5 Defensive analysis
 
-41. Which opposing quarterbacks generated the most EPA against Seattle from 2008 to 2018?
+41. Which opposing quarterbacks generated the most EPA against Seattle from 1999 to 2025?
 42. Which seasons did Seattle allow the lowest passing EPA per dropback?
 43. Which seasons did Seattle allow the lowest rushing EPA per play?
 44. How many sacks and QB hits did Seattle generate by season?
@@ -1771,16 +1773,16 @@ Use this as the initial Data Agent and semantic model evaluation suite.
 
 ### 17.6 Game flow and win probability
 
-51. Show the win probability timeline for the Seahawks’ biggest comeback win from 2008 to 2018.
+51. Show the win probability timeline for the Seahawks’ biggest comeback win from 1999 to 2025.
 52. Which Seahawks games had the largest positive WPA swing?
 53. Which Seahawks games had the largest negative WPA swing?
-54. What were Seattle’s top 10 plays by WPA from 2008 to 2018?
-55. What were Seattle’s bottom 10 plays by WPA from 2008 to 2018?
+54. What were Seattle’s top 10 plays by WPA from 1999 to 2025?
+55. What were Seattle’s bottom 10 plays by WPA from 1999 to 2025?
 56. For each playoff game involving Seattle, show final score, EPA differential, and top WPA play.
 57. Which Seahawks games had the highest total combined EPA volatility?
 58. Which games did Seattle win despite losing the EPA differential?
 59. Which games did Seattle lose despite winning the EPA differential?
-60. Show the most important fourth-quarter plays by WPA for Seattle from 2008 to 2018.
+60. Show the most important fourth-quarter plays by WPA for Seattle from 1999 to 2025.
 
 ### 17.7 Special teams, penalties, and discipline
 
@@ -1846,9 +1848,9 @@ Example rows:
 
 | question_id | question | expected_primary_metric | expected_filters |
 |---|---|---|---|
-| Q001 | How did the Seahawks rank in offensive EPA per play each season from 2008 through 2018? | Offensive EPA per Play Rank | team = SEA, seasons 2008–2018 |
+| Q001 | How did the Seahawks rank in offensive EPA per play each season from 1999 through 2025? | Offensive EPA per Play Rank | team = SEA, seasons 1999–2025 |
 | Q002 | Which Seahawks season had the best defense by EPA allowed per play? | Defensive EPA Allowed per Play | team = SEA |
-| Q003 | What were Seattle’s top 10 plays by WPA from 2008 to 2018? | WPA | team = SEA, top 10 |
+| Q003 | What were Seattle’s top 10 plays by WPA from 1999 to 2025? | WPA | team = SEA, top 10 |
 | Q004 | Which opposing quarterbacks generated the most EPA against Seattle? | Opponent Passing EPA | defense team = SEA |
 | Q005 | How many penalties did Seattle commit by season? | Penalty Count | penalty team = SEA |
 
@@ -1876,7 +1878,7 @@ Generated DAX valid?
 1. Create acquire_nflverse.py.
 2. Create Python project structure.
 3. Add dependency management using uv or requirements.txt.
-4. Fetch full-league 2008–2018 data.
+4. Fetch full-league 1999–2025 data.
 5. Save raw Parquet files.
 6. Write acquisition_manifest.json.
 7. Write schema_manifest.json.
@@ -2025,7 +2027,7 @@ Full Data Agent evaluation suite
 ### 22.1 Acquisition acceptance criteria
 
 - [ ] Script runs locally without manual intervention.
-- [ ] All 2008–2018 PBP seasons are written to Parquet.
+- [ ] All 1999–2025 PBP seasons are written to Parquet.
 - [ ] Schedules, teams, players, rosters, and weekly stats are written.
 - [ ] Manifest files are created.
 - [ ] Quality report passes all required checks or logs clear exceptions.
@@ -2104,7 +2106,7 @@ Build this as a curated analytics product, not as a raw-table demo.
 The best path is:
 
 1. Use `nflreadpy` for local Python acquisition.
-2. Store full-league 2008–2018 data as raw Parquet.
+2. Store full-league 1999–2025 data as raw Parquet.
 3. Upload the raw files to a Fabric Lakehouse.
 4. Convert raw files into Bronze Delta tables.
 5. Build cleaned Silver tables with football-specific derived fields.
