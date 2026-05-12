@@ -1825,6 +1825,34 @@ Use this as the initial Data Agent and semantic model evaluation suite.
 
 ## 19. Ground-Truth Evaluation Suite
 
+Current implemented evaluation artifact:
+
+```text
+notebooks/evaluate_nfl_data_agent.ipynb
+notebooks/evaluate_nfl_data_agent.py
+```
+
+This notebook evaluates the published Fabric Data Agent named `SM Data Agent`
+against expected answers recomputed from the Gold SQL tables at runtime. It uses
+the Fabric Data Agent SDK functions `evaluate_data_agent`,
+`get_evaluation_summary`, and `get_evaluation_details`.
+
+Current published Fabric items:
+
+| Item | Name | ID |
+|---|---|---|
+| Semantic model | `NFL Play by Play Model` | `8915f632-ad16-40d1-8422-a075f37c7d5f` |
+| Data Agent | `SM Data Agent` | `dce6b887-cd41-44e5-9cf1-dd2cf8c1d7c2` |
+| Notebook | `evaluate_nfl_data_agent` | `c414551a-eec1-4700-9341-7929dd87ae6a` |
+
+The evaluation notebook writes:
+
+```text
+nfl_data_agent_ground_truth
+nfl_data_agent_evaluation
+nfl_data_agent_evaluation_steps
+```
+
 Create a table or CSV named:
 
 ```text
