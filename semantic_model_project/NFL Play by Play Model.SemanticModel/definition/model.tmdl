@@ -1,0 +1,35 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["Player Season Summary","Team Game Summary","Team Season Summary","Team Situation Summary","Game","Player","Season Week","Team","Passing Play","Penalty","Play Detail","Player Play Role","Rushing Play","Special Teams Play","Team Play","Calculations"]
+
+annotation PBI_ProTooling = ["CopilotTooling","DevMode"]
+
+ref table 'Player Season Summary'
+ref table 'Team Game Summary'
+ref table 'Team Season Summary'
+ref table 'Team Situation Summary'
+ref table Game
+ref table DateTableTemplate_2e60ee7e-26f6-458c-867f-6ad5e02d7bc7
+ref table LocalDateTable_c44ff44b-1cf4-4082-a0e4-78a7ada52c84
+ref table Player
+ref table 'Season Week'
+ref table Team
+ref table 'Passing Play'
+ref table Penalty
+ref table 'Play Detail'
+ref table 'Player Play Role'
+ref table 'Rushing Play'
+ref table 'Special Teams Play'
+ref table 'Team Play'
+ref table Calculations
+
+ref cultureInfo en-US
+

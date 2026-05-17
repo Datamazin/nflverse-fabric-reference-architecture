@@ -1,0 +1,349 @@
+table Game
+	lineageTag: 4e6a7788-1903-430a-a441-cb61a1e0fcbc
+
+	column game_key
+		dataType: string
+		isHidden
+		lineageTag: 32464387-5178-45c1-9ae1-872760f1e5e6
+		summarizeBy: none
+		sourceColumn: game_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column game_id
+		dataType: string
+		isHidden
+		lineageTag: 8d00b7b3-2040-435e-a286-aeea3735d08c
+		summarizeBy: none
+		sourceColumn: game_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column old_game_id
+		dataType: string
+		isHidden
+		lineageTag: a58e509d-39bc-4c17-9f54-cef350130365
+		summarizeBy: none
+		sourceColumn: old_game_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Season
+		dataType: string
+		lineageTag: 0ecb53e0-86ff-4425-abc9-24ded348611d
+		summarizeBy: none
+		sourceColumn: Season
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column week
+		dataType: int64
+		formatString: 0
+		lineageTag: 9015302f-1e96-4a01-9941-bf93bed82182
+		summarizeBy: none
+		sourceColumn: week
+
+		annotation SummarizationSetBy = User
+
+	column 'Game Type'
+		dataType: string
+		lineageTag: 603e220d-624b-4d62-8e39-301d3bb45535
+		summarizeBy: none
+		sourceColumn: Game Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Season Type'
+		dataType: string
+		lineageTag: e86fde2b-2a44-487d-915b-5b4a9cf8ed26
+		summarizeBy: none
+		sourceColumn: Season Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Game Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: cae72772-02a3-47f5-9fd8-08c2aa710d83
+		summarizeBy: none
+		sourceColumn: Game Date
+
+		variation Variation
+			isDefault
+			relationship: 669782ed-c28b-4320-a3c9-3da44b467e59
+			defaultHierarchy: LocalDateTable_c44ff44b-1cf4-4082-a0e4-78a7ada52c84.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Weekday
+		dataType: string
+		lineageTag: a93823bc-5ad1-4428-9a83-70dcf2c8afcb
+		summarizeBy: none
+		sourceColumn: Weekday
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Game Time'
+		dataType: string
+		isHidden
+		lineageTag: ab549439-a1a5-46f8-8a5f-e6ad47c8a132
+		summarizeBy: none
+		sourceColumn: Game Time
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Away Team Name'
+		dataType: string
+		lineageTag: a7ffe59b-c7ad-4745-8d68-211065d3b8ce
+		summarizeBy: none
+		sourceColumn: Away Team Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Home Team Name'
+		dataType: string
+		lineageTag: caf1533d-5a4d-47d4-8711-fc0d0aa44e41
+		summarizeBy: none
+		sourceColumn: Home Team Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Away Team Score'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1488bf4e-1dc4-43f9-a092-1430db181774
+		summarizeBy: sum
+		sourceColumn: Away Team Score
+
+		annotation SummarizationSetBy = User
+
+	column 'Home Team Score'
+		dataType: int64
+		formatString: 0
+		lineageTag: b8809d80-124a-4d71-9587-0b49ae7cc4aa
+		summarizeBy: sum
+		sourceColumn: Home Team Score
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Points Scored'
+		dataType: int64
+		formatString: 0
+		lineageTag: 651a7673-61d3-4486-8fb2-dfcce5eb4638
+		summarizeBy: sum
+		sourceColumn: Total Points Scored
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Winning Team Name'
+		dataType: string
+		lineageTag: 0f0f559e-fef6-44a3-b31e-015088d600fc
+		summarizeBy: none
+		sourceColumn: Winning Team Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Losing Team Name'
+		dataType: string
+		lineageTag: 6a350e42-9a11-4d58-a0ee-64b9e396ed57
+		summarizeBy: none
+		sourceColumn: Losing Team Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tie Game'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: f3062123-f642-443a-89d9-019bba95fc68
+		summarizeBy: none
+		sourceColumn: Tie Game
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Overtime Game'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: ea4140d9-ffe7-4a32-9089-92c33c2216b5
+		summarizeBy: none
+		sourceColumn: Overtime Game
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Game Location'
+		dataType: string
+		lineageTag: 1bba2509-be66-4618-b518-a54f61046757
+		summarizeBy: none
+		sourceColumn: Game Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column Stadium
+		dataType: string
+		lineageTag: 1a963ec6-7955-473b-a8f0-92bc9c0808db
+		summarizeBy: none
+		sourceColumn: Stadium
+
+		annotation SummarizationSetBy = Automatic
+
+	column stadium_id
+		dataType: string
+		isHidden
+		lineageTag: 9175303e-cf94-486d-ad4f-ac41589acbe6
+		summarizeBy: none
+		sourceColumn: stadium_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Roof Type'
+		dataType: string
+		lineageTag: b9ef2d12-63eb-4bb8-8a63-ec068b4d3b93
+		summarizeBy: none
+		sourceColumn: Roof Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Playing Surface'
+		dataType: string
+		lineageTag: eb04f8b7-f8f1-43ef-ad90-bad2aa3989b5
+		summarizeBy: none
+		sourceColumn: Playing Surface
+
+		annotation SummarizationSetBy = Automatic
+
+	/// The air temperature at the stadium when the game was played
+	column 'Air Temperature'
+		dataType: int64
+		formatString: 0
+		lineageTag: 9600e0b7-1059-4916-b850-261efa985f38
+		summarizeBy: sum
+		sourceColumn: Air Temperature
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Wind Speed'
+		dataType: int64
+		formatString: 0
+		lineageTag: 230f826f-84fc-4083-bc20-677de15191d7
+		summarizeBy: none
+		sourceColumn: Wind Speed
+
+		annotation SummarizationSetBy = User
+
+	column 'Home Team Coach'
+		dataType: string
+		lineageTag: f8d30bd6-7d85-4b5e-a970-a6103dde35ae
+		summarizeBy: none
+		sourceColumn: Home Team Coach
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Away Coach Name'
+		dataType: string
+		lineageTag: d3ee95b2-0be0-497a-9f6b-9e22e0382b01
+		summarizeBy: none
+		sourceColumn: Away Coach Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column home_qb_id
+		dataType: string
+		isHidden
+		lineageTag: 2c886fd6-b9ba-475d-9e7d-e3d2ec39d8df
+		summarizeBy: none
+		sourceColumn: home_qb_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Home Quarterback'
+		dataType: string
+		lineageTag: 3c161672-9077-49fa-b944-e0c0b8d9dbc4
+		summarizeBy: none
+		sourceColumn: Home Quarterback
+
+		annotation SummarizationSetBy = Automatic
+
+	column away_qb_id
+		dataType: string
+		isHidden
+		lineageTag: 232bd47f-2905-4d0f-82f1-13a7c860a5ef
+		summarizeBy: none
+		sourceColumn: away_qb_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Away Quarterback Name'
+		dataType: string
+		lineageTag: a7cfee20-621f-44ad-b78c-f35a6bcc5715
+		summarizeBy: none
+		sourceColumn: Away Quarterback Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column spread_line
+		dataType: double
+		isHidden
+		lineageTag: 7639e9d2-9592-4cc5-b94b-36b1c17c8025
+		summarizeBy: sum
+		sourceColumn: spread_line
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column total_line
+		dataType: double
+		isHidden
+		lineageTag: 9890ebf9-5a17-4a75-9d9e-701934069242
+		summarizeBy: sum
+		sourceColumn: total_line
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column div_game
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: d80bf5f1-d787-483a-9fdb-5f1f9e21193a
+		summarizeBy: sum
+		sourceColumn: div_game
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Game = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("7rk6p6eropzejk7ixdt5o37uva-vnwsxyqyfgfenghwxbbv4lazty.datawarehouse.fabric.microsoft.com", "lh_nfl"),
+				    gold_dim_game = Source{[Schema="gold",Item="dim_game"]}[Data],
+				    #"Renamed Columns" = Table.RenameColumns(gold_dim_game,{{"game_date", "Game Date"}, {"game_type", "Game Type"}, {"gametime", "Game Time"}, {"home_coach", "Home Team Coach"}, {"home_qb_name", "Home Quarterback"}, {"away_team", "Away Team Name"}, {"home_team", "Home Team Name"}, {"home_score", "Home Team Score"}, {"is_tie", "Tie Game"}, {"is_overtime", "Overtime Game"}, {"location", "Game Location"}, {"losing_team", "Losing Team Name"}, {"season_type", "Season Type"}, {"season", "Season"}, {"stadium", "Stadium"}, {"surface", "Playing Surface"}, {"total_points", "Total Points Scored"}, {"week", "week"}, {"weekday", "Weekday"}, {"wind", "Wind Speed"}, {"winning_team", "Winning Team Name"}, {"away_coach", "Away Coach Name"}, {"away_qb_name", "Away Quarterback Name"}, {"away_score", "Away Team Score"}, {"roof", "Roof Type"}, {"temp", "Air Temperature"}})
+				in
+				    #"Renamed Columns"
+
+	changedProperty = Name
+

@@ -1,0 +1,140 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "954fb683e213f9d94e27",
+  "position": {
+    "x": 9.96773321315908,
+    "y": 0,
+    "z": 0,
+    "height": 566.49950428120769,
+    "width": 859.71698963497067,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Team"
+                    }
+                  },
+                  "Property": "Team Code"
+                }
+              },
+              "queryRef": "Team.Team Code",
+              "nativeQueryRef": "Team Code"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calculations"
+                    }
+                  },
+                  "Property": "Offensive Plays"
+                }
+              },
+              "queryRef": "Calculations.Offensive Plays",
+              "nativeQueryRef": "Offensive Plays"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calculations"
+                    }
+                  },
+                  "Property": "Offensive EPA"
+                }
+              },
+              "queryRef": "Calculations.Offensive EPA",
+              "nativeQueryRef": "Offensive EPA"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calculations"
+                    }
+                  },
+                  "Property": "Offensive EPA per Play"
+                }
+              },
+              "queryRef": "Calculations.Offensive EPA per Play",
+              "nativeQueryRef": "Offensive EPA per Play"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "dda4300252a1d431d8ef",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Team"
+              }
+            },
+            "Property": "Team Code"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "58a36bed7348c3ce9c2b",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Calculations"
+              }
+            },
+            "Property": "Offensive Plays"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "49ef024b3cffdec7afa0",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Calculations"
+              }
+            },
+            "Property": "Offensive EPA"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "07b8555da97d1bdfaee5",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Calculations"
+              }
+            },
+            "Property": "Offensive EPA per Play"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

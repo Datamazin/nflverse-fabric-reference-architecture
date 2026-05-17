@@ -1,0 +1,510 @@
+table 'Team Season Summary'
+	lineageTag: bbe4d30a-44df-434e-b0f4-35e38059c2d5
+
+	column team_key
+		dataType: string
+		lineageTag: 720953e9-fe1c-4900-ac5a-f2559dced1bb
+		summarizeBy: none
+		sourceColumn: team_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column season
+		dataType: string
+		lineageTag: 2a390698-625c-4637-9bb8-82f2ee352f28
+		summarizeBy: none
+		sourceColumn: season
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column season_type
+		dataType: string
+		lineageTag: ee1baa35-f6ce-4e1a-9ee7-9c6829983358
+		summarizeBy: none
+		sourceColumn: season_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column games
+		dataType: int64
+		formatString: 0
+		lineageTag: c37afcb5-c7f9-4d9b-910d-11d07407350d
+		summarizeBy: sum
+		sourceColumn: games
+
+		annotation SummarizationSetBy = Automatic
+
+	column wins
+		dataType: int64
+		formatString: 0
+		lineageTag: f9bf15b9-e497-4fec-acae-4e1c7dfc12c0
+		summarizeBy: sum
+		sourceColumn: wins
+
+		annotation SummarizationSetBy = Automatic
+
+	column losses
+		dataType: int64
+		formatString: 0
+		lineageTag: dd938184-4430-4550-b00e-f7e588e36569
+		summarizeBy: sum
+		sourceColumn: losses
+
+		annotation SummarizationSetBy = Automatic
+
+	column ties
+		dataType: int64
+		formatString: 0
+		lineageTag: 3cf605ac-506e-425e-8e60-051a42309c1b
+		summarizeBy: sum
+		sourceColumn: ties
+
+		annotation SummarizationSetBy = Automatic
+
+	column points_for
+		dataType: int64
+		formatString: 0
+		lineageTag: b3eaa9f0-505e-4388-8164-bbc394d7cbfe
+		summarizeBy: sum
+		sourceColumn: points_for
+
+		annotation SummarizationSetBy = Automatic
+
+	column points_against
+		dataType: int64
+		formatString: 0
+		lineageTag: 89e7b335-4872-4d6a-90da-2c52c03ac396
+		summarizeBy: sum
+		sourceColumn: points_against
+
+		annotation SummarizationSetBy = Automatic
+
+	column point_differential
+		dataType: int64
+		formatString: 0
+		lineageTag: ea68f3ca-a2a4-4775-bfd4-aa993c75389a
+		summarizeBy: sum
+		sourceColumn: point_differential
+
+		annotation SummarizationSetBy = Automatic
+
+	column offensive_plays
+		dataType: int64
+		formatString: 0
+		lineageTag: 5174c8d1-3e38-4e2a-a489-2d7424a5819b
+		summarizeBy: sum
+		sourceColumn: offensive_plays
+
+		annotation SummarizationSetBy = Automatic
+
+	column defensive_plays
+		dataType: int64
+		formatString: 0
+		lineageTag: 1bf49bcb-babe-4447-a9d8-2631aa5f8c5f
+		summarizeBy: sum
+		sourceColumn: defensive_plays
+
+		annotation SummarizationSetBy = Automatic
+
+	column offensive_epa
+		dataType: double
+		lineageTag: 2c092465-df2c-4fdb-b301-aecc63e74655
+		summarizeBy: sum
+		sourceColumn: offensive_epa
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column defensive_epa_allowed
+		dataType: double
+		lineageTag: a3b420a1-582f-4184-aed7-c3134948c542
+		summarizeBy: sum
+		sourceColumn: defensive_epa_allowed
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column defensive_epa_generated
+		dataType: double
+		lineageTag: 479e031f-ec6a-4a49-9510-00e809969d74
+		summarizeBy: sum
+		sourceColumn: defensive_epa_generated
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column epa_differential
+		dataType: double
+		lineageTag: 8b33d7d1-7bc1-4bd5-9d1d-2705a3cc355c
+		summarizeBy: sum
+		sourceColumn: epa_differential
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column successful_plays
+		dataType: int64
+		formatString: 0
+		lineageTag: 4a729d27-92eb-4f2a-af42-9405c11a8801
+		summarizeBy: sum
+		sourceColumn: successful_plays
+
+		annotation SummarizationSetBy = Automatic
+
+	column defensive_successes
+		dataType: int64
+		formatString: 0
+		lineageTag: 7384b5dd-2b99-4f1b-a65f-f71e94b68ab3
+		summarizeBy: sum
+		sourceColumn: defensive_successes
+
+		annotation SummarizationSetBy = Automatic
+
+	column dropbacks
+		dataType: int64
+		formatString: 0
+		lineageTag: 41d422c4-9d13-4667-96e0-f1a13973c41e
+		summarizeBy: sum
+		sourceColumn: dropbacks
+
+		annotation SummarizationSetBy = Automatic
+
+	column designed_rushes
+		dataType: int64
+		formatString: 0
+		lineageTag: c7705f20-2b5e-432e-9818-63a9de49a89c
+		summarizeBy: sum
+		sourceColumn: designed_rushes
+
+		annotation SummarizationSetBy = Automatic
+
+	column rush_attempts
+		dataType: int64
+		formatString: 0
+		lineageTag: f070abd3-463d-4b24-a373-3ac8f2e1ba54
+		summarizeBy: sum
+		sourceColumn: rush_attempts
+
+		annotation SummarizationSetBy = Automatic
+
+	column dropback_epa
+		dataType: double
+		lineageTag: e68e35f2-6c45-4e70-82bf-2ecd662cffcf
+		summarizeBy: sum
+		sourceColumn: dropback_epa
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column rush_epa
+		dataType: double
+		lineageTag: 8c4dfeee-a73c-4789-a6c1-46a5e31d9df6
+		summarizeBy: sum
+		sourceColumn: rush_epa
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column turnovers
+		dataType: int64
+		formatString: 0
+		lineageTag: 227cc625-6470-4ea8-a1f3-a427eb1be821
+		summarizeBy: sum
+		sourceColumn: turnovers
+
+		annotation SummarizationSetBy = Automatic
+
+	column takeaways
+		dataType: int64
+		formatString: 0
+		lineageTag: b2c4e1a1-7460-4e3c-aa16-7152384e6840
+		summarizeBy: sum
+		sourceColumn: takeaways
+
+		annotation SummarizationSetBy = Automatic
+
+	column third_down_attempts
+		dataType: int64
+		formatString: 0
+		lineageTag: 861d5dbf-fb59-410e-9b82-fa9769437dee
+		summarizeBy: sum
+		sourceColumn: third_down_attempts
+
+		annotation SummarizationSetBy = Automatic
+
+	column third_down_conversions
+		dataType: int64
+		formatString: 0
+		lineageTag: fd1bc25d-214b-4e53-9cec-9b19aaca1a06
+		summarizeBy: sum
+		sourceColumn: third_down_conversions
+
+		annotation SummarizationSetBy = Automatic
+
+	column fourth_down_attempts
+		dataType: int64
+		formatString: 0
+		lineageTag: 13e8c364-5aad-41fa-b706-91b34321a4bb
+		summarizeBy: sum
+		sourceColumn: fourth_down_attempts
+
+		annotation SummarizationSetBy = Automatic
+
+	column fourth_down_conversions
+		dataType: int64
+		formatString: 0
+		lineageTag: ceb5b42d-f10f-466f-9c6b-e9c27a29d60d
+		summarizeBy: sum
+		sourceColumn: fourth_down_conversions
+
+		annotation SummarizationSetBy = Automatic
+
+	column red_zone_plays
+		dataType: int64
+		formatString: 0
+		lineageTag: 020411e7-d485-406b-823f-cb9f9f7add2a
+		summarizeBy: sum
+		sourceColumn: red_zone_plays
+
+		annotation SummarizationSetBy = Automatic
+
+	column red_zone_drives
+		dataType: int64
+		formatString: 0
+		lineageTag: 1f69d4ea-4ebb-4f55-8b37-3ec314be7ac7
+		summarizeBy: sum
+		sourceColumn: red_zone_drives
+
+		annotation SummarizationSetBy = Automatic
+
+	column red_zone_touchdown_drives
+		dataType: int64
+		formatString: 0
+		lineageTag: 044bd7bb-0175-46b4-8c85-e4457428495d
+		summarizeBy: sum
+		sourceColumn: red_zone_touchdown_drives
+
+		annotation SummarizationSetBy = Automatic
+
+	column offensive_touchdowns
+		dataType: int64
+		formatString: 0
+		lineageTag: 9b8ad4e3-91df-40c7-8b74-48e967250903
+		summarizeBy: sum
+		sourceColumn: offensive_touchdowns
+
+		annotation SummarizationSetBy = Automatic
+
+	column explosive_plays_allowed
+		dataType: int64
+		formatString: 0
+		lineageTag: 48ecb5ac-a045-420a-bc9a-04850fb7f3e8
+		summarizeBy: sum
+		sourceColumn: explosive_plays_allowed
+
+		annotation SummarizationSetBy = Automatic
+
+	column sacks
+		dataType: int64
+		formatString: 0
+		lineageTag: d6a50535-a6f3-4298-8654-15e8ca96bbc3
+		summarizeBy: sum
+		sourceColumn: sacks
+
+		annotation SummarizationSetBy = Automatic
+
+	column qb_hits
+		dataType: int64
+		formatString: 0
+		lineageTag: 9c2d93c3-479c-4184-934a-5b7ff5a28fa0
+		summarizeBy: sum
+		sourceColumn: qb_hits
+
+		annotation SummarizationSetBy = Automatic
+
+	column penalty_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 8fb0766c-8bff-4170-a354-b894081e384e
+		summarizeBy: sum
+		sourceColumn: penalty_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column penalty_yards
+		dataType: double
+		lineageTag: 74a20fc6-7b5e-4ed9-aabb-93168869d646
+		summarizeBy: sum
+		sourceColumn: penalty_yards
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column offensive_epa_per_play
+		dataType: double
+		lineageTag: 85b90bc2-c8a5-41c6-bb76-d96c51bddacf
+		summarizeBy: sum
+		sourceColumn: offensive_epa_per_play
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column defensive_epa_allowed_per_play
+		dataType: double
+		lineageTag: dc89e63a-db90-4863-9802-1446b0021d9c
+		summarizeBy: sum
+		sourceColumn: defensive_epa_allowed_per_play
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column defensive_epa_generated_per_play
+		dataType: double
+		lineageTag: 2511aec9-1146-4efc-8b63-2a58aae09720
+		summarizeBy: sum
+		sourceColumn: defensive_epa_generated_per_play
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column epa_differential_per_play
+		dataType: double
+		lineageTag: 5a746133-46be-4642-ad3f-73db5723823c
+		summarizeBy: sum
+		sourceColumn: epa_differential_per_play
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column success_rate
+		dataType: double
+		lineageTag: 5ab937a3-284e-4631-baff-676d9863a97f
+		summarizeBy: sum
+		sourceColumn: success_rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column defensive_success_rate
+		dataType: double
+		lineageTag: 71ae19a2-402c-46cf-a25e-302751141c9b
+		summarizeBy: sum
+		sourceColumn: defensive_success_rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column pass_rate
+		dataType: double
+		lineageTag: 79a40c53-fdff-412b-9c8b-e4a96a2a6884
+		summarizeBy: sum
+		sourceColumn: pass_rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column dropback_epa_per_play
+		dataType: double
+		lineageTag: e1bd90e4-d561-4617-b279-52171e10da5c
+		summarizeBy: sum
+		sourceColumn: dropback_epa_per_play
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column rush_epa_per_play
+		dataType: double
+		lineageTag: 2f47fc36-8df2-4aca-a8a5-3b3d8148f89b
+		summarizeBy: sum
+		sourceColumn: rush_epa_per_play
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column third_down_conversion_rate
+		dataType: double
+		lineageTag: af9dc68b-10b8-4282-8de1-2e8d54f0bd7f
+		summarizeBy: sum
+		sourceColumn: third_down_conversion_rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column fourth_down_conversion_rate
+		dataType: double
+		lineageTag: b4904e14-6638-4f96-9502-ef8aaa24757d
+		summarizeBy: sum
+		sourceColumn: fourth_down_conversion_rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column red_zone_drive_td_rate
+		dataType: double
+		lineageTag: 1c1fa6d5-cd88-4f38-b745-2af1041179aa
+		summarizeBy: sum
+		sourceColumn: red_zone_drive_td_rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column explosive_plays_allowed_per_game
+		dataType: double
+		lineageTag: 2389ec4e-e2c7-4448-a8a5-3eb6ad825421
+		summarizeBy: sum
+		sourceColumn: explosive_plays_allowed_per_game
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column offensive_epa_per_play_rank
+		dataType: int64
+		formatString: 0
+		lineageTag: 1b7f81b1-917e-4211-a768-a94a93fe3a6b
+		summarizeBy: sum
+		sourceColumn: offensive_epa_per_play_rank
+
+		annotation SummarizationSetBy = Automatic
+
+	column defensive_epa_allowed_per_play_rank
+		dataType: int64
+		formatString: 0
+		lineageTag: 15ec8114-1bd1-4661-938b-54975cecd6e1
+		summarizeBy: sum
+		sourceColumn: defensive_epa_allowed_per_play_rank
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Team Season Summary' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("7rk6p6eropzejk7ixdt5o37uva-vnwsxyqyfgfenghwxbbv4lazty.datawarehouse.fabric.microsoft.com", "lh_nfl"),
+				    gold_agg_team_season = Source{[Schema="gold",Item="agg_team_season"]}[Data]
+				in
+				    gold_agg_team_season
+
+	changedProperty = Name
+

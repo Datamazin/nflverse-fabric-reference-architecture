@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "NFL Play by Play Model"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "7b9259c4-e666-44cb-ba44-ef9db050345f"
+  }
+}

@@ -1,0 +1,333 @@
+table 'Play Detail'
+	lineageTag: 7afc903a-27e6-4114-b1e0-a918f498db1c
+
+	column play_key
+		dataType: string
+		lineageTag: 88588333-9abc-43c5-a9e1-f7847a1a191a
+		summarizeBy: none
+		sourceColumn: play_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column game_key
+		dataType: string
+		lineageTag: 804b75d6-5a34-48f1-a540-12e80897d879
+		summarizeBy: none
+		sourceColumn: game_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column season_week_key
+		dataType: string
+		lineageTag: d58ad020-8597-4203-a7aa-d212184a1156
+		summarizeBy: none
+		sourceColumn: season_week_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column season
+		dataType: string
+		lineageTag: 81d18933-70f3-47cf-8fad-d9aecb0822e7
+		summarizeBy: none
+		sourceColumn: season
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column week
+		dataType: int64
+		formatString: 0
+		lineageTag: c8dd8878-6e0b-43e8-ad48-675c1c911ac2
+		summarizeBy: none
+		sourceColumn: week
+
+		annotation SummarizationSetBy = User
+
+	column season_type
+		dataType: string
+		lineageTag: 95e4833e-7051-482e-b604-73b7b41e97d9
+		summarizeBy: none
+		sourceColumn: season_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column play_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 065db55d-69b8-4e5f-bc1b-912dfa98b226
+		summarizeBy: sum
+		sourceColumn: play_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column qtr
+		dataType: int64
+		formatString: 0
+		lineageTag: 0f5d3b61-c779-4886-801b-b10d31a89445
+		summarizeBy: none
+		sourceColumn: qtr
+
+		annotation SummarizationSetBy = User
+
+	column down
+		dataType: int64
+		formatString: 0
+		lineageTag: 66015967-e7da-4d68-9bc7-3d0c7e680c09
+		summarizeBy: sum
+		sourceColumn: down
+
+		annotation SummarizationSetBy = Automatic
+
+	column ydstogo
+		dataType: double
+		lineageTag: 935b9bab-061c-45f5-bac0-54ecb4065f10
+		summarizeBy: sum
+		sourceColumn: ydstogo
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column yardline_100
+		dataType: double
+		lineageTag: d2c9df97-9234-4b5d-9ed3-8c72babd4c7d
+		summarizeBy: none
+		sourceColumn: yardline_100
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column game_seconds_remaining
+		dataType: double
+		lineageTag: 4ca430ea-472e-44ca-bba7-bccc70b88ca4
+		summarizeBy: sum
+		sourceColumn: game_seconds_remaining
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column quarter_seconds_remaining
+		dataType: double
+		lineageTag: 7c9da4d4-4b13-47c4-8268-94d64f989af9
+		summarizeBy: sum
+		sourceColumn: quarter_seconds_remaining
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column offense_team_key
+		dataType: string
+		lineageTag: d8263d8e-e1ef-49b0-aefd-f7a474dc5364
+		summarizeBy: none
+		sourceColumn: offense_team_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column defense_team_key
+		dataType: string
+		lineageTag: 162110be-d324-4f11-b521-c0780c2a49a7
+		summarizeBy: none
+		sourceColumn: defense_team_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column play_type
+		dataType: string
+		lineageTag: 91c133d2-ab59-4c71-804b-624910a5cddf
+		summarizeBy: none
+		sourceColumn: play_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column play_type_group
+		dataType: string
+		lineageTag: 42b6ab58-5950-4daf-b099-56104d7a8f7d
+		summarizeBy: none
+		sourceColumn: play_type_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column yards_gained
+		dataType: double
+		lineageTag: 2d248b4c-68e5-4143-9c79-acbed46dd23d
+		summarizeBy: sum
+		sourceColumn: yards_gained
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column epa
+		dataType: double
+		lineageTag: 3089f699-0bd6-4847-bdff-11fa1b3c4d17
+		summarizeBy: sum
+		sourceColumn: epa
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column wpa
+		dataType: double
+		lineageTag: 0727657c-4a83-4275-948d-a914e96b610f
+		summarizeBy: sum
+		sourceColumn: wpa
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column wp
+		dataType: double
+		lineageTag: 6f9fb0f8-c25c-4434-9c31-cf19231d1630
+		summarizeBy: sum
+		sourceColumn: wp
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column home_wp
+		dataType: double
+		lineageTag: 6062d02e-b733-4294-8fef-cbe669eaeff6
+		summarizeBy: sum
+		sourceColumn: home_wp
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column away_wp
+		dataType: double
+		lineageTag: 4eed87fa-1b2a-4d44-b522-99d1b8ebdcf0
+		summarizeBy: sum
+		sourceColumn: away_wp
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column score_differential
+		dataType: int64
+		formatString: 0
+		lineageTag: b8d3b8b4-dbad-4d8c-bd49-884ac705378f
+		summarizeBy: sum
+		sourceColumn: score_differential
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_home_score
+		dataType: int64
+		formatString: 0
+		lineageTag: 2e448043-b68f-4f0c-a442-0e22eaefcee8
+		summarizeBy: sum
+		sourceColumn: total_home_score
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_away_score
+		dataType: int64
+		formatString: 0
+		lineageTag: 5bd61de5-da92-47b5-99fa-c9b6aae8be4d
+		summarizeBy: sum
+		sourceColumn: total_away_score
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_red_zone
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 2909b211-245b-4843-9d0e-2780d8f44810
+		summarizeBy: none
+		sourceColumn: is_red_zone
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_goal_line
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: d4cc8d63-479f-4c49-9da0-b00bddbc7ccc
+		summarizeBy: none
+		sourceColumn: is_goal_line
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_third_down
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: fcf62c26-b6cb-410f-8ea4-308a390dcd3e
+		summarizeBy: none
+		sourceColumn: is_third_down
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_fourth_down
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 87313a3a-fe8a-4a69-9d4b-22498c96ad83
+		summarizeBy: none
+		sourceColumn: is_fourth_down
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_explosive_pass
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: a2d98f13-c458-4dcf-8e18-2c3c5575b181
+		summarizeBy: none
+		sourceColumn: is_explosive_pass
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_explosive_rush
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 3f0986c1-bb00-4777-9fe7-ff7ade66baa4
+		summarizeBy: none
+		sourceColumn: is_explosive_rush
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_explosive_play
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: fea65f09-8f95-470a-b541-90cb095b81b8
+		summarizeBy: none
+		sourceColumn: is_explosive_play
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_turnover
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 6e5e7ef4-5174-450e-bfa9-938279494aaa
+		summarizeBy: none
+		sourceColumn: is_turnover
+
+		annotation SummarizationSetBy = Automatic
+
+	column play_description
+		dataType: string
+		lineageTag: 67b175e4-6571-41d2-b9bb-bcee77fd244b
+		summarizeBy: none
+		sourceColumn: play_description
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Play Detail' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("7rk6p6eropzejk7ixdt5o37uva-vnwsxyqyfgfenghwxbbv4lazty.datawarehouse.fabric.microsoft.com", "lh_nfl"),
+				    gold_fact_play_core = Source{[Schema="gold",Item="fact_play_core"]}[Data]
+				in
+				    gold_fact_play_core
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+

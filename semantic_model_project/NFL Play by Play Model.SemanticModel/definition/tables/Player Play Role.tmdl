@@ -1,0 +1,129 @@
+table 'Player Play Role'
+	lineageTag: 9589b2d2-bd1b-4d90-8fe6-3eafa926c8bf
+
+	column play_key
+		dataType: string
+		lineageTag: 3e6fc390-4547-47ec-9697-5dda0d74a014
+		summarizeBy: none
+		sourceColumn: play_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column game_key
+		dataType: string
+		isHidden
+		lineageTag: b743d614-64a7-47de-bdf9-75e559c0406b
+		summarizeBy: none
+		sourceColumn: game_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column season_week_key
+		dataType: string
+		lineageTag: 03ac4ecb-b655-4090-ac50-e80d297fde39
+		summarizeBy: none
+		sourceColumn: season_week_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column season
+		dataType: string
+		lineageTag: 3a285181-6337-4de6-a0c3-6a1eb848b784
+		summarizeBy: none
+		sourceColumn: season
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column week
+		dataType: int64
+		formatString: 0
+		lineageTag: c956fa40-5d8c-4a41-9292-d47b61b47818
+		summarizeBy: none
+		sourceColumn: week
+
+		annotation SummarizationSetBy = User
+
+	column season_type
+		dataType: string
+		lineageTag: 0b71c707-f845-4832-8300-b76bf1c07de2
+		summarizeBy: none
+		sourceColumn: season_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column team_key
+		dataType: string
+		lineageTag: e2561620-19e0-43f1-b599-4ab952fafa86
+		summarizeBy: none
+		sourceColumn: team_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column opponent_team_key
+		dataType: string
+		lineageTag: 9058590d-15a2-46c1-9add-9a0060531ca4
+		summarizeBy: none
+		sourceColumn: opponent_team_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_key
+		dataType: string
+		lineageTag: 2c7ea5e7-f4f2-40de-87a0-ec8671da022c
+		summarizeBy: none
+		sourceColumn: player_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_name_snapshot
+		dataType: string
+		lineageTag: cd43471e-f852-4146-b562-17b8f2260a03
+		summarizeBy: none
+		sourceColumn: player_name_snapshot
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_role
+		dataType: string
+		lineageTag: d041fbb5-11c6-4f74-af0a-620a3b90ec2d
+		summarizeBy: none
+		sourceColumn: player_role
+
+		annotation SummarizationSetBy = Automatic
+
+	column role_sequence
+		dataType: int64
+		formatString: 0
+		lineageTag: 9a0deebf-2b71-4eec-859f-a8a4310cc33d
+		summarizeBy: sum
+		sourceColumn: role_sequence
+
+		annotation SummarizationSetBy = Automatic
+
+	column role_value
+		dataType: double
+		lineageTag: 1f3c701d-c36c-4dbd-8a28-f7f3fb80224f
+		summarizeBy: sum
+		sourceColumn: role_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Player Play Role' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("7rk6p6eropzejk7ixdt5o37uva-vnwsxyqyfgfenghwxbbv4lazty.datawarehouse.fabric.microsoft.com", "lh_nfl"),
+				    gold_fact_player_play_role = Source{[Schema="gold",Item="fact_player_play_role"]}[Data]
+				in
+				    gold_fact_player_play_role
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+

@@ -7,3 +7,5 @@ dist/
 build/
 nflverse_local/
 data/
+**/.pbi/localSettings.json
+**/.pbi/cache.abf

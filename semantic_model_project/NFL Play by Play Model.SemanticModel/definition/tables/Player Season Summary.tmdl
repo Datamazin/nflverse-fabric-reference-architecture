@@ -1,0 +1,495 @@
+table 'Player Season Summary'
+	lineageTag: 5a72097b-17f5-4da6-9aec-220e8583731e
+
+	column season
+		dataType: string
+		lineageTag: c92dd865-ece9-46b4-a503-617da795cba7
+		summarizeBy: none
+		sourceColumn: season
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column season_type
+		dataType: string
+		lineageTag: e88760a1-e187-48a7-925f-0ab1ddbd55db
+		summarizeBy: none
+		sourceColumn: season_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column team_key
+		dataType: string
+		lineageTag: 6e2b89f8-564a-4ba2-801c-7effb0d7dcf9
+		summarizeBy: none
+		sourceColumn: team_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_key
+		dataType: string
+		lineageTag: d892ff89-dd22-4440-90e1-bbfb099f770a
+		summarizeBy: none
+		sourceColumn: player_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_name
+		dataType: string
+		lineageTag: fdf6eb42-a803-47e6-b510-50b1bcd87d77
+		summarizeBy: none
+		sourceColumn: player_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column position
+		dataType: string
+		lineageTag: 3bd5d2e4-6275-4b3f-bfcb-c47c42c08f39
+		summarizeBy: none
+		sourceColumn: position
+
+		annotation SummarizationSetBy = Automatic
+
+	column passing_dropbacks
+		dataType: int64
+		formatString: 0
+		lineageTag: 9c58dc34-701f-4902-ae5f-aaf658ae5b8e
+		summarizeBy: sum
+		sourceColumn: passing_dropbacks
+
+		annotation SummarizationSetBy = Automatic
+
+	column attempts
+		dataType: int64
+		formatString: 0
+		lineageTag: 2082be38-4d64-4946-a41f-78413c7b92e6
+		summarizeBy: sum
+		sourceColumn: attempts
+
+		annotation SummarizationSetBy = Automatic
+
+	column completions
+		dataType: int64
+		formatString: 0
+		lineageTag: a4392e8e-3427-48a7-ac1b-cd718cd587c5
+		summarizeBy: sum
+		sourceColumn: completions
+
+		annotation SummarizationSetBy = Automatic
+
+	column passing_yards
+		dataType: double
+		lineageTag: 1653f9fe-b3b0-4f08-90b9-88e08465716b
+		summarizeBy: sum
+		sourceColumn: passing_yards
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column passing_tds
+		dataType: int64
+		formatString: 0
+		lineageTag: f3171021-d50f-4498-9a02-667de429751a
+		summarizeBy: sum
+		sourceColumn: passing_tds
+
+		annotation SummarizationSetBy = Automatic
+
+	column interceptions
+		dataType: int64
+		formatString: 0
+		lineageTag: 1f95be79-7844-4d36-a499-b3160c8b1fd2
+		summarizeBy: sum
+		sourceColumn: interceptions
+
+		annotation SummarizationSetBy = Automatic
+
+	column sacks_taken
+		dataType: int64
+		formatString: 0
+		lineageTag: cdc76b26-b481-4281-b621-6fff437a5957
+		summarizeBy: sum
+		sourceColumn: sacks_taken
+
+		annotation SummarizationSetBy = Automatic
+
+	column passing_epa
+		dataType: double
+		lineageTag: 1359bc99-725e-451e-b708-63d1c5633d8b
+		summarizeBy: sum
+		sourceColumn: passing_epa
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column passing_epa_per_dropback
+		dataType: double
+		lineageTag: e9c624b2-0532-433e-a6db-75ed570d3197
+		summarizeBy: sum
+		sourceColumn: passing_epa_per_dropback
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column completion_percentage
+		dataType: double
+		lineageTag: 5c2a6f11-f798-4da8-b55a-72272c05763e
+		summarizeBy: sum
+		sourceColumn: completion_percentage
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column td_to_int_ratio
+		dataType: double
+		lineageTag: fe716fa8-acea-4c03-a5fb-6a81183c5d20
+		summarizeBy: sum
+		sourceColumn: td_to_int_ratio
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_cpoe
+		dataType: double
+		lineageTag: c56429a7-4c16-4fc0-b669-35afe6bdda24
+		summarizeBy: sum
+		sourceColumn: avg_cpoe
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column deep_attempts
+		dataType: int64
+		formatString: 0
+		lineageTag: 12d7faa1-be0d-4baf-8a8d-ff24529c271a
+		summarizeBy: sum
+		sourceColumn: deep_attempts
+
+		annotation SummarizationSetBy = Automatic
+
+	column deep_completions
+		dataType: int64
+		formatString: 0
+		lineageTag: 233d6e48-ca60-4e7e-8393-ed23e8486df6
+		summarizeBy: sum
+		sourceColumn: deep_completions
+
+		annotation SummarizationSetBy = Automatic
+
+	column deep_completion_percentage
+		dataType: double
+		lineageTag: c049b661-5ca3-44f3-8965-792b486ef961
+		summarizeBy: sum
+		sourceColumn: deep_completion_percentage
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column deep_avg_cpoe
+		dataType: double
+		lineageTag: 242addd5-43f1-4d86-90bf-3f6b4b3e3b43
+		summarizeBy: sum
+		sourceColumn: deep_avg_cpoe
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column no_huddle_dropbacks
+		dataType: int64
+		formatString: 0
+		lineageTag: 03b9894a-e26f-489a-9936-9108c2439dc6
+		summarizeBy: sum
+		sourceColumn: no_huddle_dropbacks
+
+		annotation SummarizationSetBy = Automatic
+
+	column no_huddle_epa_per_dropback
+		dataType: double
+		lineageTag: b3c21ed0-b669-4b93-aa86-389b392e4855
+		summarizeBy: sum
+		sourceColumn: no_huddle_epa_per_dropback
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column huddle_dropbacks
+		dataType: int64
+		formatString: 0
+		lineageTag: 1dfc2631-29e8-4b9a-89f1-d5677895c53a
+		summarizeBy: sum
+		sourceColumn: huddle_dropbacks
+
+		annotation SummarizationSetBy = Automatic
+
+	column huddle_epa_per_dropback
+		dataType: double
+		lineageTag: a4ae058d-4e4e-44b0-a6b7-6578a53ae388
+		summarizeBy: sum
+		sourceColumn: huddle_epa_per_dropback
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column rushing_attempts
+		dataType: int64
+		formatString: 0
+		lineageTag: fd61aa8e-6efd-4e2a-b8ad-d70556a9d2ea
+		summarizeBy: sum
+		sourceColumn: rushing_attempts
+
+		annotation SummarizationSetBy = Automatic
+
+	column rushing_yards
+		dataType: double
+		lineageTag: 2fe75510-75e6-4098-9e05-615bcf25c045
+		summarizeBy: sum
+		sourceColumn: rushing_yards
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column rushing_tds
+		dataType: int64
+		formatString: 0
+		lineageTag: 9dda709b-2b8d-4051-ad34-ac12673370ea
+		summarizeBy: sum
+		sourceColumn: rushing_tds
+
+		annotation SummarizationSetBy = Automatic
+
+	column rushing_epa
+		dataType: double
+		lineageTag: 1dfc172e-c481-4fbb-b510-acbc62bfff99
+		summarizeBy: sum
+		sourceColumn: rushing_epa
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column rushing_epa_per_play
+		dataType: double
+		lineageTag: d0fdd353-b608-4035-9f48-0902d2b35f94
+		summarizeBy: sum
+		sourceColumn: rushing_epa_per_play
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column stuffed_rushes
+		dataType: int64
+		formatString: 0
+		lineageTag: d3bf815b-e18f-4f56-b960-f76b787a6b51
+		summarizeBy: sum
+		sourceColumn: stuffed_rushes
+
+		annotation SummarizationSetBy = Automatic
+
+	column stuff_rate
+		dataType: double
+		lineageTag: f4706177-8cd3-42b0-8547-644a6f397fd9
+		summarizeBy: sum
+		sourceColumn: stuff_rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column explosive_rushes
+		dataType: int64
+		formatString: 0
+		lineageTag: 89290869-e177-48eb-9a1b-319b2eb47268
+		summarizeBy: sum
+		sourceColumn: explosive_rushes
+
+		annotation SummarizationSetBy = Automatic
+
+	column explosive_rush_rate
+		dataType: double
+		lineageTag: 2825a1ad-1247-4639-af48-d0bc1f5df8ea
+		summarizeBy: sum
+		sourceColumn: explosive_rush_rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column rush_conversions
+		dataType: int64
+		formatString: 0
+		lineageTag: d36ceb74-44b7-4d46-b72f-a6c8c06e44ed
+		summarizeBy: sum
+		sourceColumn: rush_conversions
+
+		annotation SummarizationSetBy = Automatic
+
+	column rush_conversion_rate
+		dataType: double
+		lineageTag: 8505cebc-68b0-4283-aaaf-8b917192fdc2
+		summarizeBy: sum
+		sourceColumn: rush_conversion_rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column targets
+		dataType: int64
+		formatString: 0
+		lineageTag: e0f59463-6ec1-4275-991a-027812311177
+		summarizeBy: sum
+		sourceColumn: targets
+
+		annotation SummarizationSetBy = Automatic
+
+	column receptions
+		dataType: int64
+		formatString: 0
+		lineageTag: 410dfc48-da9b-4d90-ae5f-e1fb377770ef
+		summarizeBy: sum
+		sourceColumn: receptions
+
+		annotation SummarizationSetBy = Automatic
+
+	column receiving_yards
+		dataType: double
+		lineageTag: 5684d6f2-f02c-456f-b32b-a2e0470186a8
+		summarizeBy: sum
+		sourceColumn: receiving_yards
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column receiving_epa
+		dataType: double
+		lineageTag: 725c1d26-9f2a-487d-bb86-7b37eab9f818
+		summarizeBy: sum
+		sourceColumn: receiving_epa
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column receiving_epa_per_target
+		dataType: double
+		lineageTag: 68b092dc-05ed-469e-8a96-632bbce8e691
+		summarizeBy: sum
+		sourceColumn: receiving_epa_per_target
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column yards_after_catch
+		dataType: double
+		lineageTag: df9eaecb-ced9-43a9-926e-280b4a68c5b0
+		summarizeBy: sum
+		sourceColumn: yards_after_catch
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column yac_per_reception
+		dataType: double
+		lineageTag: cf6234bf-703a-45fb-93b9-c18f4bf3a32a
+		summarizeBy: sum
+		sourceColumn: yac_per_reception
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column yac_epa
+		dataType: double
+		lineageTag: 99f8e4ed-97a5-443c-afe5-42d12c1aafa8
+		summarizeBy: sum
+		sourceColumn: yac_epa
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column yac_epa_per_reception
+		dataType: double
+		lineageTag: 979064d6-1747-4cb0-8934-56765915311e
+		summarizeBy: sum
+		sourceColumn: yac_epa_per_reception
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column sacks_defense
+		dataType: double
+		lineageTag: 82bf515c-2f6d-4868-b717-c3f12df4be37
+		summarizeBy: sum
+		sourceColumn: sacks_defense
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column qb_hits_defense
+		dataType: double
+		lineageTag: ed0ccc90-efc1-4bf2-91ac-8c86c45c9e8d
+		summarizeBy: sum
+		sourceColumn: qb_hits_defense
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column field_goal_attempts
+		dataType: int64
+		formatString: 0
+		lineageTag: 2993d5ad-bffe-44ac-80a3-ccb46729bdca
+		summarizeBy: sum
+		sourceColumn: field_goal_attempts
+
+		annotation SummarizationSetBy = Automatic
+
+	column field_goals_made
+		dataType: int64
+		formatString: 0
+		lineageTag: 883d74b2-d7ba-416a-afd5-15e4ca17d595
+		summarizeBy: sum
+		sourceColumn: field_goals_made
+
+		annotation SummarizationSetBy = Automatic
+
+	column field_goal_make_rate
+		dataType: double
+		lineageTag: 29224f6f-8288-409d-ba96-705b4e14e2fb
+		summarizeBy: sum
+		sourceColumn: field_goal_make_rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Player Season Summary' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("7rk6p6eropzejk7ixdt5o37uva-vnwsxyqyfgfenghwxbbv4lazty.datawarehouse.fabric.microsoft.com", "lh_nfl"),
+				    gold_agg_player_season = Source{[Schema="gold",Item="agg_player_season"]}[Data]
+				in
+				    gold_agg_player_season
+
+	changedProperty = Name
+

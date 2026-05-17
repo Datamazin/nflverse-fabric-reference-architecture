@@ -1,34 +1,27 @@
 # NFL Fabric Analytics
 
 This repo is an end-to-end NFL analytics reference implementation for Microsoft
-Fabric. It starts with full-league `nflreadpy` acquisition, preserves the source
-data as raw Parquet, imports that data into a Fabric Lakehouse Bronze layer,
-transforms it into Silver and Gold Delta tables, builds a Power BI semantic
-model over Gold, configures a Fabric Data Agent, and evaluates the agent against
-ground-truth answers.
+Fabric. It starts with full-league `nflreadpy` acquisition.
 
-The analytics focus is the Seattle Seahawks (`SEA`) from the 1999 through 2025
-NFL seasons, but the acquired and modeled data remains full-league. That is
-intentional: rankings, league averages, opponent comparisons, and best/worst
-questions need league context.
+> **Note:** This repo focuses on the process of building efficient data models for use with Fabric Data Agents and providing a framework for providing Evaluations for Quality Assurance. The nflready data is imported into the solution but hasn't been thoroughly audited. Data accuracy shouldn't be assumed, and the data is not validated to a level that should be integrated into production analytical solutions.
+
+When deployed, the assets in this repo will provide the following:
+
+* Python scripts to download the nflready data set for 1999-2025 as Parquet files.
+* Downloaded nflready Parquet files ready to upload into a Lakehouse Files section--to use as a source for the Lakehouse Bronze (raw) layer.
+* Fabric notebook to process the raw nflready data files into conformed tables (silver layer).
+* Fabric notebook to create Gold dimension and fact tables in the Lakehouse.
+* A Semantic model build over the Gold fact/dimension tables, including a comprehensive set of calculated measures (semantic_model folder).
+* A notebook that implements SQL to calculate a set of example analysis queries against the Lakehouse tables. 
+* Two Data Agents: One using the Gold schema in the lakehouse as a data source for Natural Language queries; a second using the Semantic Model build over the Gold lakehouse as a source for Natural Language queries. 
+* A performance comparison of the same natural language queries processed by each of the Data Agents.
+* Example evaluation notebooks for each data agent, using the fabric-data-agent-sdk's evaluate_data_agent framework.
+
+The analytics focus is play-by-play analysis for 1999 through 2025 NFL seasons
 
 ## Why This Exists
 
-Natural-language football analytics are fragile when a report or agent points
-directly at a raw play-by-play table with hundreds of source columns. This
-project demonstrates a governed Fabric architecture:
-
-```text
-nflreadpy / nflverse-data
-  -> local raw Parquet export
-  -> Fabric Lakehouse Files
-  -> Bronze Delta tables
-  -> Silver cleaned/conformed tables
-  -> Gold star schema and aggregate tables
-  -> Power BI semantic model
-  -> Fabric Data Agent
-  -> ground-truth evaluation notebook
-```
+This project demonstrates a governed Fabric architecture that serves as a high performance basis for Report, Dashboard and Natural Language query consumption. While each solution brings a unique and organization-specific data set, this example repo is intended to provide a model to follow when preparing raw data for analysis, and to compare alternate approaches (for example using star schemas in a lakehouse directly compared with using a semantic model built over the same lakehouse star schema).
 
 The core design choice is to preserve source data in Bronze, then expose curated
 Gold tables and explicit measures to Power BI and the Data Agent.
@@ -48,7 +41,7 @@ Implemented in this repo:
 - Fabric Data Agent evaluation notebook that recomputes expected answers from
   Gold SQL and evaluates the published agent.
 
-Known intentional gaps until more source data is added or approved proxies are
+Known gaps until more source data is added or approved proxies are
 documented:
 
 - True play-action tagging.
@@ -68,6 +61,8 @@ documented:
 | `notebooks/evaluate_nfl_data_agent.ipynb` | Fabric notebook that builds ground truth and evaluates the Fabric Data Agent. |
 | `semantic_model/nfl_gold_semantic_model_guide.md` | Power BI semantic model build guide, relationships, hide rules, and Prep for AI instructions. |
 | `semantic_model/nfl_gold_measures.dax` | DAX measure catalog for the Gold semantic model. |
+| `semantic_model_project/` | Deployable Power BI Project semantic model files for `NFL Play by Play Model`. |
+| `scripts/create_nfl_play_by_play_sm.py` | Command-line deployment and refresh script for the semantic model. |
 
 The `.py` files beside several notebooks are exported notebook sources for easier
 review and version control.
@@ -96,7 +91,7 @@ python acquire_nflverse.py `
   --force
 ```
 
-Useful options:
+Optional paramters:
 
 | Option | Default | Purpose |
 |---|---:|---|
@@ -164,7 +159,7 @@ and use schemas named `bronze`, `silver`, and `gold`.
 
 ### 5. Build Bronze
 
-Run `notebooks/import_raw_nflverse_to_bronze.ipynb` in Fabric.
+Upload the following notebook to the Fabric workspace and run all cells to import the raw data into the lakehouse Bronze schema: `notebooks/import_raw_nflverse_to_bronze.ipynb`.
 
 This notebook:
 
@@ -196,7 +191,7 @@ bronze.nflverse_team_stats_post
 
 ### 6. Build Silver And Gold
 
-Run `notebooks/build_silver_gold_nfl_model.ipynb` in Fabric after Bronze is
+Upload and run `notebooks/build_silver_gold_nfl_model.ipynb` in Fabric after Bronze is
 complete.
 
 Silver tables clean and conform source data:
@@ -229,7 +224,9 @@ Run `notebooks/validate_gold_metrics.ipynb` in Fabric.
 
 This read-only notebook validates representative fan, fantasy, coach, scout, and
 analyst questions directly against the Gold SQL tables. Use it before refreshing
-or tuning the semantic model.
+or tuning the semantic model to check that the gold tables contain usable data.
+
+> Note: the data and processing scripts are meant for demonstration/educational purposes, and are not validated and curated to generate data for a specific production-ready purpose.
 
 ### 8. Build The Power BI Semantic Model
 
@@ -238,9 +235,10 @@ Use the semantic model docs:
 - [Gold semantic model guide](semantic_model/nfl_gold_semantic_model_guide.md)
 - [Gold DAX measure catalog](semantic_model/nfl_gold_measures.dax)
 
-Recommended MVP shape:
+Recommended Proof-of-Concept solution shape:
 
 - Import Gold tables only.
+- Use Import mode for best performance, as it will leverage in-memory data analysis. Use direct lake mode as an alternative.
 - Use single-direction relationships from dimensions to facts and aggregates.
 - Hide technical keys and ambiguous raw detail fields.
 - Disable implicit summarization for identifiers, names, codes, descriptions,
@@ -252,7 +250,59 @@ Recommended MVP shape:
 The semantic model guide includes the relationship list, suggested display names,
 hide rules, and Prep for AI instructions.
 
-### 9. Configure The Fabric Data Agent
+### 9. Deploying the Semantic Model
+
+The deployable semantic model project lives in:
+
+```text
+semantic_model_project/NFL Play by Play Model.SemanticModel/
+```
+
+The target Fabric workspace can have any display name. The deployment script uses
+the workspace ID, so get the ID from the Fabric workspace URL or workspace
+settings before running the script.
+
+The Lakehouse created earlier in the build process should keep the same name:
+
+```text
+lh_nfl
+```
+
+Because the Lakehouse name remains `lh_nfl`, the semantic model's SQL database
+name can stay the same. If deploying to a different workspace, the Fabric SQL
+endpoint server may change, so pass the target Lakehouse SQL endpoint server to
+the script. In Fabric, open the `lh_nfl` Lakehouse, switch to the SQL analytics
+endpoint, and copy the SQL connection string/server name.
+
+Deploy and refresh from the repo root:
+
+```powershell
+python scripts/create_nfl_play_by_play_sm.py `
+  --workspace-id <WORKSPACE_GUID> `
+  --sql-endpoint-server <server.datawarehouse.fabric.microsoft.com> `
+  --sql-database lh_nfl
+```
+
+If you are deploying back to the same workspace and SQL endpoint that the
+exported `.SemanticModel` files already reference, the endpoint patch arguments
+are optional:
+
+```powershell
+python scripts/create_nfl_play_by_play_sm.py `
+  --workspace-id <WORKSPACE_GUID>
+```
+
+The script stages a temporary copy of the semantic model, patches connection
+references only in that staged copy, publishes `NFL Play by Play Model` with
+`fabric-cicd`, and triggers a semantic model refresh. The checked-in TMDL files
+are not modified by deployment-time patching.
+
+On the first deployment to a workspace, Fabric may require data source
+credentials before refresh succeeds. If refresh fails for credentials, open the
+semantic model in the Fabric workspace, go to semantic model settings, configure
+the SQL endpoint credentials, then rerun the script or refresh manually.
+
+### 10. Configure The Semantic Model Fabric Data Agent
 
 Configure the Data Agent after the semantic model is published and refreshed.
 
@@ -264,29 +314,29 @@ Recommended configuration:
   down, penalties, and rankings.
 - Add AI instructions that define offense, defense, EPA allowed, EPA generated,
   dropbacks, red zone, one-score situations, and ranking direction.
-- Add Verified Answers for the highest-priority Seahawks questions.
+- Add Verified Answers for the highest-priority questions.
 
 The evaluation notebook currently targets:
 
 | Item | Name |
 |---|---|
 | Semantic model | `NFL Play by Play Model` |
-| Data Agent | `SM Data Agent` |
+| Data Agent | `NFL Semantic Model Data Agent` |
 
 If you publish with different item names, update the configuration cell in
-`notebooks/evaluate_nfl_data_agent.ipynb`.
+`notebooks/Semantic Model Data Agent Evaluations.ipynb`.
 
-### 10. Evaluate The Data Agent
+### 11. Evaluate The Data Agent
 
-Run `notebooks/evaluate_nfl_data_agent.ipynb` in Fabric after Gold tables, the
+Run `notebooks/Semantic Model Data Agent Evaluations.ipynb` in Fabric after Gold tables, the
 semantic model, and the Data Agent are ready.
 
 The notebook:
 
 - Recomputes expected answers from Gold SQL tables at runtime.
-- Evaluates the `SM Data Agent` against those expected answers.
-- Writes `nfl_data_agent_ground_truth`, `nfl_data_agent_evaluation`, and
-  `nfl_data_agent_evaluation_steps`.
+- Evaluates the `NFL Semantic Model Data Agent` against those expected answers.
+- Writes `semantic_model_data_agent_ground_truth`, `semantic_model_data_agent_evaluation`, and
+  `semantic_model_data_agent_evaluation_steps`.
 - Displays summary and row-level details for tuning.
 
 Use failures to refine semantic model metadata, DAX measure descriptions, AI Data
@@ -333,6 +383,10 @@ For a clean rebuild, run the artifacts in this order:
 3. Run `notebooks/import_raw_nflverse_to_bronze.ipynb`.
 4. Run `notebooks/build_silver_gold_nfl_model.ipynb`.
 5. Run `notebooks/validate_gold_metrics.ipynb`.
-6. Build or refresh the Power BI semantic model using the Gold guide and DAX catalog.
-7. Configure or refresh the Fabric Data Agent.
-8. Run `notebooks/evaluate_nfl_data_agent.ipynb`.
+6. Build or update the exported files in `semantic_model_project/NFL Play by Play Model.SemanticModel/`.
+7. Deploy and refresh the semantic model with `scripts/create_nfl_play_by_play_sm.py`.
+8. Configure or refresh the NFL Semantic Model Fabric Data Agent.
+9. Run `notebooks/Semantic Model Data Agent Evaluation.ipynb`.
+10. Configure or refresh the NFL Lakehouse Fabric Data Agent.
+11. Run `notebooks/Lakehouse Data Agent Evaluation.ipynb`.
+

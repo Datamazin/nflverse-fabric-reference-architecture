@@ -1,0 +1,887 @@
+table Calculations
+	lineageTag: 24ee9071-ba8a-4855-a2f0-697dc6067255
+
+	measure Games =
+			
+			SUM ( 'Team Season Summary'[games] )
+		formatString: 0
+		displayFolder: Team Record
+		lineageTag: 7a7a2ea0-daec-478d-93a0-086d6f7abd7e
+
+	measure Wins =
+			
+			SUM ( 'Team Season Summary'[wins] )
+		formatString: 0
+		displayFolder: Team Record
+		lineageTag: 9c7fb1ac-c672-4c8f-8bd8-15e09a4b3382
+
+	measure Losses =
+			
+			SUM ( 'Team Season Summary'[losses] )
+		formatString: 0
+		displayFolder: Team Record
+		lineageTag: 759049fa-e576-4119-b477-67287e7556ff
+
+	measure Ties =
+			
+			SUM ( 'Team Season Summary'[ties] )
+		formatString: 0
+		displayFolder: Team Record
+		lineageTag: 8252b0c9-e703-423b-9a19-ebe29eef6f67
+
+	measure 'Win Rate' =
+			
+			DIVIDE ( [Wins], [Wins] + [Losses] + [Ties] )
+		displayFolder: Team Record
+		lineageTag: 80143e0f-bad7-4d41-ae7e-2576b11a5732
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Points For' =
+			
+			SUM ( 'Team Season Summary'[points_for] )
+		formatString: 0
+		displayFolder: Team Record
+		lineageTag: f89f666c-bdb1-4fd9-a9b7-07dc44f193ae
+
+	measure 'Points Against' =
+			
+			SUM ( 'Team Season Summary'[points_against] )
+		formatString: 0
+		displayFolder: Team Record
+		lineageTag: 667f2586-ce35-42cc-84f1-f82a19b03700
+
+	measure 'Point Differential' =
+			
+			[Points For] - [Points Against]
+		formatString: 0
+		displayFolder: Team Record
+		lineageTag: b62a2d05-0f89-43e9-966b-0b1e0e3bc30a
+
+	measure 'Play Count' =
+			
+			SUM ( 'Team Play'[play_count] )
+		formatString: 0
+		displayFolder: Team Play Stats
+		lineageTag: 42ff37c8-10c2-42ac-9db1-36bb93d24804
+
+	measure 'Offensive Plays' =
+			
+			CALCULATE (
+			    SUM ( 'Team Play'[offensive_play_count] ),
+			    'Team Play'[unit] = "Offense"
+			)
+		formatString: 0
+		displayFolder: Team Play Stats
+		lineageTag: 7829d30a-5e9b-4de8-94ce-72b76d485460
+
+	measure 'Defensive Plays' =
+			
+			CALCULATE (
+			    SUM ( 'Team Play'[defensive_play_count] ),
+			    'Team Play'[unit] = "Defense"
+			)
+		formatString: 0
+		displayFolder: Team Play Stats
+		lineageTag: 1a9722fb-8624-45b6-bf3b-5603c543fe4c
+
+	measure 'Offensive EPA' = ```
+			
+			CALCULATE (
+			    SUM ( 'Team Play'[epa] ),
+			    'Team Play'[unit] = "Offense"
+			)
+			
+			```
+		displayFolder: Team Play Stats
+		lineageTag: a867e930-7c02-4a66-983d-5806f7f4eb51
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Offensive EPA per Play' =
+			
+			DIVIDE ( [Offensive EPA], [Offensive Plays] )
+		displayFolder: Team Play Stats
+		lineageTag: 3a848cf7-0abd-4e01-8aa0-69a4bc1a157b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Defensive EPA Allowed' = ```
+			
+			CALCULATE (
+			    SUM ( 'Team Play'[epa_allowed] ),
+			    'Team Play'[unit] = "Defense"
+			)
+			
+			```
+		displayFolder: Team Play Stats
+		lineageTag: 650a3cfa-b858-45dd-ae48-b1620fdcb216
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Defensive EPA Allowed per Play' =
+			
+			DIVIDE ( [Defensive EPA Allowed], [Defensive Plays] )
+		displayFolder: Team Play Stats
+		lineageTag: e8792c34-338b-4071-9611-1d75bf7da888
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Defensive EPA Generated' =
+			
+			CALCULATE (
+			    SUM ( 'Team Play'[defensive_epa_generated] ),
+			    'Team Play'[unit] = "Defense"
+			)
+		displayFolder: Team Play Stats
+		lineageTag: b2bfa2a2-611a-42ae-9108-b2cffb28fc70
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Defensive EPA Generated per Play' =
+			
+			DIVIDE ( [Defensive EPA Generated], [Defensive Plays] )
+		displayFolder: Team Play Stats
+		lineageTag: de0c7363-3c12-4118-99ce-2f9fa9cf0260
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'EPA Differential' =
+			
+			[Offensive EPA] - [Defensive EPA Allowed]
+		displayFolder: Team Play Stats
+		lineageTag: 346010d0-2179-4143-875b-36790e675a47
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'EPA Differential per Play' =
+			
+			DIVIDE ( [EPA Differential], [Offensive Plays] )
+		displayFolder: Team Play Stats
+		lineageTag: d95296c3-8040-4a4d-8c1d-afd0bce2565f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Successful Plays' =
+			
+			CALCULATE (
+			    SUM ( 'Team Play'[successful_play_count] ),
+			    'Team Play'[unit] = "Offense"
+			)
+		formatString: 0
+		displayFolder: Team Play Stats
+		lineageTag: 68c92ebc-7215-4459-9491-e302a2804d9a
+
+	measure 'Success Rate' =
+			
+			DIVIDE ( [Successful Plays], [Offensive Plays] )
+		displayFolder: Team Play Stats
+		lineageTag: 33b653f8-5749-441b-91c1-2ba30a1d89af
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Defensive Successful Plays Allowed' =
+			
+			CALCULATE (
+			    SUM ( 'Team Play'[defensive_success_count] ),
+			    'Team Play'[unit] = "Defense"
+			)
+		formatString: 0
+		displayFolder: Team Play Stats
+		lineageTag: 2441354e-6804-4e91-ab67-0b66fbf329fb
+
+	measure 'Defensive Success Rate Allowed' =
+			
+			DIVIDE ( [Defensive Successful Plays Allowed], [Defensive Plays] )
+		displayFolder: Team Play Stats
+		lineageTag: 8cb5e227-e023-4d88-80a9-0fcfb2f5ce65
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Dropbacks =
+			
+			CALCULATE (
+			    SUM ( 'Team Play'[dropback_count] ),
+			    'Team Play'[unit] = "Offense"
+			)
+		formatString: 0
+		displayFolder: Team Play Stats
+		lineageTag: 85af4188-8e42-4379-b270-78460394f0c5
+
+	measure 'Designed Rushes' =
+			
+			CALCULATE (
+			    SUM ( 'Team Play'[designed_rush_count] ),
+			    'Team Play'[unit] = "Offense"
+			)
+		formatString: 0
+		displayFolder: Team Play Stats
+		lineageTag: 52e327b5-fd8a-4dfd-8f7d-0a5dee665095
+
+	measure 'Rush Attempts' =
+			
+			CALCULATE (
+			    SUM ( 'Team Play'[rush_attempt_count] ),
+			    'Team Play'[unit] = "Offense"
+			)
+		formatString: 0
+		displayFolder: Team Play Stats
+		lineageTag: 736dcc51-f3dd-4ccb-ace2-b07440b761b4
+
+	measure 'Pass Rate' =
+			
+			DIVIDE ( [Dropbacks], [Dropbacks] + [Designed Rushes] )
+		displayFolder: Team Play Stats
+		lineageTag: 48ac227e-8119-4941-a08c-4d773fe1879f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Dropback EPA' =
+			
+			SUM ( 'Team Game Summary'[dropback_epa] )
+		displayFolder: Team Play Stats
+		lineageTag: 4d414637-fc3c-4e8a-8dfc-560ec1d3a3cb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Dropback EPA per Play' =
+			
+			DIVIDE ( [Dropback EPA], SUM ( 'Team Game Summary'[dropbacks] ) )
+		displayFolder: Team Play Stats
+		lineageTag: daa3dbbf-f63d-4117-8a1e-bdc8c9532bfc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Rush EPA' =
+			
+			SUM ( 'Team Game Summary'[rush_epa] )
+		displayFolder: Team Play Stats
+		lineageTag: ef544ba0-4a59-432d-a7b8-75999b4b2fd2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Rush EPA per Play' = ```
+			
+			DIVIDE ( [Rush EPA], SUM ( 'Team Game Summary'[rush_attempts] ) )
+			
+			```
+		displayFolder: Team Play Stats
+		lineageTag: 4043e745-f598-4c46-94aa-8a3ab5499919
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure WPA =
+			
+			SUM ( 'Play Detail'[wpa] )
+		displayFolder: Team Play Stats
+		lineageTag: a14816d1-c66a-45c7-820b-be99300708b5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Max Single-Play WPA Swing' =
+			
+			MAXX (
+			    'Play Detail',
+			    ABS ( 'Play Detail'[wpa] )
+			)
+		displayFolder: Team Play Stats
+		lineageTag: 782e345c-5079-4cf4-a24a-74c3a7febbff
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Third Down Attempts' =
+			
+			CALCULATE (
+			    SUM ( 'Team Play'[third_down_attempt_count] ),
+			    'Team Play'[unit] = "Offense"
+			)
+		formatString: 0
+		displayFolder: Downs | Red Zone | Explosive Plays
+		lineageTag: c04213f1-deec-48d9-868e-698008ebe2e4
+
+	measure 'Third Down Conversions' =
+			
+			CALCULATE (
+			    SUM ( 'Team Play'[third_down_conversion_count] ),
+			    'Team Play'[unit] = "Offense"
+			)
+		formatString: 0
+		displayFolder: Downs | Red Zone | Explosive Plays
+		lineageTag: f4fdcc13-979c-495e-86b9-fcff8a49617d
+
+	measure 'Third Down Conversion Rate' =
+			
+			DIVIDE ( [Third Down Conversions], [Third Down Attempts] )
+		displayFolder: Downs | Red Zone | Explosive Plays
+		lineageTag: 2da06c23-f011-4fa3-9109-7a4ff4babd44
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Fourth Down Attempts' =
+			
+			CALCULATE (
+			    SUM ( 'Team Play'[fourth_down_attempt_count] ),
+			    'Team Play'[unit] = "Offense"
+			)
+		formatString: 0
+		displayFolder: Downs | Red Zone | Explosive Plays
+		lineageTag: 75fb7f14-bb8e-4aa0-b53f-a695e4fc1da6
+
+	measure 'Fourth Down Conversions' =
+			
+			CALCULATE (
+			    SUM ( 'Team Play'[fourth_down_conversion_count] ),
+			    'Team Play'[unit] = "Offense"
+			)
+		formatString: 0
+		displayFolder: Downs | Red Zone | Explosive Plays
+		lineageTag: ee1083b9-f5b6-4309-9498-a7b90b73016a
+
+	measure 'Fourth Down Conversion Rate' =
+			
+			DIVIDE ( [Fourth Down Conversions], [Fourth Down Attempts] )
+		displayFolder: Downs | Red Zone | Explosive Plays
+		lineageTag: acee0ba4-6d6c-4b80-b5f1-50d388be0dae
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Red Zone Drives' =
+			
+			SUM ( 'Team Season Summary'[red_zone_drives] )
+		formatString: 0
+		displayFolder: Downs | Red Zone | Explosive Plays
+		lineageTag: da3f99e0-6d79-462e-8404-410bfc167ade
+
+	measure 'Red Zone TD Drives' =
+			
+			SUM ( 'Team Season Summary'[red_zone_touchdown_drives] )
+		formatString: 0
+		displayFolder: Downs | Red Zone | Explosive Plays
+		lineageTag: df6feb01-84ab-4f1b-b3e4-def6d948f0f8
+
+	measure 'Red Zone TD Rate' =
+			
+			DIVIDE ( [Red Zone TD Drives], [Red Zone Drives] )
+		displayFolder: Downs | Red Zone | Explosive Plays
+		lineageTag: 16504523-cabf-4ca0-b403-fe53f91bc90b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Explosive Plays Allowed' =
+			
+			SUM ( 'Team Season Summary'[explosive_plays_allowed] )
+		formatString: 0
+		displayFolder: Downs | Red Zone | Explosive Plays
+		lineageTag: f63d1eb3-224f-41d0-ab10-84268d6ae132
+
+	measure 'Explosive Plays Allowed per Game' =
+			
+			DIVIDE ( [Explosive Plays Allowed], [Games] )
+		displayFolder: Downs | Red Zone | Explosive Plays
+		lineageTag: 0478f6f5-0e4c-46c1-89fe-00480696842e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Turnovers =
+			
+			CALCULATE (
+			    SUM ( 'Team Play'[turnover_count] ),
+			    'Team Play'[unit] = "Offense"
+			)
+		formatString: 0
+		displayFolder: Downs | Red Zone | Explosive Plays
+		lineageTag: f189f2d5-24c7-4b04-9ce7-2f1598ed9b00
+
+	measure Takeaways =
+			
+			CALCULATE (
+			    SUM ( 'Team Play'[takeaway_count] ),
+			    'Team Play'[unit] = "Defense"
+			)
+		formatString: 0
+		displayFolder: Downs | Red Zone | Explosive Plays
+		lineageTag: 6782b403-7ab8-4011-89fc-cc20dbe5ddfc
+
+	measure 'Sacks Generated' =
+			
+			CALCULATE (
+			    SUM ( 'Team Play'[sack_count] ),
+			    'Team Play'[unit] = "Defense"
+			)
+		formatString: 0
+		displayFolder: Downs | Red Zone | Explosive Plays
+		lineageTag: 31244c28-4bd1-4d4d-ad7b-8aa8e52e63ab
+
+	measure 'QB Hits Generated' =
+			
+			CALCULATE (
+			    SUM ( 'Team Play'[qb_hit_count] ),
+			    'Team Play'[unit] = "Defense"
+			)
+		formatString: 0
+		displayFolder: Downs | Red Zone | Explosive Plays
+		lineageTag: cc9c9f9a-819d-4f16-9756-dbb7fbcaa66d
+
+	measure 'Defensive Dropbacks Faced' =
+			
+			CALCULATE (
+			    SUM ( 'Team Play'[dropback_count] ),
+			    'Team Play'[unit] = "Defense"
+			)
+		formatString: 0
+		displayFolder: Downs | Red Zone | Explosive Plays
+		lineageTag: e2869eed-cea2-41bb-bed9-7981cb57d380
+
+	measure 'QB Hit Plus Sack Rate' =
+			
+			DIVIDE ( [QB Hits Generated] + [Sacks Generated], [Defensive Dropbacks Faced] )
+		displayFolder: Downs | Red Zone | Explosive Plays
+		lineageTag: d3ebd41b-198f-457f-9599-27661812e5e7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Passing Dropbacks' =
+			
+			SUM ( 'Player Season Summary'[passing_dropbacks] )
+		formatString: 0
+		displayFolder: Passing
+		lineageTag: 0b6cfb9c-25c3-4798-8976-05e4663065c9
+
+	measure 'Pass Attempts' =
+			
+			SUM ( 'Player Season Summary'[attempts] )
+		formatString: 0
+		displayFolder: Passing
+		lineageTag: 193db0a8-34f7-4bdd-9c37-4f5349fbfdf6
+
+	measure Completions =
+			
+			SUM ( 'Player Season Summary'[completions] )
+		formatString: 0
+		displayFolder: Passing
+		lineageTag: 25dfb41a-c8ec-4157-9799-5890d505e688
+
+	measure 'Completion Percentage' =
+			
+			DIVIDE ( [Completions], [Pass Attempts] )
+		displayFolder: Passing
+		lineageTag: e686a23a-06fe-4078-9f1f-dbf38dc5397a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Passing Yards' =
+			
+			SUM ( 'Player Season Summary'[passing_yards] )
+		displayFolder: Passing
+		lineageTag: 08f54d42-70cd-4568-977f-028e59cfc873
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Passing TDs' =
+			
+			SUM ( 'Player Season Summary'[passing_tds] )
+		formatString: 0
+		displayFolder: Passing
+		lineageTag: fc30f40d-ab87-4d8a-951e-46f36d183503
+
+	measure 'Interceptions Thrown' =
+			
+			SUM ( 'Player Season Summary'[interceptions] )
+		formatString: 0
+		displayFolder: Passing
+		lineageTag: 70a266a0-1159-43f7-bc35-4a748514cfbc
+
+	measure 'TD to INT Ratio' =
+			
+			DIVIDE ( [Passing TDs], [Interceptions Thrown] )
+		displayFolder: Passing
+		lineageTag: 70b82184-7315-4382-aa63-4f8118964c2d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Passing EPA' =
+			
+			SUM ( 'Player Season Summary'[passing_epa] )
+		displayFolder: Passing
+		lineageTag: c606c960-36eb-4e21-87a9-7539f3af6f35
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Passing EPA per Dropback' =
+			
+			DIVIDE ( [Passing EPA], [Passing Dropbacks] )
+		displayFolder: Passing
+		lineageTag: e1d422aa-bd49-404d-bb47-8be12b3eb385
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average CPOE' =
+			
+			AVERAGE ( 'Player Season Summary'[avg_cpoe] )
+		displayFolder: Passing
+		lineageTag: 2a1fcaf3-b84f-4877-9d8f-55d2d7980979
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Deep Attempts' =
+			
+			SUM ( 'Player Season Summary'[deep_attempts] )
+		formatString: 0
+		displayFolder: Passing
+		lineageTag: c21b9fc1-458a-499d-8880-7d3dec1a5694
+
+	measure 'Deep Completions' =
+			
+			SUM ( 'Player Season Summary'[deep_completions] )
+		formatString: 0
+		displayFolder: Passing
+		lineageTag: b96be1bc-9849-4304-902f-26572135fdb9
+
+	measure 'Deep Completion Percentage' =
+			
+			DIVIDE ( [Deep Completions], [Deep Attempts] )
+		displayFolder: Passing
+		lineageTag: 1ce3e153-fbb2-45be-9ecc-357ba4935c44
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Deep Average CPOE' =
+			
+			AVERAGE ( 'Player Season Summary'[deep_avg_cpoe] )
+		displayFolder: Passing
+		lineageTag: acbd4b88-400e-4a89-a95b-122caaa9aa85
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'No-Huddle Dropbacks' =
+			
+			SUM ( 'Player Season Summary'[no_huddle_dropbacks] )
+		formatString: 0
+		displayFolder: Passing
+		lineageTag: f2f0a851-f20b-4c31-a13d-76950ba6901f
+
+	measure 'No-Huddle EPA per Dropback' =
+			
+			DIVIDE (
+			    SUMX (
+			        'Player Season Summary',
+			        'Player Season Summary'[no_huddle_epa_per_dropback]
+			            * 'Player Season Summary'[no_huddle_dropbacks]
+			    ),
+			    [No-Huddle Dropbacks]
+			)
+		displayFolder: Passing
+		lineageTag: ff3b6c10-b911-4756-816c-b0541f5ebec6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Huddle Dropbacks' =
+			
+			SUM ( 'Player Season Summary'[huddle_dropbacks] )
+		formatString: 0
+		displayFolder: Passing
+		lineageTag: b227f1ad-c0f5-4983-809e-6a0020e45e8b
+
+	measure 'Huddle EPA per Dropback' =
+			
+			DIVIDE (
+			    SUMX (
+			        'Player Season Summary',
+			        'Player Season Summary'[huddle_epa_per_dropback]
+			            * 'Player Season Summary'[huddle_dropbacks]
+			    ),
+			    [Huddle Dropbacks]
+			)
+		displayFolder: Passing
+		lineageTag: 6936ba6b-2fa7-4fee-a603-469afb93573c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Rushing Attempts' =
+			
+			SUM ( 'Player Season Summary'[rushing_attempts] )
+		formatString: 0
+		displayFolder: Rushing
+		lineageTag: d87e0ae8-25f5-4f42-b616-ead79d5e7d49
+
+	measure 'Rushing Yards' =
+			
+			SUM ( 'Player Season Summary'[rushing_yards] )
+		displayFolder: Rushing
+		lineageTag: 5f9c7523-25ff-4154-b01f-3dc3ea1a464a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Rushing TDs' =
+			
+			SUM ( 'Player Season Summary'[rushing_tds] )
+		formatString: 0
+		displayFolder: Rushing
+		lineageTag: 0c7da2a8-6c00-4d1b-bb4c-f09914dd3621
+
+	measure 'Rushing EPA' =
+			
+			SUM ( 'Player Season Summary'[rushing_epa] )
+		displayFolder: Rushing
+		lineageTag: e493096d-94d6-4e9b-80b9-cf02755ed77b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Rushing EPA per Play' =
+			
+			DIVIDE ( [Rushing EPA], [Rushing Attempts] )
+		displayFolder: Rushing
+		lineageTag: 083cb5de-cf1d-414d-9f7e-3bbb60a74d43
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Stuffed Rushes' =
+			
+			SUM ( 'Player Season Summary'[stuffed_rushes] )
+		formatString: 0
+		displayFolder: Rushing
+		lineageTag: c814d402-bb51-4e06-8ecd-39ba5a7a324a
+
+	measure 'Stuff Rate' =
+			
+			DIVIDE ( [Stuffed Rushes], [Rushing Attempts] )
+		displayFolder: Rushing
+		lineageTag: 49474204-dcf0-4f20-ba90-80aef13f1f43
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Explosive Rushes' =
+			
+			SUM ( 'Player Season Summary'[explosive_rushes] )
+		formatString: 0
+		displayFolder: Rushing
+		lineageTag: a5002080-92db-4a58-b989-eadd817506cf
+
+	measure 'Explosive Rush Rate' =
+			
+			DIVIDE ( [Explosive Rushes], [Rushing Attempts] )
+		displayFolder: Rushing
+		lineageTag: a5d476e9-75d3-448f-a461-133dd218d9fd
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Rush Conversions' =
+			
+			SUM ( 'Player Season Summary'[rush_conversions] )
+		formatString: 0
+		displayFolder: Rushing
+		lineageTag: 1ece691b-d80d-407b-ac50-54c3c90f46ed
+
+	measure 'Rush Conversion Rate' =
+			
+			DIVIDE ( [Rush Conversions], [Rushing Attempts] )
+		displayFolder: Rushing
+		lineageTag: 3b369e75-70f9-48f4-8252-d4ed521f82f9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Targets =
+			
+			SUM ( 'Player Season Summary'[targets] )
+		formatString: 0
+		displayFolder: Receiving
+		lineageTag: 075196ff-7fdb-4262-8163-c28d8a68d5a9
+
+	measure Receptions =
+			
+			SUM ( 'Player Season Summary'[receptions] )
+		formatString: 0
+		displayFolder: Receiving
+		lineageTag: effeb80f-2d21-4adb-987f-ae82f2b77ddb
+
+	measure 'Catch Rate' =
+			
+			DIVIDE ( [Receptions], [Targets] )
+		displayFolder: Receiving
+		lineageTag: d2c12f1f-7201-4251-9c2d-cec53d849ec2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Receiving Yards' =
+			
+			SUM ( 'Player Season Summary'[receiving_yards] )
+		displayFolder: Receiving
+		lineageTag: 81980f87-640d-4c8c-91e6-29e1fe5068f9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Receiving EPA' =
+			
+			SUM ( 'Player Season Summary'[receiving_epa] )
+		displayFolder: Receiving
+		lineageTag: 9f13f33a-f74b-4b84-855a-f6dfd9de9ea0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Receiving EPA per Target' =
+			
+			DIVIDE ( [Receiving EPA], [Targets] )
+		displayFolder: Receiving
+		lineageTag: 4341e2d2-21e9-4056-a06b-13890a91fdff
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Yards After Catch' =
+			
+			SUM ( 'Player Season Summary'[yards_after_catch] )
+		displayFolder: Receiving
+		lineageTag: ac20b2eb-846b-41b0-860f-3187c2663cb0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'YAC per Reception' =
+			
+			DIVIDE ( [Yards After Catch], [Receptions] )
+		displayFolder: Receiving
+		lineageTag: f150a5e8-cb93-4f67-96e1-16281e0331f5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'YAC EPA' =
+			
+			SUM ( 'Player Season Summary'[yac_epa] )
+		displayFolder: Receiving
+		lineageTag: bad010f6-69a8-4ecb-9718-431a1c57263d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'YAC EPA per Reception' =
+			
+			DIVIDE ( [YAC EPA], [Receptions] )
+		displayFolder: Receiving
+		lineageTag: 59de6190-8194-412e-b2fb-ae8b637d98bf
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Defensive Sacks' =
+			
+			SUM ( 'Player Season Summary'[sacks_defense] )
+		displayFolder: Defensive Player Stats
+		lineageTag: 84744c21-565d-482f-8692-8eb2a02b4426
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Defensive QB Hits' =
+			
+			SUM ( 'Player Season Summary'[qb_hits_defense] )
+		displayFolder: Defensive Player Stats
+		lineageTag: 0482cc96-a47d-4490-abdc-f5214386834f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Penalty Count' =
+			
+			SUM ( 'Penalty'[penalty_count] )
+		formatString: 0
+		displayFolder: Penalties
+		lineageTag: 051ce71e-0dc7-4202-aa91-b7431d602484
+
+	measure 'Penalty Yards' =
+			
+			SUM ( 'Penalty'[penalty_yards] )
+		displayFolder: Penalties
+		lineageTag: 461eec1c-e0ac-4175-b1d0-d7aae3188cd2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Field Goal Attempts' =
+			
+			SUM ( 'Player Season Summary'[field_goal_attempts] )
+		formatString: 0
+		displayFolder: Field Goals
+		lineageTag: 14b98732-9540-4c9b-a0da-6f18ca0584e3
+
+	measure 'Field Goals Made' =
+			
+			SUM ( 'Player Season Summary'[field_goals_made] )
+		formatString: 0
+		displayFolder: Field Goals
+		lineageTag: 65b55ff6-c31d-4255-9160-2581dabaf8b8
+
+	measure 'Field Goal Make Rate' =
+			
+			DIVIDE ( [Field Goals Made], [Field Goal Attempts] )
+		displayFolder: Field Goals
+		lineageTag: 84b12eff-6763-4461-b40c-d6d4f9da905f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Away Points' =
+			
+			AVERAGE ( 'Game'[Away Team Score] )
+		displayFolder: Home Field Advantage
+		lineageTag: 67bda645-6542-4e2c-8d75-78d388f8bd01
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Home Points' =
+			
+			AVERAGE ( 'Game'[Home Team Score] )
+		displayFolder: Home Field Advantage
+		lineageTag: 7a21e022-2e18-4758-aa96-6b871e88abd8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Home Point Differential' =
+			
+			AVERAGEX ( 'Game', 'Game'[Home Team Score] - 'Game'[Away Team Score] )
+		displayFolder: Home Field Advantage
+		lineageTag: 5e712df2-65b9-4efb-a5df-06db3fc28c79
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Home Wins' =
+			
+			CALCULATE (
+			    COUNTROWS ( 'Game' ),
+			    'Game'[Home Team Score] > 'Game'[Away Team Score]
+			)
+		formatString: 0
+		displayFolder: Home Field Advantage
+		lineageTag: e0ce607e-9fe3-44a1-8756-c0e563f45d79
+
+	measure 'Home Games' =
+			
+			COUNTROWS ( 'Game' )
+		formatString: 0
+		displayFolder: Home Field Advantage
+		lineageTag: 42f8c8e2-8c9d-45b3-acd5-76ee6fc83645
+
+	measure 'Home Win Rate' =
+			
+			DIVIDE ( [Home Wins], [Home Games] )
+		displayFolder: Home Field Advantage
+		lineageTag: 2d5aec23-cfa9-4d12-a2e5-835b5c6332f7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Column1
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: a59b7ff7-5ff3-4284-8304-9035bdc68ce7
+		summarizeBy: sum
+		sourceColumn: Column1
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Calculations = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WMlSKjQUA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+

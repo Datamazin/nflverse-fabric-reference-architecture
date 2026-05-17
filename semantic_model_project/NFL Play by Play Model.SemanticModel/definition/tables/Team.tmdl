@@ -1,0 +1,114 @@
+table Team
+	lineageTag: abcc2eca-5bfd-42c5-b708-d35fc8988a25
+
+	column team_key
+		dataType: string
+		isHidden
+		lineageTag: 3f91ecdc-f444-445c-aca6-9b007081ee1c
+		summarizeBy: none
+		sourceColumn: team_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Team Code'
+		dataType: string
+		lineageTag: 40c2b27f-5e45-4609-8e75-c100612dbc8b
+		summarizeBy: none
+		sourceColumn: Team Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Team Name'
+		dataType: string
+		lineageTag: c76b7b24-19d9-4e92-99fd-d1a9e3a20d8e
+		summarizeBy: none
+		sourceColumn: Team Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Team Nickname'
+		dataType: string
+		lineageTag: 0f008b73-355d-4898-883d-c3dc8a772692
+		summarizeBy: none
+		sourceColumn: Team Nickname
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Team Conference'
+		dataType: string
+		lineageTag: 56014963-aacf-4281-9ea9-418450af9bd4
+		summarizeBy: none
+		sourceColumn: Team Conference
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Team Division'
+		dataType: string
+		lineageTag: 00222a0c-d1a6-4a8c-91b1-64653a87abcf
+		summarizeBy: none
+		sourceColumn: Team Division
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Team Primary Color'
+		dataType: string
+		isHidden
+		lineageTag: f4aa9e9f-40c9-4979-85b8-be280b55179c
+		summarizeBy: none
+		sourceColumn: Team Primary Color
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Team Secondary Color'
+		dataType: string
+		isHidden
+		lineageTag: 8ca7f185-21aa-403a-8107-e220c3de14f6
+		summarizeBy: none
+		sourceColumn: Team Secondary Color
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column team_logo_espn
+		dataType: string
+		isHidden
+		lineageTag: 192a23d8-449c-4216-86ab-010323dda4c1
+		summarizeBy: none
+		sourceColumn: team_logo_espn
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column team_wordmark
+		dataType: string
+		isHidden
+		lineageTag: c42518a7-2ae0-4efd-bb81-ef81bf5a41d6
+		summarizeBy: none
+		sourceColumn: team_wordmark
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Team = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("7rk6p6eropzejk7ixdt5o37uva-vnwsxyqyfgfenghwxbbv4lazty.datawarehouse.fabric.microsoft.com", "lh_nfl"),
+				    gold_dim_team = Source{[Schema="gold",Item="dim_team"]}[Data],
+				    #"Renamed Columns" = Table.RenameColumns(gold_dim_team,{{"team_code", "Team Code"}, {"team_color", "Team Primary Color"}, {"team_color2", "Team Secondary Color"}, {"team_conf", "Team Conference"}, {"team_division", "Team Division"}, {"team_name", "Team Name"}, {"team_nick", "Team Nickname"}})
+				in
+				    #"Renamed Columns"
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,403 @@
+table 'Rushing Play'
+	lineageTag: 4d8e0271-58aa-47ee-b3c6-2c27bd8fb176
+
+	column play_key
+		dataType: string
+		lineageTag: f93f97aa-284a-4a5c-89ed-f52c99671b7e
+		summarizeBy: none
+		sourceColumn: play_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column game_key
+		dataType: string
+		lineageTag: 21088dd8-50f2-49a1-8db6-1782eabdc9a0
+		summarizeBy: none
+		sourceColumn: game_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column season_week_key
+		dataType: string
+		lineageTag: a2e28ef7-e3ac-4f2f-8cb3-8c4fac79c8c2
+		summarizeBy: none
+		sourceColumn: season_week_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column season
+		dataType: string
+		lineageTag: ed2e8da5-6d25-4fa0-be87-e8837a3723e3
+		summarizeBy: none
+		sourceColumn: season
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column week
+		dataType: int64
+		formatString: 0
+		lineageTag: 5308d510-d42d-44b4-b26e-9f84a12e823d
+		summarizeBy: none
+		sourceColumn: week
+
+		annotation SummarizationSetBy = User
+
+	column season_type
+		dataType: string
+		lineageTag: a5d0d6b5-1038-4c50-a58d-47b8d4f1410e
+		summarizeBy: none
+		sourceColumn: season_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column offense_team_key
+		dataType: string
+		lineageTag: 88d7895a-7354-42d1-8123-343d7deea183
+		summarizeBy: none
+		sourceColumn: offense_team_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column defense_team_key
+		dataType: string
+		lineageTag: 42edf95a-9beb-4620-84ca-593f60f35f1f
+		summarizeBy: none
+		sourceColumn: defense_team_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column rusher_player_key
+		dataType: string
+		lineageTag: c4130529-f5a6-48fe-b350-7a259a32b078
+		summarizeBy: none
+		sourceColumn: rusher_player_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column rusher_player_name
+		dataType: string
+		lineageTag: 91f16b59-a2a7-4811-a865-283e9aec4ca7
+		summarizeBy: none
+		sourceColumn: rusher_player_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column rusher_position
+		dataType: string
+		lineageTag: 768d9b61-babe-4d1a-9cf1-2636d98dd2ac
+		summarizeBy: none
+		sourceColumn: rusher_position
+
+		annotation SummarizationSetBy = Automatic
+
+	column run_location
+		dataType: string
+		lineageTag: 38b8e333-6cc5-488c-ac5b-64cfec3de367
+		summarizeBy: none
+		sourceColumn: run_location
+
+		annotation SummarizationSetBy = Automatic
+
+	column run_gap
+		dataType: string
+		lineageTag: b30ae15a-d7ff-4ce6-ab94-ca52b2fdfb60
+		summarizeBy: none
+		sourceColumn: run_gap
+
+		annotation SummarizationSetBy = Automatic
+
+	column yards_gained
+		dataType: double
+		lineageTag: 1e211275-3854-4467-a53e-f3509fb4451d
+		summarizeBy: sum
+		sourceColumn: yards_gained
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column rushing_yards
+		dataType: double
+		lineageTag: 437c5df7-ecc0-4f2d-b191-6f009afbe407
+		summarizeBy: sum
+		sourceColumn: rushing_yards
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column epa
+		dataType: double
+		lineageTag: a61862db-47dd-48fb-bffb-5c2bd88b2ca5
+		summarizeBy: sum
+		sourceColumn: epa
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column wpa
+		dataType: double
+		lineageTag: 040a16d7-3460-40ce-aa05-2d5f44e83bae
+		summarizeBy: sum
+		sourceColumn: wpa
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column down
+		dataType: int64
+		formatString: 0
+		lineageTag: 79cf5718-c736-44a6-a379-042163bb0bda
+		summarizeBy: sum
+		sourceColumn: down
+
+		annotation SummarizationSetBy = Automatic
+
+	column ydstogo
+		dataType: double
+		lineageTag: 3889fe3d-3540-497b-9b7f-2f5394db081b
+		summarizeBy: sum
+		sourceColumn: ydstogo
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column qtr
+		dataType: int64
+		formatString: 0
+		lineageTag: 155ffcc6-a5fc-4765-84a9-807d4b30a62b
+		summarizeBy: sum
+		sourceColumn: qtr
+
+		annotation SummarizationSetBy = Automatic
+
+	column score_differential
+		dataType: int64
+		formatString: 0
+		lineageTag: 86bff58c-2d1f-40f2-b6c2-9b3a87008a93
+		summarizeBy: sum
+		sourceColumn: score_differential
+
+		annotation SummarizationSetBy = Automatic
+
+	column field_zone
+		dataType: string
+		lineageTag: 54a2d04b-0819-4ee2-b7f8-bbb6976eb484
+		summarizeBy: none
+		sourceColumn: field_zone
+
+		annotation SummarizationSetBy = Automatic
+
+	column score_state
+		dataType: string
+		lineageTag: 98505f32-9b68-4895-b425-ddb03ffbfea9
+		summarizeBy: none
+		sourceColumn: score_state
+
+		annotation SummarizationSetBy = Automatic
+
+	column time_context
+		dataType: string
+		lineageTag: 85c6fa16-e980-4dbf-bb2e-26c56ad9bd6e
+		summarizeBy: none
+		sourceColumn: time_context
+
+		annotation SummarizationSetBy = Automatic
+
+	column down_distance_bucket
+		dataType: string
+		lineageTag: b5bde85f-9077-454a-936e-280fbc32f4af
+		summarizeBy: none
+		sourceColumn: down_distance_bucket
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_rush_attempt
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: dddc422f-170a-46c3-9b66-ba27f751e6c4
+		summarizeBy: none
+		sourceColumn: is_rush_attempt
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_designed_rush
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 6b6015be-0465-479e-af88-d6e98256a4f6
+		summarizeBy: none
+		sourceColumn: is_designed_rush
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_qb_scramble
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: a7c51e74-f021-43fc-b1b4-45ca8916235d
+		summarizeBy: none
+		sourceColumn: is_qb_scramble
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_qb_kneel
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 0cb51d03-2397-4342-8f4c-9fd53a332b4e
+		summarizeBy: none
+		sourceColumn: is_qb_kneel
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_explosive_rush
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 02ac2fdf-1a25-47e1-b8db-8f5b7eed230f
+		summarizeBy: none
+		sourceColumn: is_explosive_rush
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_rush_touchdown
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 74809dd7-aad1-4cd4-a1c6-6a7134a2def2
+		summarizeBy: none
+		sourceColumn: is_rush_touchdown
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_successful_play
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: c2d9ea03-98c6-4093-9b78-399b05cb4c5d
+		summarizeBy: none
+		sourceColumn: is_successful_play
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_first_down_or_touchdown
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 142d1f98-d6f9-4e39-96bd-991b76ef6672
+		summarizeBy: none
+		sourceColumn: is_first_down_or_touchdown
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_red_zone
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 15f7786f-4eba-4c5e-9868-b882ea91247d
+		summarizeBy: none
+		sourceColumn: is_red_zone
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_stuffed
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 0bff2cc0-2fbc-4acf-a9ef-7d10ca33516c
+		summarizeBy: none
+		sourceColumn: is_stuffed
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_rb_or_fb_carry
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: c1f8c69c-4cb9-44bd-8d75-01eba2b44f5e
+		summarizeBy: none
+		sourceColumn: is_rb_or_fb_carry
+
+		annotation SummarizationSetBy = Automatic
+
+	column rush_attempt_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 7eba8ca8-1786-4cf3-84d8-7dabd874e848
+		summarizeBy: sum
+		sourceColumn: rush_attempt_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column designed_rush_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 8624c8fc-f176-4fae-8a79-71261b2414a7
+		summarizeBy: sum
+		sourceColumn: designed_rush_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column qb_scramble_count
+		dataType: int64
+		formatString: 0
+		lineageTag: b9e803c8-4c8f-477c-b0bb-a68d133225d5
+		summarizeBy: sum
+		sourceColumn: qb_scramble_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column successful_rush_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 5140e290-a111-45ce-9722-ffcf9fedcaeb
+		summarizeBy: sum
+		sourceColumn: successful_rush_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column stuffed_rush_count
+		dataType: int64
+		formatString: 0
+		lineageTag: b22759ef-3a8f-42ff-ae20-ac88984538c3
+		summarizeBy: sum
+		sourceColumn: stuffed_rush_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column explosive_rush_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 8a1417d3-79bf-4e18-8749-4f66c0934d2a
+		summarizeBy: sum
+		sourceColumn: explosive_rush_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column rushing_touchdown_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 159f134b-5f11-4315-a8aa-afb18ca3dbb3
+		summarizeBy: sum
+		sourceColumn: rushing_touchdown_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column conversion_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 8d25bec2-c8d0-4c8b-85e5-67f373365fb2
+		summarizeBy: sum
+		sourceColumn: conversion_count
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Rushing Play' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("7rk6p6eropzejk7ixdt5o37uva-vnwsxyqyfgfenghwxbbv4lazty.datawarehouse.fabric.microsoft.com", "lh_nfl"),
+				    gold_fact_rush_play = Source{[Schema="gold",Item="fact_rush_play"]}[Data]
+				in
+				    gold_fact_rush_play
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+

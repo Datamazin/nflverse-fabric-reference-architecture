@@ -1,0 +1,243 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 262.89574875268909,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 2001.4276291186166,
+            "y": 308.63131094799877
+          },
+          "nodeIndex": "Team",
+          "nodeLineageTag": "abcc2eca-5bfd-42c5-b708-d35fc8988a25",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 14
+        },
+        {
+          "location": {
+            "x": 866.02579544899174,
+            "y": 819.91982095409719
+          },
+          "nodeIndex": "Game",
+          "nodeLineageTag": "4e6a7788-1903-430a-a441-cb61a1e0fcbc",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 2130.038605895546,
+            "y": 877.14285714285722
+          },
+          "nodeIndex": "Player",
+          "nodeLineageTag": "66008eb5-a3ab-423d-acca-296bb1bb9d79",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 15
+        },
+        {
+          "location": {
+            "x": 1064.9494805740876,
+            "y": 0
+          },
+          "nodeIndex": "Season Week",
+          "nodeLineageTag": "f9960ddb-d4a7-40d3-8d0f-ea888781e46d",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 1277.1172941752379,
+            "y": 574.34323802148958
+          },
+          "nodeIndex": "Team Play",
+          "nodeLineageTag": "1319ed80-9317-46c0-ba6e-bfd90590c6f8",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 16
+        },
+        {
+          "location": {
+            "x": 448.35983696429435,
+            "y": 375.0762821961867
+          },
+          "nodeIndex": "Play Detail",
+          "nodeLineageTag": "7afc903a-27e6-4114-b1e0-a918f498db1c",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 142.85714285714283,
+            "y": 385.1353618508374
+          },
+          "nodeIndex": "Passing Play",
+          "nodeLineageTag": "d254c614-8a26-468c-9542-b56abacd6044",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 296.94414164089619,
+            "y": 825.89537094358661
+          },
+          "nodeIndex": "Rushing Play",
+          "nodeLineageTag": "4d8e0271-58aa-47ee-b3c6-2c27bd8fb176",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 231.23622000137965,
+            "y": 0
+          },
+          "nodeIndex": "Penalty",
+          "nodeLineageTag": "aef84cd3-08e5-4407-9dbb-a1a9fd1ef9b0",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 2421.2481442992021,
+            "y": 0
+          },
+          "nodeIndex": "Special Teams Play",
+          "nodeLineageTag": "5a3a525e-661f-43c4-8ed6-63ff39c35c3d",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 8
+        },
+        {
+          "location": {
+            "x": 1595.000614987928,
+            "y": 342.15572755876929
+          },
+          "nodeIndex": "Player Play Role",
+          "nodeLineageTag": "9589b2d2-bd1b-4d90-8fe6-3eafa926c8bf",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 9
+        },
+        {
+          "location": {
+            "x": 1539.8329568117931,
+            "y": 843.7902823993752
+          },
+          "nodeIndex": "Team Game Summary",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 10
+        },
+        {
+          "location": {
+            "x": 2676.0386058955464,
+            "y": 504.24720534042092
+          },
+          "nodeIndex": "Team Season Summary",
+          "nodeLineageTag": "bbe4d30a-44df-434e-b0f4-35e38059c2d5",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 11
+        },
+        {
+          "location": {
+            "x": 2408.7343731357109,
+            "y": 319.15508629598276
+          },
+          "nodeIndex": "Team Situation Summary",
+          "nodeLineageTag": "c8e104c8-2fa5-480c-bf4c-fd14ea5881fb",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 12
+        },
+        {
+          "location": {
+            "x": 2409.8357223937223,
+            "y": 702.26028029879217
+          },
+          "nodeIndex": "Player Season Summary",
+          "nodeLineageTag": "5a72097b-17f5-4da6-9aec-220e8583731e",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 13
+        },
+        {
+          "location": {
+            "x": 1176.2290748199327,
+            "y": 1172.2857142857147
+          },
+          "nodeIndex": "Calculations",
+          "nodeLineageTag": "24ee9071-ba8a-4855-a2f0-697dc6067255",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 1
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 70,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    },
+    {
+      "ordinal": 1,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [],
+      "name": "Layout 1",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

@@ -1,0 +1,559 @@
+table 'Passing Play'
+	lineageTag: d254c614-8a26-468c-9542-b56abacd6044
+
+	column play_key
+		dataType: string
+		lineageTag: 6e40e1ce-6aef-47a9-933b-080f372ed407
+		summarizeBy: none
+		sourceColumn: play_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column game_key
+		dataType: string
+		isHidden
+		lineageTag: 59019c60-c273-4795-84de-cfce607ccb0a
+		summarizeBy: none
+		sourceColumn: game_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column season_week_key
+		dataType: string
+		lineageTag: 9dff54fc-9627-439c-84eb-df8aed1fdb25
+		summarizeBy: none
+		sourceColumn: season_week_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column season
+		dataType: string
+		lineageTag: 56bfdb06-ba92-4e5a-8a66-ff6dc700afed
+		summarizeBy: none
+		sourceColumn: season
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column week
+		dataType: int64
+		formatString: 0
+		lineageTag: ddc895c1-54a9-40c8-8a64-9a6771a29bec
+		summarizeBy: none
+		sourceColumn: week
+
+		annotation SummarizationSetBy = User
+
+	column season_type
+		dataType: string
+		lineageTag: ebf46c6c-3841-4723-a640-3988e423aa79
+		summarizeBy: none
+		sourceColumn: season_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column offense_team_key
+		dataType: string
+		lineageTag: 8e0d379b-2964-4d0d-ada9-5a363121517f
+		summarizeBy: none
+		sourceColumn: offense_team_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column defense_team_key
+		dataType: string
+		isHidden
+		lineageTag: f889662a-e483-4b7a-9153-5ea934a37538
+		summarizeBy: none
+		sourceColumn: defense_team_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column passer_player_key
+		dataType: string
+		lineageTag: 5e7ee20b-1657-4056-b492-44d6066025d0
+		summarizeBy: none
+		sourceColumn: passer_player_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column passer_player_name
+		dataType: string
+		lineageTag: 26b96a68-a178-41d7-81e9-42258e79557c
+		summarizeBy: none
+		sourceColumn: passer_player_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column passer_position
+		dataType: string
+		lineageTag: 3e512896-f69a-4bdb-a834-3f565a0dc2d0
+		summarizeBy: none
+		sourceColumn: passer_position
+
+		annotation SummarizationSetBy = Automatic
+
+	column receiver_player_key
+		dataType: string
+		lineageTag: bfb4cb34-8234-41e9-8a5e-44ae2d8182cd
+		summarizeBy: none
+		sourceColumn: receiver_player_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column receiver_player_name
+		dataType: string
+		lineageTag: 51444192-e375-4ded-8d06-e23fd8ae42c3
+		summarizeBy: none
+		sourceColumn: receiver_player_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column receiver_position
+		dataType: string
+		lineageTag: 6a5fa3c2-13f8-40d2-8667-f5f4c950e92a
+		summarizeBy: none
+		sourceColumn: receiver_position
+
+		annotation SummarizationSetBy = Automatic
+
+	column pass_length
+		dataType: string
+		lineageTag: 4ae518b3-6414-442b-9a58-664ec585c255
+		summarizeBy: none
+		sourceColumn: pass_length
+
+		annotation SummarizationSetBy = Automatic
+
+	column pass_location
+		dataType: string
+		lineageTag: 577cae57-0e35-444b-b1ed-525eee59ed43
+		summarizeBy: none
+		sourceColumn: pass_location
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Air Yards'
+		dataType: double
+		lineageTag: 92d1f57e-27f6-456d-9da6-6983c39aa7be
+		summarizeBy: sum
+		sourceColumn: Air Yards
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column yards_after_catch
+		dataType: double
+		lineageTag: 0291f047-daf6-40bb-b597-f4647eeb4348
+		summarizeBy: sum
+		sourceColumn: yards_after_catch
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column yards_gained
+		dataType: double
+		lineageTag: 779fff26-9fb5-49ad-839f-a0be8f5eb817
+		summarizeBy: sum
+		sourceColumn: yards_gained
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column passing_yards
+		dataType: double
+		lineageTag: af5c722b-d9b0-4d6c-b84c-5ab6fa4d0c13
+		summarizeBy: sum
+		sourceColumn: passing_yards
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column receiving_yards
+		dataType: double
+		lineageTag: 959866a2-88e7-4478-875b-5dd6474cbf4f
+		summarizeBy: sum
+		sourceColumn: receiving_yards
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EPA
+		dataType: double
+		lineageTag: 917fbd00-917a-450e-b637-a416c412c23e
+		summarizeBy: sum
+		sourceColumn: EPA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column qb_epa
+		dataType: double
+		lineageTag: 42fc3900-fc4b-4305-8d5c-50e6c152190f
+		summarizeBy: sum
+		sourceColumn: qb_epa
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Air EPA'
+		dataType: double
+		lineageTag: 317a06d0-94fc-484d-8c78-e4fec458eb91
+		summarizeBy: average
+		sourceColumn: Air EPA
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column yac_epa
+		dataType: double
+		lineageTag: 71555811-e3e2-4d2d-beaf-f1f1222f8b85
+		summarizeBy: sum
+		sourceColumn: yac_epa
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column wpa
+		dataType: double
+		lineageTag: e379e9dd-ff0e-49fd-9297-4b482f1eacb0
+		summarizeBy: sum
+		sourceColumn: wpa
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cp
+		dataType: double
+		lineageTag: e1bc3770-5231-439a-b042-8ceaa44104c6
+		summarizeBy: sum
+		sourceColumn: cp
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cpoe
+		dataType: double
+		lineageTag: 6f5f2b06-27f3-4c36-b410-3f96e2ebf8e1
+		summarizeBy: sum
+		sourceColumn: cpoe
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Down Number'
+		dataType: int64
+		formatString: 0
+		lineageTag: a9c728d2-08d0-43ab-8fb8-bd208e5f7a4d
+		summarizeBy: none
+		sourceColumn: Down Number
+
+		annotation SummarizationSetBy = User
+
+	column ydstogo
+		dataType: double
+		lineageTag: 1aecf8a7-3075-45cd-9ca5-95d3762750d2
+		summarizeBy: sum
+		sourceColumn: ydstogo
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column qtr
+		dataType: int64
+		formatString: 0
+		lineageTag: 7cef0610-dc7a-4654-89ff-28c158c1b58d
+		summarizeBy: sum
+		sourceColumn: qtr
+
+		annotation SummarizationSetBy = Automatic
+
+	column score_differential
+		dataType: int64
+		formatString: 0
+		lineageTag: 32c156cd-e1d2-41b6-b032-4603ca72cf58
+		summarizeBy: sum
+		sourceColumn: score_differential
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Field Zone'
+		dataType: string
+		lineageTag: 048451d9-fda1-45fb-a090-7175f65fb361
+		summarizeBy: none
+		sourceColumn: Field Zone
+
+		annotation SummarizationSetBy = Automatic
+
+	column score_state
+		dataType: string
+		lineageTag: 0f270f40-a6cc-4c7d-bf56-e8332bf2416e
+		summarizeBy: none
+		sourceColumn: score_state
+
+		annotation SummarizationSetBy = Automatic
+
+	column time_context
+		dataType: string
+		lineageTag: 01cc1ca0-56de-433b-9f02-6eae087f91a9
+		summarizeBy: none
+		sourceColumn: time_context
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Down Distance Bucket'
+		dataType: string
+		lineageTag: 0a5dc77a-4ade-4efd-8ade-45322068f593
+		summarizeBy: none
+		sourceColumn: Down Distance Bucket
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Is Dropback'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: e1670160-7993-4727-9f62-5ee7c6560f17
+		summarizeBy: none
+		sourceColumn: Is Dropback
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_official_pass_attempt
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 3dfa81a0-5424-49bd-b9b1-e40dfb7d4ac1
+		summarizeBy: none
+		sourceColumn: is_official_pass_attempt
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Is Completed Pass'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: e1618a21-15c0-4a2f-8fc8-29dabbadd63a
+		summarizeBy: none
+		sourceColumn: Is Completed Pass
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Is Interception'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: d4977ac5-3a8b-43ea-9521-8f5c2284b245
+		summarizeBy: none
+		sourceColumn: Is Interception
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_sack
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 48749e57-dfd1-42ea-9531-43dd79303883
+		summarizeBy: none
+		sourceColumn: is_sack
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_qb_scramble
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 82f21ddd-b09d-4070-afed-b85b71fc05a0
+		summarizeBy: none
+		sourceColumn: is_qb_scramble
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_qb_hit
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 7419de62-8bee-4236-8e08-b69f5d0c9dda
+		summarizeBy: none
+		sourceColumn: is_qb_hit
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Is Deep Pass'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 3d466f8d-d46a-4835-93d9-b377816702aa
+		summarizeBy: none
+		sourceColumn: Is Deep Pass
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_shotgun
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 5914a6f4-74e5-46b2-91f0-8b5f3e3874a2
+		summarizeBy: none
+		sourceColumn: is_shotgun
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Is No Huddle'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: b904bb5d-0b79-401b-9486-240375216a8a
+		summarizeBy: none
+		sourceColumn: Is No Huddle
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_third_down
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 1a7e1f0b-2848-42a5-914d-099b0390b49a
+		summarizeBy: none
+		sourceColumn: is_third_down
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_first_down_or_touchdown
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: cc199013-6916-4964-9379-f911e0b414d0
+		summarizeBy: none
+		sourceColumn: is_first_down_or_touchdown
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_successful_play
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: d04c83dd-de31-49a9-ac49-8ccd47b24747
+		summarizeBy: none
+		sourceColumn: is_successful_play
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_pass_touchdown
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 03fad684-3262-4d63-93f0-edb022d52d73
+		summarizeBy: none
+		sourceColumn: is_pass_touchdown
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_red_zone
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 0c89b1b9-61e2-4808-8858-4af914abb9ad
+		summarizeBy: none
+		sourceColumn: is_red_zone
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dropback Count'
+		dataType: int64
+		formatString: #,0
+		lineageTag: ec8fa337-b22a-438c-b448-45b361ba70d6
+		summarizeBy: sum
+		sourceColumn: Dropback Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column pass_attempt_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 86ec2dcd-2e25-4e0e-bae5-f7af327c0dd5
+		summarizeBy: sum
+		sourceColumn: pass_attempt_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Completion Count'
+		dataType: int64
+		formatString: 0
+		lineageTag: f6a9be29-09cf-44c0-94b1-f2ff9b4515ea
+		summarizeBy: sum
+		sourceColumn: Completion Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Interception Count'
+		dataType: int64
+		formatString: 0
+		lineageTag: cd49fd45-1ced-45cc-b265-1ac15dfe013c
+		summarizeBy: sum
+		sourceColumn: Interception Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column sack_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 11c54b8e-f07b-4ae8-8235-2eea9c807e1b
+		summarizeBy: sum
+		sourceColumn: sack_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column qb_hit_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 2fd9623c-11ea-4c0f-9aa3-b26acd873c9e
+		summarizeBy: sum
+		sourceColumn: qb_hit_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column passing_touchdown_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 332dcb1d-69c2-4277-974f-83cc04de8689
+		summarizeBy: sum
+		sourceColumn: passing_touchdown_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Deep Attempt Count'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 471affcf-102a-4e0f-a4cb-4ac5f26cf38b
+		summarizeBy: sum
+		sourceColumn: Deep Attempt Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column third_down_conversion_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 01f7caf9-c60e-4b05-873d-8bb5bb428756
+		summarizeBy: sum
+		sourceColumn: third_down_conversion_count
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Passing Play' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("7rk6p6eropzejk7ixdt5o37uva-vnwsxyqyfgfenghwxbbv4lazty.datawarehouse.fabric.microsoft.com", "lh_nfl"),
+				    gold_fact_pass_play = Source{[Schema="gold",Item="fact_pass_play"]}[Data],
+				    #"Renamed Columns" = Table.RenameColumns(gold_fact_pass_play,{{"air_epa", "Air EPA"}, {"air_yards", "Air Yards"}, {"completion_count", "Completion Count"}, {"deep_attempt_count", "Deep Attempt Count"}, {"down", "Down Number"}, {"down_distance_bucket", "Down Distance Bucket"}, {"dropback_count", "Dropback Count"}, {"epa", "EPA"}, {"field_zone", "Field Zone"}, {"interception_count", "Interception Count"}, {"is_complete_pass", "Is Completed Pass"}, {"is_deep_pass", "Is Deep Pass"}, {"is_dropback", "Is Dropback"}, {"is_interception", "Is Interception"}, {"is_no_huddle", "Is No Huddle"}})
+				in
+				    #"Renamed Columns"
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+

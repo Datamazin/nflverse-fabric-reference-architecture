@@ -1,0 +1,60 @@
+table 'Season Week'
+	lineageTag: f9960ddb-d4a7-40d3-8d0f-ea888781e46d
+
+	column season_week_key
+		dataType: string
+		lineageTag: 1892e067-0bc4-45c8-9406-050005918024
+		summarizeBy: none
+		sourceColumn: season_week_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column season
+		dataType: string
+		lineageTag: fc262285-ae2a-493d-b0f0-35ecf04b51f7
+		summarizeBy: none
+		sourceColumn: season
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column week
+		dataType: int64
+		formatString: 0
+		lineageTag: 9c8f74cc-afb4-40c2-b406-e61a81e95390
+		summarizeBy: none
+		sourceColumn: week
+
+		annotation SummarizationSetBy = User
+
+	column season_type
+		dataType: string
+		lineageTag: 69886bff-d2c1-4ffd-85ad-466b18bcc580
+		summarizeBy: none
+		sourceColumn: season_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column season_week_sort
+		dataType: int64
+		formatString: 0
+		lineageTag: bf0df3ad-cd04-43e4-82ff-0ec85d75aaa4
+		summarizeBy: none
+		sourceColumn: season_week_sort
+
+		annotation SummarizationSetBy = User
+
+	partition 'Season Week' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("7rk6p6eropzejk7ixdt5o37uva-vnwsxyqyfgfenghwxbbv4lazty.datawarehouse.fabric.microsoft.com", "lh_nfl"),
+				    gold_dim_season_week = Source{[Schema="gold",Item="dim_season_week"]}[Data]
+				in
+				    gold_dim_season_week
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+

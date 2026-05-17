@@ -1,0 +1,134 @@
+relationship 669782ed-c28b-4320-a3c9-3da44b467e59
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Game.'Game Date'
+	toColumn: LocalDateTable_c44ff44b-1cf4-4082-a0e4-78a7ada52c84.Date
+
+relationship AutoDetected_e81b96d6-7cbe-4627-bd12-1f57506e6999
+	fromColumn: 'Player Season Summary'.team_key
+	toColumn: Team.team_key
+
+relationship AutoDetected_736a1ca5-e11c-4f60-b139-e37b324ef068
+	fromColumn: 'Team Game Summary'.team_key
+	toColumn: Team.team_key
+
+relationship AutoDetected_72c5ffea-425c-4b61-b62b-ae781afe82d0
+	fromColumn: 'Team Season Summary'.team_key
+	toColumn: Team.team_key
+
+relationship AutoDetected_38229ceb-e2c3-4724-87ec-c2f84cd2511a
+	fromColumn: 'Team Situation Summary'.team_key
+	toColumn: Team.team_key
+
+relationship AutoDetected_121f4920-f3cd-4541-b1b6-be1e39daa397
+	fromColumn: 'Player Play Role'.team_key
+	toColumn: Team.team_key
+
+relationship AutoDetected_2afa93f7-08c8-41bc-9004-a21aeb5e5d18
+	fromColumn: 'Special Teams Play'.team_key
+	toColumn: Team.team_key
+
+relationship AutoDetected_02802eaa-a84e-4403-98a2-248589ad32b2
+	fromColumn: 'Team Play'.team_key
+	toColumn: Team.team_key
+
+relationship AutoDetected_fc760335-0d01-4a5c-8e37-52b61cdcc6ce
+	fromColumn: 'Team Game Summary'.game_key
+	toColumn: Game.game_key
+
+relationship AutoDetected_81b8344f-e1ad-4cb1-ac9e-9fa46614213c
+	fromColumn: 'Passing Play'.game_key
+	toColumn: Game.game_key
+
+relationship AutoDetected_7fd502af-776c-421d-afbc-b8c74686a908
+	fromColumn: Penalty.game_key
+	toColumn: Game.game_key
+
+relationship AutoDetected_0afd9cfe-e96c-4858-8bd1-b20c04a2ff0a
+	fromColumn: 'Play Detail'.game_key
+	toColumn: Game.game_key
+
+relationship AutoDetected_89ba1d13-376f-426d-904c-ee6d4c37aa53
+	fromColumn: 'Player Play Role'.game_key
+	toColumn: Game.game_key
+
+relationship AutoDetected_4dbe1b1a-274b-4e62-9c46-9d412b872c64
+	fromColumn: 'Rushing Play'.game_key
+	toColumn: Game.game_key
+
+relationship AutoDetected_6bc045a6-73b3-47ec-95b7-166dce687803
+	fromColumn: 'Special Teams Play'.game_key
+	toColumn: Game.game_key
+
+relationship AutoDetected_7f269044-ee24-4260-8eca-0cbad4ea1d8a
+	fromColumn: 'Team Play'.game_key
+	toColumn: Game.game_key
+
+relationship AutoDetected_70670fb1-4047-498b-ad60-a615bce7c247
+	fromColumn: 'Passing Play'.season_week_key
+	toColumn: 'Season Week'.season_week_key
+
+relationship AutoDetected_8b806588-c5c5-444d-baa9-167d12a3af84
+	fromColumn: Penalty.season_week_key
+	toColumn: 'Season Week'.season_week_key
+
+relationship AutoDetected_da347274-c604-47b7-82e4-1237ec25313e
+	fromColumn: 'Play Detail'.season_week_key
+	toColumn: 'Season Week'.season_week_key
+
+relationship AutoDetected_4ce7682c-eaf5-4645-b34c-e5beed1adae9
+	fromColumn: 'Player Play Role'.season_week_key
+	toColumn: 'Season Week'.season_week_key
+
+relationship AutoDetected_54ac3698-9cc4-4298-be97-0b972b5ac288
+	fromColumn: 'Rushing Play'.season_week_key
+	toColumn: 'Season Week'.season_week_key
+
+relationship AutoDetected_fd73d89b-bc68-4d62-8801-a6c43033bb4a
+	fromColumn: 'Special Teams Play'.season_week_key
+	toColumn: 'Season Week'.season_week_key
+
+relationship AutoDetected_574f5e4b-9132-4614-b3ab-676a71546203
+	fromColumn: 'Team Play'.season_week_key
+	toColumn: 'Season Week'.season_week_key
+
+relationship AutoDetected_c940ea39-f386-42d2-8cc3-a57f1b5d27e5
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Passing Play'.play_key
+	toColumn: 'Play Detail'.play_key
+
+relationship AutoDetected_64f5a3ea-bf59-4864-9b49-e5f49e8ee61a
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Penalty.play_key
+	toColumn: 'Play Detail'.play_key
+
+relationship AutoDetected_7fe9b786-295d-42bb-b6ee-fd1c8e760363
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Rushing Play'.play_key
+	toColumn: 'Play Detail'.play_key
+
+relationship AutoDetected_d007b074-1368-4936-a37f-7eadcdded00e
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Special Teams Play'.play_key
+	toColumn: 'Play Detail'.play_key
+
+relationship AutoDetected_a3b60095-62aa-4e04-8a17-e37d9ed6cb99
+	isActive: false
+	fromColumn: 'Team Play'.play_key
+	toColumn: 'Play Detail'.play_key
+
+relationship 49cd0004-41bd-f6e6-51e1-b7c4701b01a5
+	fromColumn: 'Player Season Summary'.player_key
+	toColumn: Player.player_key
+
+relationship cb8f8397-00ee-13b4-0b9b-643903dc00fe
+	fromColumn: 'Player Play Role'.player_key
+	toColumn: Player.player_key
+

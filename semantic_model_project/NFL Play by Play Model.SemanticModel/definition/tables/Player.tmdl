@@ -1,0 +1,186 @@
+table Player
+	lineageTag: 66008eb5-a3ab-423d-acca-296bb1bb9d79
+
+	column player_key
+		dataType: string
+		isHidden
+		lineageTag: 6ddd5469-2f5f-45f4-8e9a-3d7b62bf07ef
+		summarizeBy: none
+		sourceColumn: player_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Full Name'
+		dataType: string
+		lineageTag: bdfcd9fa-dfcb-4976-8592-eac504232c95
+		summarizeBy: none
+		sourceColumn: Full Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'First Name'
+		dataType: string
+		lineageTag: c17c56ec-9814-4a02-9698-1556ef883331
+		summarizeBy: none
+		sourceColumn: First Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Last Name'
+		dataType: string
+		lineageTag: 66dca180-0207-4dad-b31e-94072bcfef44
+		summarizeBy: none
+		sourceColumn: Last Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Short Player Name'
+		dataType: string
+		lineageTag: 963ca547-7a6e-44e2-a4f5-9ebcb77e4f86
+		summarizeBy: none
+		sourceColumn: Short Player Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Football Name'
+		dataType: string
+		lineageTag: 6b488551-db6f-47f1-8f31-d91f1baef6e4
+		summarizeBy: none
+		sourceColumn: Football Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Position
+		dataType: string
+		lineageTag: 1a16a4fd-f062-46bb-8cde-abcffe1e1e32
+		summarizeBy: none
+		sourceColumn: Position
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Position Group'
+		dataType: string
+		lineageTag: ae44115d-7b52-451c-9ec1-b78ffec8ad32
+		summarizeBy: none
+		sourceColumn: Position Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column birth_date
+		dataType: string
+		isHidden
+		lineageTag: bccae923-c450-4ade-84f8-d30be74b1996
+		summarizeBy: none
+		sourceColumn: birth_date
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Height
+		dataType: int64
+		formatString: 0
+		lineageTag: 8a7f1412-c38b-46ff-85ca-eacf25bc5aaf
+		summarizeBy: sum
+		sourceColumn: Height
+
+		annotation SummarizationSetBy = Automatic
+
+	column Weight
+		dataType: int64
+		formatString: 0
+		lineageTag: 6d00b513-498d-4ac2-9e9f-2bf540b9d386
+		summarizeBy: sum
+		sourceColumn: Weight
+
+		annotation SummarizationSetBy = Automatic
+
+	column headshot_url
+		dataType: string
+		isHidden
+		lineageTag: 5db58024-07d2-45f3-ac30-d329c6538e22
+		summarizeBy: none
+		sourceColumn: headshot_url
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'College Name'
+		dataType: string
+		lineageTag: ea2c9074-949c-4c74-8240-5f36f11a140c
+		summarizeBy: none
+		sourceColumn: College Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rookie Season'
+		dataType: string
+		lineageTag: b0197116-495d-4683-9ffa-2bd8046bc982
+		summarizeBy: none
+		sourceColumn: Rookie Season
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Last Season'
+		dataType: string
+		lineageTag: 5ee78c35-6a76-4b2e-aa43-69bf7b0dee62
+		summarizeBy: none
+		sourceColumn: Last Season
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column latest_team
+		dataType: string
+		lineageTag: d6738635-5b9a-4be2-abc4-97b0c56f25b0
+		summarizeBy: none
+		sourceColumn: latest_team
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: 23269ffd-17f6-491d-8b21-ae8bda3ee6d1
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'First Roster Season'
+		dataType: string
+		lineageTag: cb01a313-381f-4119-8493-e77fca201a6f
+		summarizeBy: none
+		sourceColumn: First Roster Season
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Last Roster Season'
+		dataType: string
+		lineageTag: 6b14df14-4a4d-47b2-8bee-972623773256
+		summarizeBy: none
+		sourceColumn: Last Roster Season
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Player = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("7rk6p6eropzejk7ixdt5o37uva-vnwsxyqyfgfenghwxbbv4lazty.datawarehouse.fabric.microsoft.com", "lh_nfl"),
+				    gold_dim_player = Source{[Schema="gold",Item="dim_player"]}[Data],
+				    #"Renamed Columns" = Table.RenameColumns(gold_dim_player,{{"first_name", "First Name"}, {"display_name", "Full Name"}, {"last_name", "Last Name"}, {"college_name", "College Name"}, {"first_roster_season", "First Roster Season"}, {"football_name", "Football Name"}, {"height", "Height"}, {"last_roster_season", "Last Roster Season"}, {"last_season", "Last Season"}, {"position", "Position"}, {"position_group", "Position Group"}, {"rookie_season", "Rookie Season"}, {"short_name", "Short Player Name"}, {"status", "Status"}, {"weight", "Weight"}})
+				in
+				    #"Renamed Columns"
+
+	changedProperty = Name
+

@@ -1,5 +1,12 @@
 # NFL Gold Semantic Model Build Guide
 
+There are three approaches to creating the semantic model:
+1. Deploy with a python script: Use the `scripts/create_nfl_play_by_play_sm.py` file from the local workstation command line 
+2. Import the Semantic Model project into Power BI Desktop from the `semantic_model_project` folder, and deploy from Power BI directly.
+3. Create the Semantic Model manually using this guide. 
+
+> If creating the Semantic Model manaully, the calculated measure definitions can be found in the `nfl_gold_mesaures.dax` file in this folder.
+
 ## Recommendation
 
 Build the first customer-facing semantic model in **Power BI Import mode** over
@@ -23,29 +30,6 @@ than the simplest high-performance MVP path.
 Use the Fabric Lakehouse SQL analytics endpoint for `lh_nfl` and import only the
 `gold` schema tables.
 
-Workspace ID:
-
-```text
-e22b6dab-2918-468a-98f6-b8435e2c199e
-```
-
-Lakehouse ID:
-
-```text
-b4ecd397-133e-405f-9ee2-67723e2d0dae
-```
-
-SQL endpoint item ID:
-
-```text
-bf18c8a5-8fc8-47cd-b13f-4207546fd0a5
-```
-
-SQL endpoint server:
-
-```text
-7rk6p6eropzejk7ixdt5o37uva-vnwsxyqyfgfenghwxbbv4lazty.datawarehouse.fabric.microsoft.com
-```
 
 ## Tables To Import
 

@@ -1,0 +1,434 @@
+table 'Team Play'
+	lineageTag: 1319ed80-9317-46c0-ba6e-bfd90590c6f8
+
+	column play_key
+		dataType: string
+		lineageTag: f632ebad-54a9-49ad-87e9-3d110514fc2a
+		summarizeBy: none
+		sourceColumn: play_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column game_key
+		dataType: string
+		lineageTag: 94f65626-d49d-4fb0-9dbd-85828cda72a3
+		summarizeBy: none
+		sourceColumn: game_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column season_week_key
+		dataType: string
+		lineageTag: 255326e4-8983-4e28-935a-78e1ef68f3d2
+		summarizeBy: none
+		sourceColumn: season_week_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column season
+		dataType: string
+		lineageTag: a6423db8-e3df-4241-a4a3-dad7a18b428b
+		summarizeBy: none
+		sourceColumn: season
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column week
+		dataType: int64
+		formatString: 0
+		lineageTag: 0957ce47-12c6-476d-83ba-6ae1f92d6780
+		summarizeBy: none
+		sourceColumn: week
+
+		annotation SummarizationSetBy = User
+
+	column season_type
+		dataType: string
+		lineageTag: 13c92c6f-bdf9-4b10-84db-28201f18942c
+		summarizeBy: none
+		sourceColumn: season_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column team_key
+		dataType: string
+		lineageTag: 6dda3e9c-5b0e-4d6e-9c9f-e63b82c18d9a
+		summarizeBy: none
+		sourceColumn: team_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column opponent_team_key
+		dataType: string
+		lineageTag: 04809430-ff16-4283-bb69-a4ba72395e17
+		summarizeBy: none
+		sourceColumn: opponent_team_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column unit
+		dataType: string
+		lineageTag: e1644188-62ee-475d-8f8f-42ac0d7bac84
+		summarizeBy: none
+		sourceColumn: unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_offense
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 1170aec9-6a89-4450-9edb-fc1f373caab2
+		summarizeBy: none
+		sourceColumn: is_offense
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_defense
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 8e84bf46-1f7c-4414-a8b4-9df1ef53c6ec
+		summarizeBy: none
+		sourceColumn: is_defense
+
+		annotation SummarizationSetBy = Automatic
+
+	column play_type
+		dataType: string
+		lineageTag: 76dd521f-7217-4f5e-9a9d-8c89656f37ea
+		summarizeBy: none
+		sourceColumn: play_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column play_type_group
+		dataType: string
+		lineageTag: 6874ce32-1a00-48d0-a65d-1851334cc5eb
+		summarizeBy: none
+		sourceColumn: play_type_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column field_zone
+		dataType: string
+		lineageTag: 85fc070b-a366-4dd7-9bff-dd5ca71ccfe9
+		summarizeBy: none
+		sourceColumn: field_zone
+
+		annotation SummarizationSetBy = Automatic
+
+	column score_state
+		dataType: string
+		lineageTag: 811c4c59-3759-40a4-b819-3503d9751480
+		summarizeBy: none
+		sourceColumn: score_state
+
+		annotation SummarizationSetBy = Automatic
+
+	column time_context
+		dataType: string
+		lineageTag: ed7aa164-69e1-4664-8d06-98e8fa7ad3b4
+		summarizeBy: none
+		sourceColumn: time_context
+
+		annotation SummarizationSetBy = Automatic
+
+	column down_distance_bucket
+		dataType: string
+		lineageTag: ed058659-489b-4f01-b3f0-be422a3e2807
+		summarizeBy: none
+		sourceColumn: down_distance_bucket
+
+		annotation SummarizationSetBy = Automatic
+
+	column down
+		dataType: int64
+		formatString: 0
+		lineageTag: 891725f5-a258-4612-a0a7-cdf32cdd3172
+		summarizeBy: sum
+		sourceColumn: down
+
+		annotation SummarizationSetBy = Automatic
+
+	column ydstogo
+		dataType: double
+		lineageTag: 57ead682-0c81-4383-b34f-ed33d70616e7
+		summarizeBy: sum
+		sourceColumn: ydstogo
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column yardline_100
+		dataType: double
+		lineageTag: 9e1cc83d-a426-495c-91f8-a10c6a7d823d
+		summarizeBy: sum
+		sourceColumn: yardline_100
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column yards
+		dataType: double
+		lineageTag: c5be9c7f-e464-4ef5-b084-dfffc82b8e89
+		summarizeBy: sum
+		sourceColumn: yards
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column epa
+		dataType: double
+		lineageTag: 5672da97-9884-488e-afca-132a32c860c2
+		summarizeBy: sum
+		sourceColumn: epa
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column epa_allowed
+		dataType: double
+		lineageTag: e40bedfe-3ccc-4774-a606-332f9be5524c
+		summarizeBy: sum
+		sourceColumn: epa_allowed
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column defensive_epa_generated
+		dataType: double
+		lineageTag: e21553b9-2be5-4c07-831c-c248d3a1569c
+		summarizeBy: sum
+		sourceColumn: defensive_epa_generated
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column wpa
+		dataType: double
+		lineageTag: 761b8ed2-948b-4b29-bc5e-23b759d4a981
+		summarizeBy: sum
+		sourceColumn: wpa
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column play_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 67379072-5be4-4d84-9056-8b6395734a0e
+		summarizeBy: sum
+		sourceColumn: play_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column offensive_play_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 6da6768c-4c52-423f-98a0-e4624729dce0
+		summarizeBy: sum
+		sourceColumn: offensive_play_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column defensive_play_count
+		dataType: int64
+		formatString: 0
+		lineageTag: b82440d1-b5d7-49a2-aa97-8c28feb2b794
+		summarizeBy: sum
+		sourceColumn: defensive_play_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column dropback_count
+		dataType: int64
+		formatString: 0
+		lineageTag: ba35ceb6-7edd-446e-b831-b06e79cb4941
+		summarizeBy: sum
+		sourceColumn: dropback_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column designed_rush_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 198b294c-f798-43d4-be69-0a33de7e99f3
+		summarizeBy: sum
+		sourceColumn: designed_rush_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column rush_attempt_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 9e17a279-d7d6-4d6e-a8f1-168f2d46e9a0
+		summarizeBy: sum
+		sourceColumn: rush_attempt_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column successful_play_count
+		dataType: int64
+		formatString: 0
+		lineageTag: cd33b712-b8db-41db-930f-557a0d28a586
+		summarizeBy: sum
+		sourceColumn: successful_play_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column defensive_success_count
+		dataType: int64
+		formatString: 0
+		lineageTag: b1c60ccb-a5d9-48d3-9b72-30e666a029bc
+		summarizeBy: sum
+		sourceColumn: defensive_success_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column third_down_attempt_count
+		dataType: int64
+		formatString: 0
+		lineageTag: b578dabb-fcaf-450e-952a-a5cc3f43e7e3
+		summarizeBy: sum
+		sourceColumn: third_down_attempt_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column third_down_conversion_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 4936169c-3ed3-4edc-ad16-fa4e169e91dc
+		summarizeBy: sum
+		sourceColumn: third_down_conversion_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column fourth_down_attempt_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 3ead52a9-e1e1-447f-8198-07ecad79ecd6
+		summarizeBy: sum
+		sourceColumn: fourth_down_attempt_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column fourth_down_conversion_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 2ca370cd-4bcd-451a-b575-b217852138e9
+		summarizeBy: sum
+		sourceColumn: fourth_down_conversion_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column red_zone_play_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 8cb405a5-2dbe-4323-b0aa-993d5e0d3f5e
+		summarizeBy: sum
+		sourceColumn: red_zone_play_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column goal_to_go_play_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 1e98539a-13df-4db2-9b13-c3b491d33e9a
+		summarizeBy: sum
+		sourceColumn: goal_to_go_play_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column touchdown_count
+		dataType: int64
+		formatString: 0
+		lineageTag: eaf691df-9687-4447-bafb-1268269263d9
+		summarizeBy: sum
+		sourceColumn: touchdown_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column turnover_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 10296710-0d78-4413-ad3f-51671d7e359b
+		summarizeBy: sum
+		sourceColumn: turnover_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column takeaway_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 74aaaf7e-f87e-42a0-a238-4e06e60195df
+		summarizeBy: sum
+		sourceColumn: takeaway_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column explosive_play_count
+		dataType: int64
+		formatString: 0
+		lineageTag: b8ad8f25-3b3d-453b-ac78-26ebf17e8939
+		summarizeBy: sum
+		sourceColumn: explosive_play_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column sack_count
+		dataType: int64
+		formatString: 0
+		lineageTag: a6260e61-e1f0-41a5-bf14-6fb6bb931536
+		summarizeBy: sum
+		sourceColumn: sack_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column qb_hit_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 24083500-db5e-4960-b377-116ad14c6f39
+		summarizeBy: sum
+		sourceColumn: qb_hit_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_regular_season
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: fda51e26-f6d6-4613-b3ca-2bfb2efc7a7d
+		summarizeBy: none
+		sourceColumn: is_regular_season
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_postseason
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 1bf10e23-f5c9-4338-9113-fe37e97e362f
+		summarizeBy: none
+		sourceColumn: is_postseason
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Team Play' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("7rk6p6eropzejk7ixdt5o37uva-vnwsxyqyfgfenghwxbbv4lazty.datawarehouse.fabric.microsoft.com", "lh_nfl"),
+				    gold_fact_team_play = Source{[Schema="gold",Item="fact_team_play"]}[Data]
+				in
+				    gold_fact_team_play
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+
