@@ -106,6 +106,13 @@ python -m venv .venv
 python -m pip install -e ".[dev]"
 ```
 
+If you previously installed dependencies and see a Polars startup error such as
+`RuntimeError: unknown feature flag: 'sse3'`, refresh the venv dependencies:
+
+```powershell
+python -m pip install --upgrade -e ".[dev]"
+```
+
 ### 2. Acquire NFLVerse Data Locally
 
 Run the local acquisition CLI from the repo root:
