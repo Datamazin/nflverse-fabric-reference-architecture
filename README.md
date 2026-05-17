@@ -342,6 +342,37 @@ The notebook:
 Use failures to refine semantic model metadata, DAX measure descriptions, AI Data
 Schema fields, AI instructions, and Verified Answers.
 
+## Manual Data Agent Testing Results
+
+The table below summarizes manual response-time testing captured in
+[Evaluation Question Manual Testing.xlsx](docs/Evaluation%20Question%20Manual%20Testing.xlsx).
+Times are measured in seconds.
+
+| # | Question | Semantic Model Data Agent (seconds) | Lakehouse Data Agent (seconds) |
+|---:|---|---:|---:|
+| 1 | For QBs in 2025 with at least 100 clean dropbacks and at least 15 QB-hit dropbacks, who had the largest EPA per dropback differential between clean and QB-hit plays? | 22 | 12 |
+| 2 | How many regular-season NFL games were played in 2025? | 7 | 9 |
+| 3 | How many sacks did the 49ers defense record in the 2025 regular season, and who were their top 3 sack leaders? | 23 | 11 |
+| 4 | List the top 10 QBs by passing touchdowns in the 2025 regular season, with their interception count shown alongside. | 17 | 10 |
+| 5 | List the top 10 receivers by receiving yards in the 2025 regular season. | 14 | 9 |
+| 6 | List the top 10 running backs by EPA per rush in the 2025 regular season, minimum 50 carries. | 26 | 11 |
+| 7 | List the top 5 quarterbacks by passing yards in the 2025 regular season. | 21 | 8 |
+| 8 | List the top 5 running backs by rushing yards in the 2025 regular season and include their rushing touchdowns. | 16 | 10 |
+| 9 | Quantify 2025 regular-season home-field advantage: home win rate, average home point differential, average home points, and average away points. | 11 | 10 |
+| 10 | What was the Chiefs third-down conversion rate in the 2025 regular season? | 12 | 10 |
+| 11 | What was the Detroit Lions' record at home versus on the road in the 2025 regular season? | 16 | 8 |
+| 12 | What was the biggest single-play WPA swing in the 2025 regular season? | 21 | 12 |
+| 13 | What were Patrick Mahomes' completion percentage and TD-to-INT ratio in the 2025 regular season? | 23 | 8 |
+| 14 | Which 10 running backs had the highest explosive run rate in the 2025 regular season, minimum 50 carries? | 21 | 10 |
+| 15 | Which 10 running backs had the highest stuff rate in the 2025 regular season, minimum 50 carries? | 21 | 12 |
+| 16 | Which 2025 game had the most total points scored? Show the teams, final score, and week. | 17 | 8 |
+| 17 | Which 5 defenses allowed the fewest explosive plays per game in the 2025 regular season? | 14 | 8 |
+| 18 | Which kicker attempted the most field goals in the 2025 regular season, and what was their make rate? | 16 | 8 |
+| 19 | Which quarterback had the highest CPOE on throws of 20 or more air yards in the 2025 regular season, minimum 30 such attempts? | 19 | 9 |
+| 20 | Which team had the best red zone touchdown rate in the 2025 regular season? | 14 | 8 |
+| 21 | Which team had the most rushing touchdowns in the 2025 regular season? | 23 | 10 |
+|  | **Average** | **17.8** | **9.6** |
+
 ## Data Agent Question Coverage
 
 The current modeled solution is designed for questions in these families:
