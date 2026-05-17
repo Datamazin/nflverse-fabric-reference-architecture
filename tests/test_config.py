@@ -2,8 +2,8 @@ from pathlib import Path
 
 import pytest
 
+from nfl_fabric_acquisition._polars_startup import should_skip_polars_cpu_check
 from nfl_fabric_acquisition.config import AcquisitionConfig, DEFAULT_END_SEASON, DEFAULT_START_SEASON
-from nfl_fabric_acquisition.cli import should_skip_polars_cpu_check
 
 
 def test_default_start_season_matches_available_pbp_history() -> None:
