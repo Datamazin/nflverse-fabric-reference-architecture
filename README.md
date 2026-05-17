@@ -1,15 +1,26 @@
 # NFL Fabric Analytics
 
 This repo is an end-to-end NFL analytics reference implementation for Microsoft
-Fabric. It starts with full-league `nflreadpy` acquisition.
+Fabric. It starts with full-league NFLVerse data acquisition using `nflreadpy`.
 
-> **Note:** This repo focuses on the process of building efficient data models for use with Fabric Data Agents and providing a framework for providing Evaluations for Quality Assurance. The nflready data is imported into the solution but hasn't been thoroughly audited. Data accuracy shouldn't be assumed, and the data is not validated to a level that should be integrated into production analytical solutions.
+> **Naming note:** NFLVerse is the upstream NFL data source used by this
+> reference implementation. The upstream project, repo names, paths, and table
+> identifiers use lowercase `nflverse`; this documentation uses NFLVerse when
+> referring to the data set in prose. `nflreadpy` is the Python acquisition
+> library used to download NFLVerse data.
+>
+> **Data quality note:** This repo focuses on the process of building efficient
+> data models for use with Fabric Data Agents and providing a framework for
+> Evaluations for Quality Assurance. The NFLVerse data is imported into the
+> solution but hasn't been thoroughly audited. Data accuracy shouldn't be
+> assumed, and the data is not validated to a level that should be integrated
+> into production analytical solutions.
 
 When deployed, the assets in this repo will provide the following:
 
-* Python scripts to download the nflready data set for 1999-2025 as Parquet files.
-* Downloaded nflready Parquet files ready to upload into a Lakehouse Files section--to use as a source for the Lakehouse Bronze (raw) layer.
-* Fabric notebook to process the raw nflready data files into conformed tables (silver layer).
+* Python scripts to download the NFLVerse data set for 1999-2025 as Parquet files.
+* Downloaded NFLVerse Parquet files ready to upload into a Lakehouse Files section--to use as a source for the Lakehouse Bronze (raw) layer.
+* Fabric notebook to process the raw NFLVerse data files into conformed tables (silver layer).
 * Fabric notebook to create Gold dimension and fact tables in the Lakehouse.
 * A Semantic model build over the Gold fact/dimension tables, including a comprehensive set of calculated measures (semantic_model folder).
 * A notebook that implements SQL to calculate a set of example analysis queries against the Lakehouse tables. 
@@ -30,7 +41,7 @@ Gold tables and explicit measures to Power BI and the Data Agent.
 
 Implemented in this repo:
 
-- Local `nflreadpy` acquisition package and CLI for 1999-2025 full-league data.
+- Local `nflreadpy` acquisition package and CLI for 1999-2025 full-league NFLVerse data.
 - Local raw Parquet layout plus `acquisition_manifest.json`,
   `schema_manifest.json`, and `quality_report.json`.
 - Fabric notebook to import uploaded raw files into managed Bronze Delta tables.
@@ -79,7 +90,7 @@ python -m venv .venv
 python -m pip install -e ".[dev]"
 ```
 
-### 2. Acquire nflverse Data Locally
+### 2. Acquire NFLVerse Data Locally
 
 Run the local acquisition CLI from the repo root:
 
