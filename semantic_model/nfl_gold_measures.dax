@@ -1,0 +1,419 @@
+/*
+NFL Gold semantic model measure catalog.
+
+Assumes imported table names match the suggested display names in
+nfl_gold_semantic_model_guide.md:
+
+Team
+Game
+Player
+Season Week
+Team Play
+Play Detail
+Passing Play
+Rushing Play
+Penalty
+Special Teams Play
+Player Play Role
+Team Game Summary
+Team Season Summary
+Team Situation Summary
+Player Season Summary
+*/
+
+-- Team record and scoring
+Games :=
+SUM ( 'Team Season Summary'[games] )
+
+Wins :=
+SUM ( 'Team Season Summary'[wins] )
+
+Losses :=
+SUM ( 'Team Season Summary'[losses] )
+
+Ties :=
+SUM ( 'Team Season Summary'[ties] )
+
+Win Rate :=
+DIVIDE ( [Wins], [Wins] + [Losses] + [Ties] )
+
+Points For :=
+SUM ( 'Team Season Summary'[points_for] )
+
+Points Against :=
+SUM ( 'Team Season Summary'[points_against] )
+
+Point Differential :=
+[Points For] - [Points Against]
+
+-- Team play-level EPA and success
+Play Count :=
+SUM ( 'Team Play'[play_count] )
+
+Offensive Plays :=
+CALCULATE (
+    SUM ( 'Team Play'[offensive_play_count] ),
+    'Team Play'[unit] = "Offense"
+)
+
+Defensive Plays :=
+CALCULATE (
+    SUM ( 'Team Play'[defensive_play_count] ),
+    'Team Play'[unit] = "Defense"
+)
+
+Offensive EPA :=
+CALCULATE (
+    SUM ( 'Team Play'[epa] ),
+    'Team Play'[unit] = "Offense"
+)
+
+Offensive EPA per Play :=
+DIVIDE ( [Offensive EPA], [Offensive Plays] )
+
+Defensive EPA Allowed :=
+CALCULATE (
+    SUM ( 'Team Play'[epa_allowed] ),
+    'Team Play'[unit] = "Defense"
+)
+
+Defensive EPA Allowed per Play :=
+DIVIDE ( [Defensive EPA Allowed], [Defensive Plays] )
+
+Defensive EPA Generated :=
+CALCULATE (
+    SUM ( 'Team Play'[defensive_epa_generated] ),
+    'Team Play'[unit] = "Defense"
+)
+
+Defensive EPA Generated per Play :=
+DIVIDE ( [Defensive EPA Generated], [Defensive Plays] )
+
+EPA Differential :=
+[Offensive EPA] - [Defensive EPA Allowed]
+
+EPA Differential per Play :=
+DIVIDE ( [EPA Differential], [Offensive Plays] )
+
+Successful Plays :=
+CALCULATE (
+    SUM ( 'Team Play'[successful_play_count] ),
+    'Team Play'[unit] = "Offense"
+)
+
+Success Rate :=
+DIVIDE ( [Successful Plays], [Offensive Plays] )
+
+Defensive Successful Plays Allowed :=
+CALCULATE (
+    SUM ( 'Team Play'[defensive_success_count] ),
+    'Team Play'[unit] = "Defense"
+)
+
+Defensive Success Rate Allowed :=
+DIVIDE ( [Defensive Successful Plays Allowed], [Defensive Plays] )
+
+Dropbacks :=
+CALCULATE (
+    SUM ( 'Team Play'[dropback_count] ),
+    'Team Play'[unit] = "Offense"
+)
+
+Designed Rushes :=
+CALCULATE (
+    SUM ( 'Team Play'[designed_rush_count] ),
+    'Team Play'[unit] = "Offense"
+)
+
+Rush Attempts :=
+CALCULATE (
+    SUM ( 'Team Play'[rush_attempt_count] ),
+    'Team Play'[unit] = "Offense"
+)
+
+Pass Rate :=
+DIVIDE ( [Dropbacks], [Dropbacks] + [Designed Rushes] )
+
+Dropback EPA :=
+SUM ( 'Team Game Summary'[dropback_epa] )
+
+Dropback EPA per Play :=
+DIVIDE ( [Dropback EPA], SUM ( 'Team Game Summary'[dropbacks] ) )
+
+Rush EPA :=
+SUM ( 'Team Game Summary'[rush_epa] )
+
+Rush EPA per Play :=
+DIVIDE ( [Rush EPA], SUM ( 'Team Game Summary'[rush_attempts] ) )
+
+WPA :=
+SUM ( 'Play Detail'[wpa] )
+
+Max Single-Play WPA Swing :=
+MAXX (
+    'Play Detail',
+    ABS ( 'Play Detail'[wpa] )
+)
+
+-- Downs, red zone, and explosive plays
+Third Down Attempts :=
+CALCULATE (
+    SUM ( 'Team Play'[third_down_attempt_count] ),
+    'Team Play'[unit] = "Offense"
+)
+
+Third Down Conversions :=
+CALCULATE (
+    SUM ( 'Team Play'[third_down_conversion_count] ),
+    'Team Play'[unit] = "Offense"
+)
+
+Third Down Conversion Rate :=
+DIVIDE ( [Third Down Conversions], [Third Down Attempts] )
+
+Fourth Down Attempts :=
+CALCULATE (
+    SUM ( 'Team Play'[fourth_down_attempt_count] ),
+    'Team Play'[unit] = "Offense"
+)
+
+Fourth Down Conversions :=
+CALCULATE (
+    SUM ( 'Team Play'[fourth_down_conversion_count] ),
+    'Team Play'[unit] = "Offense"
+)
+
+Fourth Down Conversion Rate :=
+DIVIDE ( [Fourth Down Conversions], [Fourth Down Attempts] )
+
+Red Zone Drives :=
+SUM ( 'Team Season Summary'[red_zone_drives] )
+
+Red Zone TD Drives :=
+SUM ( 'Team Season Summary'[red_zone_touchdown_drives] )
+
+Red Zone TD Rate :=
+DIVIDE ( [Red Zone TD Drives], [Red Zone Drives] )
+
+Explosive Plays Allowed :=
+SUM ( 'Team Season Summary'[explosive_plays_allowed] )
+
+Explosive Plays Allowed per Game :=
+DIVIDE ( [Explosive Plays Allowed], [Games] )
+
+Turnovers :=
+CALCULATE (
+    SUM ( 'Team Play'[turnover_count] ),
+    'Team Play'[unit] = "Offense"
+)
+
+Takeaways :=
+CALCULATE (
+    SUM ( 'Team Play'[takeaway_count] ),
+    'Team Play'[unit] = "Defense"
+)
+
+Sacks Generated :=
+CALCULATE (
+    SUM ( 'Team Play'[sack_count] ),
+    'Team Play'[unit] = "Defense"
+)
+
+QB Hits Generated :=
+CALCULATE (
+    SUM ( 'Team Play'[qb_hit_count] ),
+    'Team Play'[unit] = "Defense"
+)
+
+Defensive Dropbacks Faced :=
+CALCULATE (
+    SUM ( 'Team Play'[dropback_count] ),
+    'Team Play'[unit] = "Defense"
+)
+
+QB Hit Plus Sack Rate :=
+DIVIDE ( [QB Hits Generated] + [Sacks Generated], [Defensive Dropbacks Faced] )
+
+
+-- Passing
+Passing Dropbacks :=
+SUM ( 'Player Season Summary'[passing_dropbacks] )
+
+Pass Attempts :=
+SUM ( 'Player Season Summary'[attempts] )
+
+Completions :=
+SUM ( 'Player Season Summary'[completions] )
+
+Completion Percentage :=
+DIVIDE ( [Completions], [Pass Attempts] )
+
+Passing Yards :=
+SUM ( 'Player Season Summary'[passing_yards] )
+
+Passing TDs :=
+SUM ( 'Player Season Summary'[passing_tds] )
+
+Interceptions Thrown :=
+SUM ( 'Player Season Summary'[interceptions] )
+
+TD to INT Ratio :=
+DIVIDE ( [Passing TDs], [Interceptions Thrown] )
+
+Passing EPA :=
+SUM ( 'Player Season Summary'[passing_epa] )
+
+Passing EPA per Dropback :=
+DIVIDE ( [Passing EPA], [Passing Dropbacks] )
+
+Average CPOE :=
+AVERAGE ( 'Player Season Summary'[avg_cpoe] )
+
+Deep Attempts :=
+SUM ( 'Player Season Summary'[deep_attempts] )
+
+Deep Completions :=
+SUM ( 'Player Season Summary'[deep_completions] )
+
+Deep Completion Percentage :=
+DIVIDE ( [Deep Completions], [Deep Attempts] )
+
+Deep Average CPOE :=
+AVERAGE ( 'Player Season Summary'[deep_avg_cpoe] )
+
+No-Huddle Dropbacks :=
+SUM ( 'Player Season Summary'[no_huddle_dropbacks] )
+
+No-Huddle EPA per Dropback :=
+DIVIDE (
+    SUMX (
+        'Player Season Summary',
+        'Player Season Summary'[no_huddle_epa_per_dropback]
+            * 'Player Season Summary'[no_huddle_dropbacks]
+    ),
+    [No-Huddle Dropbacks]
+)
+
+Huddle Dropbacks :=
+SUM ( 'Player Season Summary'[huddle_dropbacks] )
+
+Huddle EPA per Dropback :=
+DIVIDE (
+    SUMX (
+        'Player Season Summary',
+        'Player Season Summary'[huddle_epa_per_dropback]
+            * 'Player Season Summary'[huddle_dropbacks]
+    ),
+    [Huddle Dropbacks]
+)
+
+-- Rushing
+Rushing Attempts :=
+SUM ( 'Player Season Summary'[rushing_attempts] )
+
+Rushing Yards :=
+SUM ( 'Player Season Summary'[rushing_yards] )
+
+Rushing TDs :=
+SUM ( 'Player Season Summary'[rushing_tds] )
+
+Rushing EPA :=
+SUM ( 'Player Season Summary'[rushing_epa] )
+
+Rushing EPA per Play :=
+DIVIDE ( [Rushing EPA], [Rushing Attempts] )
+
+Stuffed Rushes :=
+SUM ( 'Player Season Summary'[stuffed_rushes] )
+
+Stuff Rate :=
+DIVIDE ( [Stuffed Rushes], [Rushing Attempts] )
+
+Explosive Rushes :=
+SUM ( 'Player Season Summary'[explosive_rushes] )
+
+Explosive Rush Rate :=
+DIVIDE ( [Explosive Rushes], [Rushing Attempts] )
+
+Rush Conversions :=
+SUM ( 'Player Season Summary'[rush_conversions] )
+
+Rush Conversion Rate :=
+DIVIDE ( [Rush Conversions], [Rushing Attempts] )
+
+-- Receiving
+Targets :=
+SUM ( 'Player Season Summary'[targets] )
+
+Receptions :=
+SUM ( 'Player Season Summary'[receptions] )
+
+Catch Rate :=
+DIVIDE ( [Receptions], [Targets] )
+
+Receiving Yards :=
+SUM ( 'Player Season Summary'[receiving_yards] )
+
+Receiving EPA :=
+SUM ( 'Player Season Summary'[receiving_epa] )
+
+Receiving EPA per Target :=
+DIVIDE ( [Receiving EPA], [Targets] )
+
+Yards After Catch :=
+SUM ( 'Player Season Summary'[yards_after_catch] )
+
+YAC per Reception :=
+DIVIDE ( [Yards After Catch], [Receptions] )
+
+YAC EPA :=
+SUM ( 'Player Season Summary'[yac_epa] )
+
+YAC EPA per Reception :=
+DIVIDE ( [YAC EPA], [Receptions] )
+
+-- Defense player stats
+Defensive Sacks :=
+SUM ( 'Player Season Summary'[sacks_defense] )
+
+Defensive QB Hits :=
+SUM ( 'Player Season Summary'[qb_hits_defense] )
+
+-- Penalties
+Penalty Count :=
+SUM ( 'Penalty'[penalty_count] )
+
+Penalty Yards :=
+SUM ( 'Penalty'[penalty_yards] )
+
+-- Field goals and special teams
+Field Goal Attempts :=
+SUM ( 'Player Season Summary'[field_goal_attempts] )
+
+Field Goals Made :=
+SUM ( 'Player Season Summary'[field_goals_made] )
+
+Field Goal Make Rate :=
+DIVIDE ( [Field Goals Made], [Field Goal Attempts] )
+
+-- Home field advantage / game facts
+Home Wins :=
+CALCULATE (
+    COUNTROWS ( 'Game' ),
+    'Game'[home_score] > 'Game'[away_score]
+)
+
+Home Games :=
+COUNTROWS ( 'Game' )
+
+Home Win Rate :=
+DIVIDE ( [Home Wins], [Home Games] )
+
+Average Home Point Differential :=
+AVERAGEX ( 'Game', 'Game'[home_score] - 'Game'[away_score] )
+
+Average Home Points :=
+AVERAGE ( 'Game'[home_score] )
+
+Average Away Points :=
+AVERAGE ( 'Game'[away_score] )
