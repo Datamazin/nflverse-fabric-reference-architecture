@@ -541,7 +541,8 @@ execution timings reported by the data agent output.
 | 19 | Which quarterback had the highest CPOE on throws of 20 or more air yards in the 2025 regular season, minimum 30 such attempts? | 19 | 9 | 0.70 | 1.00 |
 | 20 | Which team had the best red zone touchdown rate in the 2025 regular season? | 14 | 8 | 0.70 | 1.10 |
 | 21 | Which team had the most rushing touchdowns in the 2025 regular season? | 23 | 10 | 0.90 | 1.20 |
-|  | **Average** | **17.8** | **9.6** | **0.96** | **1.10** |
+|  | **Median** | **17.00** | **10.00** | **0.74** | **1.10** |
+|  | **Average** | **17.81** | **9.57** | **0.96** | **1.10** |
 
 Methodology:
 
