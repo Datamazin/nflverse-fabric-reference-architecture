@@ -542,7 +542,7 @@ execution timings reported by the data agent output.
 | 9 | Quantify 2025 regular-season home-field advantage: home win rate, average home point differential, average home points, and average away points. | 11 | 10 | 0.60 | 1.00 |
 | 10 | What was the Chiefs third-down conversion rate in the 2025 regular season? | 12 | 10 | 1.40 | 1.10 |
 | 11 | What was the Detroit Lions' record at home versus on the road in the 2025 regular season? | 16 | 8 | 1.20 | 1.10 |
-| 12 | What was the biggest single-play WPA swing in the 2025 regular season? | 21 | 12 | 0.70 | n/a |
+| 12 | What was the biggest single-play WPA swing in the 2025 regular season? | 21 | 12 | 0.70 | 1.1 |
 | 13 | What were Patrick Mahomes' completion percentage and TD-to-INT ratio in the 2025 regular season? | 23 | 8 | 0.60 | 1.20 |
 | 14 | Which 10 running backs had the highest explosive run rate in the 2025 regular season, minimum 50 carries? | 21 | 10 | 1.00 | 1.20 |
 | 15 | Which 10 running backs had the highest stuff rate in the 2025 regular season, minimum 50 carries? | 21 | 12 | 0.70 | 1.20 |
