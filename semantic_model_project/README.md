@@ -81,8 +81,12 @@ $env:FABRIC_SQL_ENDPOINT_SERVER = "<server.datawarehouse.fabric.microsoft.com>"
 $env:FABRIC_SQL_DATABASE = "lh_nfl"
 ```
 
-For a first deployment, Fabric may require you to configure the semantic model
-data source credentials in the workspace before the refresh succeeds.
+For a first deployment, Fabric may require you to map the semantic model data
+source to an explicit cloud or gateway connection before refresh succeeds. If
+refresh fails with `default data connection without explicit connection
+credentials`, open the semantic model settings, expand Gateway and cloud
+connections, and map the SQL endpoint data source to a new or existing shareable
+cloud connection. Then rerun the script or refresh manually.
 
 ## References
 
@@ -90,3 +94,4 @@ data source credentials in the workspace before the refresh succeeds.
 - [Power BI Desktop project semantic model folder](https://learn.microsoft.com/en-za/power-bi/developer/projects/projects-dataset)
 - [Deploy Power BI projects using fabric-cicd](https://learn.microsoft.com/en-us/power-bi/developer/projects/projects-deploy-fabric-cicd)
 - [Fabric semantic model getDefinition API](https://learn.microsoft.com/en-us/rest/api/fabric/semanticmodel/items/get-semantic-model-definition)
+- [Connect to cloud data sources in the Power BI service](https://learn.microsoft.com/en-us/power-bi/connect-data/service-connect-cloud-data-sources)

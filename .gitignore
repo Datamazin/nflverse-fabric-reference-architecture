@@ -9,3 +9,4 @@ nflverse_local/
 data/
 **/.pbi/localSettings.json
 **/.pbi/cache.abf
+fabric_cicd.error.log

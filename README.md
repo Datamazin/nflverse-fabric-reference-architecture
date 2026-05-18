@@ -100,22 +100,42 @@ Python is used to download NFLVerse data sources to your local workstation, and 
 
 Use Python 3.11 or newer.
 
+Windows PowerShell:
+
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install -e ".[dev]"
 ```
 
+macOS/Linux shell:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install -e ".[dev]"
+```
+
 If you previously installed dependencies and see a Polars startup error such as
 `RuntimeError: unknown feature flag: 'sse3'`, refresh the venv dependencies:
 
+Windows PowerShell:
+
 ```powershell
+python -m pip install --upgrade -e ".[dev]"
+```
+
+macOS/Linux shell:
+
+```bash
 python -m pip install --upgrade -e ".[dev]"
 ```
 
 ### 2. Acquire NFLVerse Data Locally
 
 Run the local acquisition CLI from the repo root:
+
+Windows PowerShell:
 
 ```powershell
 python acquire_nflverse.py `
@@ -125,7 +145,17 @@ python acquire_nflverse.py `
   --force
 ```
 
-The script supports optional parameters, which can be used to craete custom data sets:
+macOS/Linux shell:
+
+```bash
+python acquire_nflverse.py \
+  --start-season 1999 \
+  --end-season 2025 \
+  --out ./nflverse_local \
+  --force
+```
+
+The script supports optional parameters, which can be used to create custom data sets:
 
 | Option | Default | Purpose |
 |---|---:|---|
@@ -177,7 +207,15 @@ The acquisition run writes three useful control files:
 
 Local unit tests are implemented to test whether the data expected from NFLVerse was received and stored as expected in the local workstation file system.
 
+Windows PowerShell:
+
 ```powershell
+pytest
+```
+
+macOS/Linux shell:
+
+```bash
 pytest
 ```
 
@@ -307,7 +345,15 @@ endpoint server may change, so pass the target Lakehouse SQL endpoint server to
 the script. In Fabric, open the `lh_nfl` Lakehouse, switch to the SQL analytics
 endpoint, and copy the SQL connection string/server name.
 
+Authentication: the script uses interactive browser sign-in by default, so the
+examples below do not require a prior Azure CLI login. If you prefer Azure CLI
+authentication, run `az login` first, then pass `--auth-mode azure-cli` or set
+`FABRIC_AUTH_MODE=azure-cli`. Use an account with permission to publish items
+and refresh semantic models in the target Fabric workspace.
+
 Deploy and refresh from the repo root:
+
+Windows PowerShell:
 
 ```powershell
 python scripts/create_nfl_play_by_play_sm.py `
@@ -316,12 +362,30 @@ python scripts/create_nfl_play_by_play_sm.py `
   --sql-database lh_nfl
 ```
 
+macOS/Linux shell:
+
+```bash
+python scripts/create_nfl_play_by_play_sm.py \
+  --workspace-id <WORKSPACE_GUID> \
+  --sql-endpoint-server <server.datawarehouse.fabric.microsoft.com> \
+  --sql-database lh_nfl
+```
+
 If you are deploying back to the same workspace and SQL endpoint that the
 exported `.SemanticModel` files already reference, the endpoint patch arguments
 are optional:
 
+Windows PowerShell:
+
 ```powershell
 python scripts/create_nfl_play_by_play_sm.py `
+  --workspace-id <WORKSPACE_GUID>
+```
+
+macOS/Linux shell:
+
+```bash
+python scripts/create_nfl_play_by_play_sm.py \
   --workspace-id <WORKSPACE_GUID>
 ```
 
@@ -330,10 +394,20 @@ references only in that staged copy, publishes `NFL Play by Play Model` with
 `fabric-cicd`, and triggers a semantic model refresh. The checked-in TMDL files
 are not modified by deployment-time patching.
 
-On the first deployment to a workspace, Fabric may require data source
-credentials before refresh succeeds. If refresh fails for credentials, open the
-semantic model in the Fabric workspace, go to semantic model settings, configure
-the SQL endpoint credentials, then rerun the script or refresh manually.
+## IMPORTANT - Updating Semantic Model Connection String after Script Deployment
+
+On the first deployment to a workspace, Fabric may require an explicit data
+connection before refresh succeeds. If refresh fails with a message like
+`default data connection without explicit connection credentials`, the model was
+published but refresh could not access the Lakehouse SQL endpoint yet. In the
+Fabric or Power BI workspace, open `NFL Play by Play Model` > More options
+`...` > Settings > Gateway and cloud connections. For the SQL endpoint data
+source, use Maps to > Create a connection, or select an existing shareable cloud
+connection, then apply the mapping. After the connection is mapped, rerun the
+script or refresh the semantic model manually. See Microsoft's guidance for
+[connecting to cloud data sources](https://learn.microsoft.com/en-us/power-bi/connect-data/service-connect-cloud-data-sources)
+and
+[creating shareable cloud connections](https://learn.microsoft.com/en-us/power-bi/connect-data/service-create-share-cloud-data-sources).
 
 ### 11b. Build The Power BI Semantic Model Manually
 
@@ -505,7 +579,7 @@ data sources are added:
 
 For a clean rebuild, run the artifacts in this order:
 
-1. `python acquire_nflverse.py --start-season 1999 --end-season 2025 --out .\nflverse_local --force`
+1. Run the Step 2 NFLVerse acquisition command for your platform.
 2. Upload `nflverse_local/raw/nflverse/` and `nflverse_local/manifest/` to the Fabric Lakehouse.
 3. Run `notebooks/import_raw_nflverse_to_bronze.ipynb`.
 4. Run `notebooks/build_silver_gold_nfl_model.ipynb`.

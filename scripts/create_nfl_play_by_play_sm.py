@@ -56,6 +56,21 @@ POWER_BI_API_SCOPE = "https://analysis.windows.net/powerbi/api/.default"
 FABRIC_API_BASE = "https://api.fabric.microsoft.com/v1"
 POWER_BI_API_BASE = "https://api.powerbi.com/v1.0/myorg"
 
+DATA_CONNECTION_GUIDANCE = """\
+The semantic model published successfully, but Fabric cannot refresh it until
+the SQL endpoint data source is mapped to an explicit cloud or gateway
+connection.
+
+Fix:
+1. Open the target Fabric or Power BI workspace.
+2. Find the 'NFL Play by Play Model' semantic model.
+3. Open More options (...) > Settings > Gateway and cloud connections.
+4. For the SQL endpoint data source, use Maps to > Create a connection, or
+   select an existing shareable cloud connection.
+5. Apply the mapping, then rerun this script or refresh the semantic model
+   manually.
+"""
+
 TEXT_SUFFIXES = {
     ".bim",
     ".json",
@@ -423,6 +438,17 @@ def publish_model(
     print("  Publish complete.")
 
 
+def format_refresh_failure(detail: str) -> str:
+    message = f"Refresh failed.\nDetails: {detail}"
+    known_connection_error = (
+        "default data connection without explicit connection credentials" in detail
+        or "explicit cloud or gateway data connection" in detail
+    )
+    if known_connection_error:
+        message = f"{message}\n\n{DATA_CONNECTION_GUIDANCE}"
+    return message
+
+
 def trigger_refresh(
     power_bi_client: ApiClient, workspace_id: str, semantic_model_id: str
 ) -> None:
@@ -456,7 +482,7 @@ def trigger_refresh(
             return
         if status == "Failed":
             detail = latest.get("serviceExceptionJson", "(no details)")
-            raise RuntimeError(f"Refresh failed.\nDetails: {detail}")
+            raise RuntimeError(format_refresh_failure(detail))
 
     print("  WARNING: refresh still running after 10 minutes. Check Fabric manually.")
 
