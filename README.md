@@ -9,11 +9,12 @@ Fabric. It starts with full-league NFLVerse data acquisition using `nflreadpy`.
 > referring to the data set in prose. `nflreadpy` is the Python acquisition
 > library used to download NFLVerse data.
 >
-> **Data quality note:** This repo focuses on the process of building efficient
+> **Data quality note:** This repo is for educational and reference purposes, focusing
+> on the process of building efficient
 > data models for use with Fabric Data Agents and providing a framework for
-> Evaluations for Quality Assurance. The NFLVerse data is imported into the
-> solution but hasn't been thoroughly audited. Data accuracy shouldn't be
-> assumed, and the data is not validated to a level that should be integrated
+> Agent Evaluation, Testing and how to create a Quality Assurance framework. 
+> The NFLVerse data is imported into the solution but hasn't been thoroughly audited. Data 
+> accuracy shouldn't be assumed, and the data is not validated to a level needed to integrate
 > into production analytical solutions.
 
 When deployed, the assets in this repo will provide the following:
@@ -70,9 +71,15 @@ documented:
 
 | Path | Purpose |
 |---|---|
+| `.gitignore` | Excludes local caches, virtual environments, generated data, and Fabric local settings from version control. |
+| `.vscode/settings.json` | Workspace editor settings for this repository. |
+| `README.md` | Primary end-to-end guide for rebuilding the Fabric reference architecture and reviewing validation results. |
+| `pyproject.toml` | Python package metadata, dependencies, dev dependencies, and the `acquire-nflverse` CLI entry point. |
 | `acquire_nflverse.py` | Root wrapper for the local acquisition CLI. |
 | `src/nfl_fabric_acquisition/` | Python package for acquisition, output paths, manifests, retries, and quality checks. |
 | `tests/` | Pytest coverage for config, pathing, manifests, validation, and dataset availability behavior. |
+| `docs/Evaluation Question Manual Testing.xlsx` | Manual Data Agent testing workbook with response-time and query-runtime observations. |
+| `docs/nfl_fabric_nflreadpy_codex_plan.md` | Historical implementation-plan note that points readers back to the current README. |
 | `notebooks/import_raw_nflverse_to_bronze.ipynb` | Fabric notebook that reads uploaded raw Parquet files and creates Bronze Delta tables. |
 | `notebooks/build_silver_gold_nfl_model.ipynb` | Fabric notebook that creates Silver and Gold tables from Bronze. |
 | `notebooks/validate_gold_metrics.ipynb` | Read-only Fabric notebook that validates Gold tables against representative analytics questions. |
@@ -81,16 +88,20 @@ documented:
 | `semantic_model/nfl_gold_semantic_model_guide.md` | Power BI semantic model build guide, relationships, hide rules, and Prep for AI instructions. |
 | `semantic_model/nfl_gold_measures.dax` | DAX measure catalog for the Gold semantic model. |
 | `semantic_model_project/` | Deployable Power BI Project semantic model files for `NFL Play by Play Model`. |
+| `semantic_model_project/README.md` | Instructions for exporting, storing, and deploying the PBIP/TMDL semantic model project. |
 | `scripts/create_nfl_play_by_play_sm.py` | Command-line deployment and refresh script for the semantic model. |
 
-The `.py` files beside several notebooks are exported notebook sources for easier
-review and version control.
+Generated/local working folders such as `.venv/`, `.pytest_cache/`,
+`nflverse_local/`, and `data/` are intentionally omitted from the map because
+they are ignored by Git.
 
 ## Build The Solution
 
 To recreate the Fabric workspace and all artifacts, follow these roadmap steps.
 
 A YouTube video series is available to serve as an on-demand workshop that demonstrates each of the required build steps documented below.
+
+> TODO: when YouTube walk through is complete, add link here.
 
 ### 1. Set Up Local Python
 
