@@ -515,32 +515,44 @@ example queries, and any Lakehouse Gold table metadata available to the agent.
 
 The table below summarizes manual response-time testing captured in
 [Evaluation Question Manual Testing.xlsx](docs/Evaluation%20Question%20Manual%20Testing.xlsx).
-Times are measured in seconds.
+Times are measured in seconds. DAX and SQL query runtime values are the
+execution timings reported by the data agent output.
 
-| # | Question | Semantic Model Data Agent (seconds) | Lakehouse Data Agent (seconds) |
-|---:|---|---:|---:|
-| 1 | For QBs in 2025 with at least 100 clean dropbacks and at least 15 QB-hit dropbacks, who had the largest EPA per dropback differential between clean and QB-hit plays? | 22 | 12 |
-| 2 | How many regular-season NFL games were played in 2025? | 7 | 9 |
-| 3 | How many sacks did the 49ers defense record in the 2025 regular season, and who were their top 3 sack leaders? | 23 | 11 |
-| 4 | List the top 10 QBs by passing touchdowns in the 2025 regular season, with their interception count shown alongside. | 17 | 10 |
-| 5 | List the top 10 receivers by receiving yards in the 2025 regular season. | 14 | 9 |
-| 6 | List the top 10 running backs by EPA per rush in the 2025 regular season, minimum 50 carries. | 26 | 11 |
-| 7 | List the top 5 quarterbacks by passing yards in the 2025 regular season. | 21 | 8 |
-| 8 | List the top 5 running backs by rushing yards in the 2025 regular season and include their rushing touchdowns. | 16 | 10 |
-| 9 | Quantify 2025 regular-season home-field advantage: home win rate, average home point differential, average home points, and average away points. | 11 | 10 |
-| 10 | What was the Chiefs third-down conversion rate in the 2025 regular season? | 12 | 10 |
-| 11 | What was the Detroit Lions' record at home versus on the road in the 2025 regular season? | 16 | 8 |
-| 12 | What was the biggest single-play WPA swing in the 2025 regular season? | 21 | 12 |
-| 13 | What were Patrick Mahomes' completion percentage and TD-to-INT ratio in the 2025 regular season? | 23 | 8 |
-| 14 | Which 10 running backs had the highest explosive run rate in the 2025 regular season, minimum 50 carries? | 21 | 10 |
-| 15 | Which 10 running backs had the highest stuff rate in the 2025 regular season, minimum 50 carries? | 21 | 12 |
-| 16 | Which 2025 game had the most total points scored? Show the teams, final score, and week. | 17 | 8 |
-| 17 | Which 5 defenses allowed the fewest explosive plays per game in the 2025 regular season? | 14 | 8 |
-| 18 | Which kicker attempted the most field goals in the 2025 regular season, and what was their make rate? | 16 | 8 |
-| 19 | Which quarterback had the highest CPOE on throws of 20 or more air yards in the 2025 regular season, minimum 30 such attempts? | 19 | 9 |
-| 20 | Which team had the best red zone touchdown rate in the 2025 regular season? | 14 | 8 |
-| 21 | Which team had the most rushing touchdowns in the 2025 regular season? | 23 | 10 |
-|  | **Average** | **17.8** | **9.6** |
+| # | Question | Semantic Model Data Agent (seconds) | Lakehouse Data Agent (seconds) | DAX Query Runtime (seconds) | SQL Query Runtime (seconds) |
+|---:|---|---:|---:|---:|---:|
+| 1 | For QBs in 2025 with at least 100 clean dropbacks and at least 15 QB-hit dropbacks, who had the largest EPA per dropback differential between clean and QB-hit plays? | 22 | 12 | 0.74 | 0.78 |
+| 2 | How many regular-season NFL games were played in 2025? | 7 | 9 | 1.75 | 1.41 |
+| 3 | How many sacks did the 49ers defense record in the 2025 regular season, and who were their top 3 sack leaders? | 23 | 11 | 0.54 | 1.17 |
+| 4 | List the top 10 QBs by passing touchdowns in the 2025 regular season, with their interception count shown alongside. | 17 | 10 | 0.60 | 1.15 |
+| 5 | List the top 10 receivers by receiving yards in the 2025 regular season. | 14 | 9 | 1.40 | 0.75 |
+| 6 | List the top 10 running backs by EPA per rush in the 2025 regular season, minimum 50 carries. | 26 | 11 | 1.10 | 1.06 |
+| 7 | List the top 5 quarterbacks by passing yards in the 2025 regular season. | 21 | 8 | 1.40 | 1.07 |
+| 8 | List the top 5 running backs by rushing yards in the 2025 regular season and include their rushing touchdowns. | 16 | 10 | 1.30 | 1.20 |
+| 9 | Quantify 2025 regular-season home-field advantage: home win rate, average home point differential, average home points, and average away points. | 11 | 10 | 0.60 | 1.00 |
+| 10 | What was the Chiefs third-down conversion rate in the 2025 regular season? | 12 | 10 | 1.40 | 1.10 |
+| 11 | What was the Detroit Lions' record at home versus on the road in the 2025 regular season? | 16 | 8 | 1.20 | 1.10 |
+| 12 | What was the biggest single-play WPA swing in the 2025 regular season? | 21 | 12 | 0.70 | n/a |
+| 13 | What were Patrick Mahomes' completion percentage and TD-to-INT ratio in the 2025 regular season? | 23 | 8 | 0.60 | 1.20 |
+| 14 | Which 10 running backs had the highest explosive run rate in the 2025 regular season, minimum 50 carries? | 21 | 10 | 1.00 | 1.20 |
+| 15 | Which 10 running backs had the highest stuff rate in the 2025 regular season, minimum 50 carries? | 21 | 12 | 0.70 | 1.20 |
+| 16 | Which 2025 game had the most total points scored? Show the teams, final score, and week. | 17 | 8 | 0.70 | 1.20 |
+| 17 | Which 5 defenses allowed the fewest explosive plays per game in the 2025 regular season? | 14 | 8 | 0.60 | 1.00 |
+| 18 | Which kicker attempted the most field goals in the 2025 regular season, and what was their make rate? | 16 | 8 | 1.60 | 1.20 |
+| 19 | Which quarterback had the highest CPOE on throws of 20 or more air yards in the 2025 regular season, minimum 30 such attempts? | 19 | 9 | 0.70 | 1.00 |
+| 20 | Which team had the best red zone touchdown rate in the 2025 regular season? | 14 | 8 | 0.70 | 1.10 |
+| 21 | Which team had the most rushing touchdowns in the 2025 regular season? | 23 | 10 | 0.90 | 1.20 |
+|  | **Average** | **17.8** | **9.6** | **0.96** | **1.10** |
+
+Methodology:
+
+1. Each question was pasted into the data agent after pressing **Clear Chat**,
+   so each question is the first in its conversation.
+2. Data agent time is the **Response time** taken from the Data Agent output
+   step.
+3. For DAX query time, the DAX query was copied and pasted into the Power BI
+   Explore/DAX Query window.
+4. For SQL query time, the SQL query was copied and pasted into the SQL
+   Analytics Endpoint query window.
 
 ## Data Agent Question Coverage
 
