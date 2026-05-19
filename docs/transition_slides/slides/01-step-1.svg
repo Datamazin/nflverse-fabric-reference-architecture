@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+    <defs>
+      <linearGradient id="bgA" x1="0" x2="1" y1="0" y2="1">
+        <stop offset="0%" stop-color="#071a2b"/>
+        <stop offset="42%" stop-color="#15354a"/>
+        <stop offset="100%" stop-color="#0e5f55"/>
+      </linearGradient>
+      <radialGradient id="glowA" cx="72%" cy="18%" r="55%">
+        <stop offset="0%" stop-color="#7ef2c8" stop-opacity=".30"/>
+        <stop offset="100%" stop-color="#7ef2c8" stop-opacity="0"/>
+      </radialGradient>
+      <filter id="cardShadow" x="-20%" y="-30%" width="140%" height="170%">
+        <feDropShadow dx="0" dy="18" stdDeviation="17" flood-color="#020d13" flood-opacity=".36"/>
+      </filter>
+      <style>
+        .bg { fill: url(#bgA); }
+        .glow { fill: url(#glowA); }
+        .grid { stroke: rgba(255,255,255,.075); stroke-width: 1; }
+        .eyebrow { font: 700 28px Arial, sans-serif; fill: #83f3c8; letter-spacing: 3px; }
+        .headline { font: 800 78px Arial, sans-serif; fill: #f8fbff; letter-spacing: 0; }
+        .subhead { font: 400 31px Arial, sans-serif; fill: rgba(236,247,255,.78); }
+        .a-card { stroke-width: 1.5; }
+        .a-card.done { fill: #18c48f; stroke: rgba(255,255,255,.72); }
+        .a-card.todo { fill: rgba(255,255,255,.12); stroke: rgba(255,255,255,.20); }
+        .a-num.done { fill: rgba(255,255,255,.92); }
+        .a-num.todo { fill: rgba(255,255,255,.13); }
+        .a-num-text { font: 800 20px Arial, sans-serif; }
+        .a-num-text.done { fill: #0d6d55; }
+        .a-num-text.todo { fill: rgba(246,251,255,.84); }
+        .a-label { font: 800 15px Arial, sans-serif; letter-spacing: 2.2px; }
+        .a-label.done, .a-label.todo { fill: rgba(255,255,255,.68); }
+        .a-title { font: 700 24px Arial, sans-serif; letter-spacing: 0; }
+        .a-title.done, .a-title.todo { fill: #ffffff; }
+        .a-check { font: 800 46px Arial, sans-serif; fill: #ffffff; }
+        .footer { font: 600 23px Arial, sans-serif; fill: rgba(255,255,255,.68); }
+        .counter { font: 800 31px Arial, sans-serif; fill: #83f3c8; }
+      </style>
+    </defs>
+    <rect width="1920" height="1080" class="bg"/>
+    <rect width="1920" height="1080" class="glow"/>
+    <line x1="0" x2="-520" y1="0" y2="1080" class="grid"/><line x1="160" x2="-360" y1="0" y2="1080" class="grid"/><line x1="320" x2="-200" y1="0" y2="1080" class="grid"/><line x1="480" x2="-40" y1="0" y2="1080" class="grid"/><line x1="640" x2="120" y1="0" y2="1080" class="grid"/><line x1="800" x2="280" y1="0" y2="1080" class="grid"/><line x1="960" x2="440" y1="0" y2="1080" class="grid"/><line x1="1120" x2="600" y1="0" y2="1080" class="grid"/><line x1="1280" x2="760" y1="0" y2="1080" class="grid"/><line x1="1440" x2="920" y1="0" y2="1080" class="grid"/><line x1="1600" x2="1080" y1="0" y2="1080" class="grid"/><line x1="1760" x2="1240" y1="0" y2="1080" class="grid"/><line x1="1920" x2="1400" y1="0" y2="1080" class="grid"/><line x1="2080" x2="1560" y1="0" y2="1080" class="grid"/>
+    <text x="102" y="104" class="eyebrow">NFL FABRIC ANALYTICS</text>
+    <text x="102" y="177" class="headline">Build Progress</text>
+    <text x="850" y="157" class="subhead">Step 1 complete: Set up local python</text>
+    <text x="850" y="205" class="counter">1 of 16 covered</text>
+    
+        <g filter="url(#cardShadow)">
+          <rect x="102" y="224" width="380" height="132" rx="30" class="a-card done" />
+        </g>
+        <circle cx="150" cy="268" r="23" class="a-num done" />
+        <text x="150" y="276" text-anchor="middle" class="a-num-text done">1</text>
+        
+    <text x="190" y="261" class="a-label done">STEP 1</text>
+    <text x="190" y="309" class="a-title done">Set up local python</text>
+  
+        <text x="421" y="281" class="a-check">✓</text>
+      
+        <g filter="url(#cardShadow)">
+          <rect x="536" y="224" width="380" height="132" rx="30" class="a-card todo" />
+        </g>
+        <circle cx="584" cy="268" r="23" class="a-num todo" />
+        <text x="584" y="276" text-anchor="middle" class="a-num-text todo">2</text>
+        
+    <text x="624" y="261" class="a-label todo">STEP 2</text>
+    <text x="624" y="309" class="a-title todo">Acquire Data Locally</text>
+  
+        
+      
+        <g filter="url(#cardShadow)">
+          <rect x="970" y="224" width="380" height="132" rx="30" class="a-card todo" />
+        </g>
+        <circle cx="1018" cy="268" r="23" class="a-num todo" />
+        <text x="1018" y="276" text-anchor="middle" class="a-num-text todo">3</text>
+        
+    <text x="1058" y="261" class="a-label todo">STEP 3</text>
+    <text x="1058" y="309" class="a-title todo">Run Local Tests</text>
+  
+        
+      
+        <g filter="url(#cardShadow)">
+          <rect x="1404" y="224" width="380" height="132" rx="30" class="a-card todo" />
+        </g>
+        <circle cx="1452" cy="268" r="23" class="a-num todo" />
+        <text x="1452" y="276" text-anchor="middle" class="a-num-text todo">4</text>
+        
+    <text x="1492" y="261" class="a-label todo">STEP 4</text>
+    <text x="1492" y="309" class="a-title todo">Create Workspace</text>
+  
+        
+      
+        <g filter="url(#cardShadow)">
+          <rect x="102" y="426" width="380" height="132" rx="30" class="a-card todo" />
+        </g>
+        <circle cx="150" cy="470" r="23" class="a-num todo" />
+        <text x="150" y="478" text-anchor="middle" class="a-num-text todo">5</text>
+        
+    <text x="190" y="463" class="a-label todo">STEP 5</text>
+    <text x="190" y="511" class="a-title todo">Create Lakehouse</text>
+  
+        
+      
+        <g filter="url(#cardShadow)">
+          <rect x="536" y="426" width="380" height="132" rx="30" class="a-card todo" />
+        </g>
+        <circle cx="584" cy="470" r="23" class="a-num todo" />
+        <text x="584" y="478" text-anchor="middle" class="a-num-text todo">6</text>
+        
+    <text x="624" y="463" class="a-label todo">STEP 6</text>
+    <text x="624" y="511" class="a-title todo">Upload Notebooks</text>
+  
+        
+      
+        <g filter="url(#cardShadow)">
+          <rect x="970" y="426" width="380" height="132" rx="30" class="a-card todo" />
+        </g>
+        <circle cx="1018" cy="470" r="23" class="a-num todo" />
+        <text x="1018" y="478" text-anchor="middle" class="a-num-text todo">7</text>
+        
+    <text x="1058" y="463" class="a-label todo">STEP 7</text>
+    <text x="1058" y="511" class="a-title todo">Upload Raw Data</text>
+  
+        
+      
+        <g filter="url(#cardShadow)">
+          <rect x="1404" y="426" width="380" height="132" rx="30" class="a-card todo" />
+        </g>
+        <circle cx="1452" cy="470" r="23" class="a-num todo" />
+        <text x="1452" y="478" text-anchor="middle" class="a-num-text todo">8</text>
+        
+    <text x="1492" y="463" class="a-label todo">STEP 8</text>
+    <text x="1492" y="511" class="a-title todo">Load data to Bronze</text>
+  
+        
+      
+        <g filter="url(#cardShadow)">
+          <rect x="102" y="628" width="380" height="132" rx="30" class="a-card todo" />
+        </g>
+        <circle cx="150" cy="672" r="23" class="a-num todo" />
+        <text x="150" y="680" text-anchor="middle" class="a-num-text todo">9</text>
+        
+    <text x="190" y="665" class="a-label todo">STEP 9</text>
+    <text x="190" y="713" class="a-title todo">Build Silver and Gold</text>
+  
+        
+      
+        <g filter="url(#cardShadow)">
+          <rect x="536" y="628" width="380" height="132" rx="30" class="a-card todo" />
+        </g>
+        <circle cx="584" cy="672" r="23" class="a-num todo" />
+        <text x="584" y="680" text-anchor="middle" class="a-num-text todo">10</text>
+        
+    <text x="624" y="665" class="a-label todo">STEP 10</text>
+    <text x="624" y="713" class="a-title todo">Validate Gold Metrics</text>
+  
+        
+      
+        <g filter="url(#cardShadow)">
+          <rect x="970" y="628" width="380" height="132" rx="30" class="a-card todo" />
+        </g>
+        <circle cx="1018" cy="672" r="23" class="a-num todo" />
+        <text x="1018" y="680" text-anchor="middle" class="a-num-text todo">11</text>
+        
+    <text x="1058" y="665" class="a-label todo">STEP 11</text>
+    <text x="1058" y="713" class="a-title todo">Deploy Semantic Model</text>
+  
+        
+      
+        <g filter="url(#cardShadow)">
+          <rect x="1404" y="628" width="380" height="132" rx="30" class="a-card todo" />
+        </g>
+        <circle cx="1452" cy="672" r="23" class="a-num todo" />
+        <text x="1452" y="680" text-anchor="middle" class="a-num-text todo">12</text>
+        
+    <text x="1492" y="665" class="a-label todo">STEP 12</text>
+    <text x="1492" y="713" class="a-title todo">Run Prep for AI</text>
+  
+        
+      
+        <g filter="url(#cardShadow)">
+          <rect x="102" y="830" width="380" height="132" rx="30" class="a-card todo" />
+        </g>
+        <circle cx="150" cy="874" r="23" class="a-num todo" />
+        <text x="150" y="882" text-anchor="middle" class="a-num-text todo">13</text>
+        
+    <text x="190" y="867" class="a-label todo">STEP 13</text>
+    <text x="190" y="915" class="a-title todo">Create Semantic Model</text><text x="190" y="940" class="a-title todo">Data Agent</text>
+  
+        
+      
+        <g filter="url(#cardShadow)">
+          <rect x="536" y="830" width="380" height="132" rx="30" class="a-card todo" />
+        </g>
+        <circle cx="584" cy="874" r="23" class="a-num todo" />
+        <text x="584" y="882" text-anchor="middle" class="a-num-text todo">14</text>
+        
+    <text x="624" y="867" class="a-label todo">STEP 14</text>
+    <text x="624" y="915" class="a-title todo">Create Data Lake Data</text><text x="624" y="940" class="a-title todo">Agent</text>
+  
+        
+      
+        <g filter="url(#cardShadow)">
+          <rect x="970" y="830" width="380" height="132" rx="30" class="a-card todo" />
+        </g>
+        <circle cx="1018" cy="874" r="23" class="a-num todo" />
+        <text x="1018" y="882" text-anchor="middle" class="a-num-text todo">15</text>
+        
+    <text x="1058" y="867" class="a-label todo">STEP 15</text>
+    <text x="1058" y="915" class="a-title todo">Test Data Agents with</text><text x="1058" y="940" class="a-title todo">M365 Copilot</text>
+  
+        
+      
+        <g filter="url(#cardShadow)">
+          <rect x="1404" y="830" width="380" height="132" rx="30" class="a-card todo" />
+        </g>
+        <circle cx="1452" cy="874" r="23" class="a-num todo" />
+        <text x="1452" y="882" text-anchor="middle" class="a-num-text todo">16</text>
+        
+    <text x="1492" y="867" class="a-label todo">STEP 16</text>
+    <text x="1492" y="915" class="a-title todo">Run Data Agent</text><text x="1492" y="940" class="a-title todo">Evaluations</text>
+  
+        
+      
+    <text x="102" y="1016" class="footer">Completed steps fill green. Upcoming steps stay translucent.</text>
+  </svg>

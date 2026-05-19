@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+    <defs>
+      <linearGradient id="bgA" x1="0" x2="1" y1="0" y2="1">
+        <stop offset="0%" stop-color="#071a2b"/>
+        <stop offset="42%" stop-color="#15354a"/>
+        <stop offset="100%" stop-color="#0e5f55"/>
+      </linearGradient>
+      <radialGradient id="glowA" cx="72%" cy="18%" r="55%">
+        <stop offset="0%" stop-color="#7ef2c8" stop-opacity=".30"/>
+        <stop offset="100%" stop-color="#7ef2c8" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="fabricBand" x1="0" x2="1">
+        <stop offset="0%" stop-color="rgba(24,196,143,.20)"/>
+        <stop offset="100%" stop-color="rgba(126,242,200,.10)"/>
+      </linearGradient>
+      <linearGradient id="greenFill" x1="0" x2="1">
+        <stop offset="0%" stop-color="#18c48f"/>
+        <stop offset="100%" stop-color="#1bc6a8"/>
+      </linearGradient>
+      <linearGradient id="goldFill" x1="0" x2="1">
+        <stop offset="0%" stop-color="#f4c542"/>
+        <stop offset="100%" stop-color="#e7a83f"/>
+      </linearGradient>
+      <filter id="cardShadow" x="-20%" y="-30%" width="140%" height="170%">
+        <feDropShadow dx="0" dy="18" stdDeviation="17" flood-color="#020d13" flood-opacity=".36"/>
+      </filter>
+      <marker id="arrow" markerWidth="4.5" markerHeight="4.5" refX="3" refY="1.5" orient="auto">
+        <path d="M0,0 L3,1.5 L0,3 Z" fill="#83f3c8"/>
+      </marker>
+      <marker id="arrowDim" markerWidth="4.5" markerHeight="4.5" refX="3" refY="1.5" orient="auto">
+        <path d="M0,0 L3,1.5 L0,3 Z" fill="rgba(236,247,255,.52)"/>
+      </marker>
+      <style>
+        .bg { fill: url(#bgA); }
+        .glow { fill: url(#glowA); }
+        .grid { stroke: rgba(255,255,255,.075); stroke-width: 1; }
+        .eyebrow { font: 700 28px Arial, sans-serif; fill: #83f3c8; letter-spacing: 3px; }
+        .headline { font: 800 72px Arial, sans-serif; fill: #f8fbff; letter-spacing: 0; }
+        .subhead { font: 400 30px Arial, sans-serif; fill: rgba(236,247,255,.78); }
+        .fabric-shell { fill: url(#fabricBand); stroke: rgba(131,243,200,.42); stroke-width: 2; }
+        .fabric-label { font: 800 30px Arial, sans-serif; fill: #83f3c8; letter-spacing: 2px; }
+        .fabric-note { font: 600 21px Arial, sans-serif; fill: rgba(236,247,255,.70); }
+        .node { fill: rgba(255,255,255,.12); stroke: rgba(255,255,255,.24); stroke-width: 1.5; }
+        .node.source { fill: rgba(255,255,255,.10); stroke: rgba(255,255,255,.28); }
+        .node.copilot { fill: rgba(244,197,66,.16); stroke: rgba(244,197,66,.58); }
+        .node-icon { font: 800 34px Arial, sans-serif; fill: #83f3c8; }
+        .node-label { font: 800 17px Arial, sans-serif; fill: #83f3c8; letter-spacing: 2px; }
+        .node-title { font: 800 29px Arial, sans-serif; fill: #ffffff; letter-spacing: 0; }
+        .node-subtitle { font: 600 20px Arial, sans-serif; fill: rgba(236,247,255,.72); }
+        .arrow-line { stroke: #83f3c8; stroke-width: 5; stroke-linecap: round; marker-end: url(#arrow); }
+        .arrow-dim { stroke: rgba(236,247,255,.52); stroke-width: 4; stroke-linecap: round; stroke-dasharray: 8 12; marker-end: url(#arrowDim); }
+        .stage-label { font: 800 18px Arial, sans-serif; fill: rgba(236,247,255,.70); letter-spacing: 2px; }
+        .medallion { stroke: rgba(255,255,255,.45); stroke-width: 1.4; }
+        .medallion.raw { fill: rgba(255,255,255,.13); }
+        .medallion.bronze { fill: rgba(205,127,50,.62); }
+        .medallion.silver { fill: rgba(195,205,214,.38); }
+        .medallion.gold { fill: url(#goldFill); }
+        .medallion-title { font: 800 25px Arial, sans-serif; fill: #ffffff; letter-spacing: 0; }
+        .medallion-subtitle { font: 600 18px Arial, sans-serif; fill: rgba(255,255,255,.76); }
+        .semantic-card { fill: url(#greenFill); stroke: rgba(255,255,255,.62); stroke-width: 1.5; }
+        .semantic-title { font: 800 30px Arial, sans-serif; fill: #ffffff; }
+        .semantic-subtitle { font: 600 20px Arial, sans-serif; fill: rgba(255,255,255,.80); }
+        .agent-card { stroke: rgba(255,255,255,.42); stroke-width: 1.4; }
+        .agent-card.semantic { fill: rgba(24,196,143,.68); }
+        .agent-card.lakehouse { fill: rgba(255,255,255,.13); }
+        .agent-dot { fill: rgba(255,255,255,.92); }
+        .agent-dot-text { font: 800 17px Arial, sans-serif; fill: #0d6d55; }
+        .agent-title { font: 800 24px Arial, sans-serif; fill: #ffffff; }
+        .agent-subtitle { font: 600 18px Arial, sans-serif; fill: rgba(255,255,255,.74); }
+        .eval { fill: rgba(4,18,28,.42); stroke: rgba(131,243,200,.34); stroke-width: 1.5; }
+        .eval-title { font: 800 25px Arial, sans-serif; fill: #ffffff; }
+        .eval-subtitle { font: 600 19px Arial, sans-serif; fill: rgba(236,247,255,.72); }
+        .copilot-title { font: 800 30px Arial, sans-serif; fill: #ffe59b; }
+        .footer { font: 600 23px Arial, sans-serif; fill: rgba(255,255,255,.68); }
+      </style>
+    </defs>
+    <rect width="1920" height="1080" class="bg"/>
+    <rect width="1920" height="1080" class="glow"/>
+    <line x1="0" x2="-520" y1="0" y2="1080" class="grid"/><line x1="160" x2="-360" y1="0" y2="1080" class="grid"/><line x1="320" x2="-200" y1="0" y2="1080" class="grid"/><line x1="480" x2="-40" y1="0" y2="1080" class="grid"/><line x1="640" x2="120" y1="0" y2="1080" class="grid"/><line x1="800" x2="280" y1="0" y2="1080" class="grid"/><line x1="960" x2="440" y1="0" y2="1080" class="grid"/><line x1="1120" x2="600" y1="0" y2="1080" class="grid"/><line x1="1280" x2="760" y1="0" y2="1080" class="grid"/><line x1="1440" x2="920" y1="0" y2="1080" class="grid"/><line x1="1600" x2="1080" y1="0" y2="1080" class="grid"/><line x1="1760" x2="1240" y1="0" y2="1080" class="grid"/><line x1="1920" x2="1400" y1="0" y2="1080" class="grid"/><line x1="2080" x2="1560" y1="0" y2="1080" class="grid"/>
+
+    <text x="102" y="104" class="eyebrow">NFL FABRIC ANALYTICS</text>
+    <text x="102" y="178" class="headline">Solution Architecture</text>
+    <text x="102" y="226" class="subhead">A simple walkthrough path from NFLVerse files to Copilot-ready data agents</text>
+
+    
+    <g filter="url(#cardShadow)">
+      <rect x="102" y="400" width="360" height="220" rx="26" class="node source"/>
+    </g>
+    <text x="136" y="450" class="node-icon">PY</text>
+    <text x="136" y="492" class="node-label">SOURCE</text>
+    <text x="136" y="532" class="node-title">NFLVerse data</text>
+    <text x="136" y="566" class="node-subtitle">Python downloads play-by-play</text><text x="136" y="593" class="node-subtitle">files for the seasons we need</text>
+  
+
+    <line x1="470" y1="512" x2="570" y2="512" class="arrow-line"/>
+
+    <rect x="540" y="294" width="1074" height="472" rx="38" class="fabric-shell"/>
+    <text x="584" y="350" class="fabric-label">MICROSOFT FABRIC PLATFORM</text>
+    <text x="584" y="386" class="fabric-note">Lakehouse, notebooks, semantic model, data agents, and evaluation all live in the Fabric workspace.</text>
+
+    <text x="610" y="448" class="stage-label">LAKEHOUSE MEDALLION FLOW</text>
+    
+    <rect x="610" y="478" width="142" height="106" rx="24" class="medallion raw"/>
+    <text x="681" y="522" text-anchor="middle" class="medallion-title">Raw</text>
+    <text x="681" y="554" text-anchor="middle" class="medallion-subtitle">files</text>
+  
+    <line x1="760" y1="531" x2="778" y2="531" class="arrow-line"/>
+    
+    <rect x="790" y="478" width="142" height="106" rx="24" class="medallion bronze"/>
+    <text x="861" y="522" text-anchor="middle" class="medallion-title">Bronze</text>
+    <text x="861" y="554" text-anchor="middle" class="medallion-subtitle">imported</text>
+  
+    <line x1="940" y1="531" x2="958" y2="531" class="arrow-line"/>
+    
+    <rect x="970" y="478" width="142" height="106" rx="24" class="medallion silver"/>
+    <text x="1041" y="522" text-anchor="middle" class="medallion-title">Silver</text>
+    <text x="1041" y="554" text-anchor="middle" class="medallion-subtitle">curated</text>
+  
+    <line x1="1120" y1="531" x2="1138" y2="531" class="arrow-line"/>
+    
+    <rect x="1150" y="478" width="142" height="106" rx="24" class="medallion gold"/>
+    <text x="1221" y="522" text-anchor="middle" class="medallion-title">Gold</text>
+    <text x="1221" y="554" text-anchor="middle" class="medallion-subtitle">analytics</text>
+  
+
+    <line x1="1310" y1="531" x2="1350" y2="531" class="arrow-line"/>
+    <g filter="url(#cardShadow)">
+      <rect x="1352" y="452" width="230" height="158" rx="28" class="semantic-card"/>
+    </g>
+    <text x="1467" y="506" text-anchor="middle" class="semantic-title">Semantic</text>
+    <text x="1467" y="542" text-anchor="middle" class="semantic-title">Model</text>
+    <text x="1467" y="578" text-anchor="middle" class="semantic-subtitle">business-friendly</text>
+    <text x="1467" y="604" text-anchor="middle" class="semantic-subtitle">layer</text>
+
+    
+    <g filter="url(#cardShadow)">
+      <rect x="674" y="628" width="344" height="118" rx="26" class="agent-card semantic"/>
+    </g>
+    <circle cx="726" cy="686" r="27" class="agent-dot"/>
+    <text x="726" y="695" text-anchor="middle" class="agent-dot-text">AI</text>
+    <text x="768" y="677" class="agent-title">Semantic Model Agent</text>
+    <text x="768" y="709" class="agent-subtitle">answers governed measures</text>
+  
+    
+    <g filter="url(#cardShadow)">
+      <rect x="1062" y="628" width="344" height="118" rx="26" class="agent-card lakehouse"/>
+    </g>
+    <circle cx="1114" cy="686" r="27" class="agent-dot"/>
+    <text x="1114" y="695" text-anchor="middle" class="agent-dot-text">AI</text>
+    <text x="1156" y="677" class="agent-title">Lakehouse Agent</text>
+    <text x="1156" y="709" class="agent-subtitle">answers table-level questions</text>
+  
+
+    <line x1="1466" y1="618" x2="940" y2="658" class="arrow-dim"/>
+    <line x1="1224" y1="594" x2="1224" y2="626" class="arrow-dim"/>
+
+    <g filter="url(#cardShadow)">
+      <rect x="834" y="826" width="386" height="118" rx="30" class="node copilot"/>
+    </g>
+    <text x="1027" y="874" text-anchor="middle" class="copilot-title">M365 Copilot</text>
+    <text x="1027" y="912" text-anchor="middle" class="node-subtitle">users access the Fabric data agents</text>
+    <line x1="846" y1="748" x2="938" y2="824" class="arrow-line"/>
+    <line x1="1234" y1="748" x2="1114" y2="824" class="arrow-line"/>
+
+  </svg>

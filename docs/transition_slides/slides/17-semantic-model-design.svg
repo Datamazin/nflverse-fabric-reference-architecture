@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+    <defs>
+      <linearGradient id="bgA" x1="0" x2="1" y1="0" y2="1">
+        <stop offset="0%" stop-color="#071a2b"/>
+        <stop offset="42%" stop-color="#15354a"/>
+        <stop offset="100%" stop-color="#0e5f55"/>
+      </linearGradient>
+      <radialGradient id="glowA" cx="72%" cy="18%" r="55%">
+        <stop offset="0%" stop-color="#7ef2c8" stop-opacity=".30"/>
+        <stop offset="100%" stop-color="#7ef2c8" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="greenFill" x1="0" x2="1">
+        <stop offset="0%" stop-color="#18c48f"/>
+        <stop offset="100%" stop-color="#1bc6a8"/>
+      </linearGradient>
+      <linearGradient id="goldFill" x1="0" x2="1">
+        <stop offset="0%" stop-color="#f4c542"/>
+        <stop offset="100%" stop-color="#e7a83f"/>
+      </linearGradient>
+      <filter id="cardShadow" x="-20%" y="-30%" width="140%" height="170%">
+        <feDropShadow dx="0" dy="18" stdDeviation="17" flood-color="#020d13" flood-opacity=".36"/>
+      </filter>
+      <marker id="arrow" markerWidth="18" markerHeight="18" refX="12" refY="6" orient="auto">
+        <path d="M0,0 L12,6 L0,12 Z" fill="#83f3c8"/>
+      </marker>
+      <style>
+        .bg { fill: url(#bgA); }
+        .glow { fill: url(#glowA); }
+        .grid { stroke: rgba(255,255,255,.075); stroke-width: 1; }
+        .eyebrow { font: 700 28px Arial, sans-serif; fill: #83f3c8; letter-spacing: 3px; }
+        .headline { font: 800 64px Arial, sans-serif; fill: #f8fbff; letter-spacing: 0; }
+        .subhead { font: 400 30px Arial, sans-serif; fill: rgba(236,247,255,.78); }
+        .section-label { font: 800 18px Arial, sans-serif; fill: #83f3c8; letter-spacing: 2px; }
+        .source-card { fill: rgba(255,255,255,.12); stroke: rgba(255,255,255,.24); stroke-width: 1.5; }
+        .source-title { font: 800 30px Arial, sans-serif; fill: #ffffff; letter-spacing: 0; }
+        .source-subtitle { font: 600 22px Arial, sans-serif; fill: rgba(236,247,255,.72); }
+        .source-line { stroke: rgba(255,255,255,.16); stroke-width: 3; stroke-linecap: round; }
+        .arrow-line { stroke: #83f3c8; stroke-width: 5; stroke-linecap: round; marker-end: url(#arrow); }
+        .arrow-label { font: 800 20px Arial, sans-serif; fill: #83f3c8; letter-spacing: 1.4px; }
+        .dim-band { fill: rgba(4,18,28,.38); stroke: rgba(131,243,200,.34); stroke-width: 1.5; }
+        .dim-pill { fill: rgba(255,255,255,.14); stroke: rgba(255,255,255,.24); stroke-width: 1; }
+        .dim-pill-text { font: 800 23px Arial, sans-serif; fill: #ffffff; letter-spacing: 0; }
+        .dim-note { font: 600 21px Arial, sans-serif; fill: rgba(236,247,255,.72); }
+        .dim-line { stroke: rgba(131,243,200,.28); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 2 12; }
+        .star-shell { fill: rgba(255,255,255,.07); stroke: rgba(255,255,255,.18); stroke-width: 1.5; }
+        .fact-card { stroke: rgba(255,255,255,.55); stroke-width: 1.5; }
+        .fact-card.primary { fill: url(#greenFill); }
+        .fact-card.secondary { fill: rgba(24,196,143,.72); }
+        .fact-card.special { fill: rgba(27,198,168,.58); }
+        .fact-title { font: 800 26px Arial, sans-serif; fill: #ffffff; letter-spacing: 0; }
+        .fact-subtitle { font: 600 19px Arial, sans-serif; fill: rgba(255,255,255,.78); }
+        .mini-card { fill: rgba(255,255,255,.12); stroke: rgba(255,255,255,.22); stroke-width: 1.2; }
+        .mini-title { font: 800 19px Arial, sans-serif; fill: #ffffff; letter-spacing: 0; }
+        .mini-subtitle { font: 600 16px Arial, sans-serif; fill: rgba(236,247,255,.68); }
+        .callout { fill: rgba(244,197,66,.16); stroke: rgba(244,197,66,.56); stroke-width: 1.5; }
+        .callout-title { font: 800 27px Arial, sans-serif; fill: #ffe59b; letter-spacing: 0; }
+        .callout-copy { font: 600 20px Arial, sans-serif; fill: rgba(255,246,218,.78); }
+        .footer { font: 600 23px Arial, sans-serif; fill: rgba(255,255,255,.68); }
+      </style>
+    </defs>
+    <rect width="1920" height="1080" class="bg"/>
+    <rect width="1920" height="1080" class="glow"/>
+    <line x1="0" x2="-520" y1="0" y2="1080" class="grid"/><line x1="160" x2="-360" y1="0" y2="1080" class="grid"/><line x1="320" x2="-200" y1="0" y2="1080" class="grid"/><line x1="480" x2="-40" y1="0" y2="1080" class="grid"/><line x1="640" x2="120" y1="0" y2="1080" class="grid"/><line x1="800" x2="280" y1="0" y2="1080" class="grid"/><line x1="960" x2="440" y1="0" y2="1080" class="grid"/><line x1="1120" x2="600" y1="0" y2="1080" class="grid"/><line x1="1280" x2="760" y1="0" y2="1080" class="grid"/><line x1="1440" x2="920" y1="0" y2="1080" class="grid"/><line x1="1600" x2="1080" y1="0" y2="1080" class="grid"/><line x1="1760" x2="1240" y1="0" y2="1080" class="grid"/><line x1="1920" x2="1400" y1="0" y2="1080" class="grid"/><line x1="2080" x2="1560" y1="0" y2="1080" class="grid"/>
+
+    <text x="102" y="104" class="eyebrow">NFL FABRIC ANALYTICS</text>
+    <text x="102" y="176" class="headline">Semantic Model Design</text>
+    <text x="102" y="220" class="subhead">Wide play-by-play data becomes focused stars over shared dimensions</text>
+
+    <text x="102" y="258" class="section-label">SOURCE GRAIN</text>
+    <g filter="url(#cardShadow)">
+      <rect x="102" y="284" width="330" height="542" rx="34" class="source-card"/>
+    </g>
+    <text x="142" y="346" class="source-title">Bronze PBP</text>
+    <text x="142" y="382" class="source-subtitle">one very wide table</text>
+    <line x1="142" x2="392" y1="428" y2="428" class="source-line"/><line x1="142" x2="364" y1="451" y2="451" class="source-line"/><line x1="142" x2="336" y1="474" y2="474" class="source-line"/><line x1="142" x2="392" y1="497" y2="497" class="source-line"/><line x1="142" x2="364" y1="520" y2="520" class="source-line"/><line x1="142" x2="336" y1="543" y2="543" class="source-line"/><line x1="142" x2="392" y1="566" y2="566" class="source-line"/><line x1="142" x2="364" y1="589" y2="589" class="source-line"/><line x1="142" x2="336" y1="612" y2="612" class="source-line"/><line x1="142" x2="392" y1="635" y2="635" class="source-line"/><line x1="142" x2="364" y1="658" y2="658" class="source-line"/><line x1="142" x2="336" y1="681" y2="681" class="source-line"/><line x1="142" x2="392" y1="704" y2="704" class="source-line"/><line x1="142" x2="364" y1="727" y2="727" class="source-line"/><line x1="142" x2="336" y1="750" y2="750" class="source-line"/>
+    <rect x="142" y="724" width="250" height="48" rx="24" class="mini-card"/>
+    <text x="267" y="756" text-anchor="middle" class="mini-title">many columns, many meanings</text>
+
+    <line x1="470" y1="555" x2="620" y2="555" class="arrow-line"/>
+    <text x="475" y="523" class="arrow-label">CURATE BY GRAIN</text>
+
+    <text x="650" y="258" class="section-label">CONFORMED DIMENSIONS</text>
+    <rect x="650" y="284" width="1084" height="106" rx="30" class="dim-band"/>
+    
+    <rect x="690" y="314" width="200" height="48" rx="24" class="dim-pill"/>
+    <text x="790" y="346" text-anchor="middle" class="dim-pill-text">Team</text>
+  
+    
+    <rect x="920" y="314" width="200" height="48" rx="24" class="dim-pill"/>
+    <text x="1020" y="346" text-anchor="middle" class="dim-pill-text">Game</text>
+  
+    
+    <rect x="1150" y="314" width="200" height="48" rx="24" class="dim-pill"/>
+    <text x="1250" y="346" text-anchor="middle" class="dim-pill-text">Player</text>
+  
+    
+    <rect x="1380" y="314" width="260" height="48" rx="24" class="dim-pill"/>
+    <text x="1510" y="346" text-anchor="middle" class="dim-pill-text">Season Week</text>
+  
+    <text x="650" y="426" class="dim-note">The same dimensions filter each focused fact table, so users get consistent seasons, teams, games, and players.</text>
+    <line x1="790" y1="390" x2="790" y2="819" class="dim-line"/>
+    <line x1="1020" y1="390" x2="1020" y2="819" class="dim-line"/>
+    <line x1="1250" y1="390" x2="1250" y2="819" class="dim-line"/>
+    <line x1="1510" y1="390" x2="1510" y2="819" class="dim-line"/>
+
+    <text x="650" y="490" class="section-label">FOCUSED FACT STARS</text>
+    <rect x="650" y="514" width="1084" height="312" rx="36" class="star-shell"/>
+    
+    <g filter="url(#cardShadow)">
+      <rect x="690" y="550" width="314" height="106" rx="24" class="fact-card primary"/>
+    </g>
+    <text x="718" y="597" class="fact-title">Team Play</text>
+    <text x="718" y="631" class="fact-subtitle">offense / defense play view</text>
+  
+    
+    <g filter="url(#cardShadow)">
+      <rect x="1032" y="550" width="314" height="106" rx="24" class="fact-card secondary"/>
+    </g>
+    <text x="1060" y="597" class="fact-title">Play Detail</text>
+    <text x="1060" y="631" class="fact-subtitle">core play context</text>
+  
+    
+    <g filter="url(#cardShadow)">
+      <rect x="1374" y="550" width="314" height="106" rx="24" class="fact-card special"/>
+    </g>
+    <text x="1402" y="597" class="fact-title">Player Play Role</text>
+    <text x="1402" y="631" class="fact-subtitle">players attached to plays</text>
+  
+    
+    <rect x="690" y="692" width="254" height="76" rx="18" class="mini-card"/>
+    <text x="712" y="724" class="mini-title">Passing Play</text>
+    <text x="712" y="750" class="mini-subtitle">dropbacks, yards, EPA</text>
+  
+    
+    <rect x="974" y="692" width="254" height="76" rx="18" class="mini-card"/>
+    <text x="996" y="724" class="mini-title">Rushing Play</text>
+    <text x="996" y="750" class="mini-subtitle">attempts, yards, EPA</text>
+  
+    
+    <rect x="1258" y="692" width="254" height="76" rx="18" class="mini-card"/>
+    <text x="1280" y="724" class="mini-title">Penalty</text>
+    <text x="1280" y="750" class="mini-subtitle">accepted flags and yards</text>
+  
+    
+    <rect x="1542" y="692" width="254" height="76" rx="18" class="mini-card"/>
+    <text x="1564" y="724" class="mini-title">Special Teams</text>
+    <text x="1564" y="750" class="mini-subtitle">kicks, punts, returns</text>
+  
+
+    <g filter="url(#cardShadow)">
+      <rect x="102" y="852" width="760" height="122" rx="28" class="callout"/>
+    </g>
+    <text x="140" y="898" class="callout-title">Performance pattern</text>
+    <text x="140" y="934" class="callout-copy">Power BI scans narrower facts instead of one wide play table.</text><text x="140" y="961" class="callout-copy">Measures stay closer to the grain they are meant to answer.</text>
+
+    <g filter="url(#cardShadow)">
+      <rect x="900" y="852" width="834" height="122" rx="28" class="source-card"/>
+    </g>
+    <text x="938" y="898" class="callout-title">Aggregates for common questions</text>
+    <text x="938" y="934" class="callout-copy">Team Game, Team Season, Team Situation, and Player Season summaries</text><text x="938" y="961" class="callout-copy">serve leaderboard and trend questions without replaying every snap.</text>
+
+    <text x="102" y="1030" class="footer">Design goal: multiple smaller stars, shared dimensions, faster import-mode reporting, and clearer Data Agent semantics.</text>
+  </svg>

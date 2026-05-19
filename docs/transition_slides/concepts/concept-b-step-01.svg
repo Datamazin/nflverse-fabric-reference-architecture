@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+    <defs>
+      <linearGradient id="bgB" x1="0" x2="1" y1="0" y2="1">
+        <stop offset="0%" stop-color="#101219"/>
+        <stop offset="45%" stop-color="#192734"/>
+        <stop offset="100%" stop-color="#273b31"/>
+      </linearGradient>
+      <linearGradient id="doneB" x1="0" x2="1">
+        <stop offset="0%" stop-color="#d5fb55"/>
+        <stop offset="100%" stop-color="#3ed18c"/>
+      </linearGradient>
+      <filter id="panelShadow" x="-20%" y="-30%" width="140%" height="170%">
+        <feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#000000" flood-opacity=".42"/>
+      </filter>
+      <style>
+        .bg { fill: url(#bgB); }
+        .yard { stroke: rgba(255,255,255,.075); stroke-width: 2; }
+        .yard-strong { stroke: rgba(213,251,85,.18); stroke-width: 3; }
+        .title { font: 900 72px Arial, sans-serif; fill: #f6f8ed; letter-spacing: 0; }
+        .kicker { font: 800 22px Arial, sans-serif; fill: #d5fb55; letter-spacing: 3px; }
+        .progress { font: 700 31px Arial, sans-serif; fill: rgba(246,248,237,.78); }
+        .meter-bg { fill: rgba(255,255,255,.10); }
+        .meter-fill { fill: url(#doneB); }
+        .b-connector { stroke: rgba(255,255,255,.22); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 2 11; }
+        .b-pulse { fill: none; stroke: rgba(213,251,85,.55); stroke-width: 3; }
+        .b-card.done { fill: url(#doneB); stroke: rgba(255,255,255,.65); }
+        .b-card.todo { fill: rgba(247,250,242,.095); stroke: rgba(255,255,255,.18); }
+        .b-card.skipped { fill: rgba(164,169,168,.14); stroke: rgba(255,255,255,.12); }
+        .b-step { font: 900 38px Arial, sans-serif; letter-spacing: 0; }
+        .b-step.done { fill: #121b19; }
+        .b-step.todo { fill: rgba(246,248,237,.84); }
+        .b-step.skipped { fill: rgba(246,248,237,.36); }
+        .b-title { font: 800 20px Arial, sans-serif; letter-spacing: 0; }
+        .b-title.done { fill: #121b19; }
+        .b-title.todo { fill: rgba(246,248,237,.88); }
+        .b-title.skipped { fill: rgba(246,248,237,.34); }
+        .caption { font: 600 22px Arial, sans-serif; fill: rgba(246,248,237,.62); }
+      </style>
+    </defs>
+    <rect width="1920" height="1080" class="bg"/>
+    <line x1="0" y1="0" x2="0" y2="1080" class="yard-strong"/><line x1="192" y1="0" x2="192" y2="1080" class="yard"/><line x1="384" y1="0" x2="384" y2="1080" class="yard"/><line x1="576" y1="0" x2="576" y2="1080" class="yard"/><line x1="768" y1="0" x2="768" y2="1080" class="yard"/><line x1="960" y1="0" x2="960" y2="1080" class="yard-strong"/><line x1="1152" y1="0" x2="1152" y2="1080" class="yard"/><line x1="1344" y1="0" x2="1344" y2="1080" class="yard"/><line x1="1536" y1="0" x2="1536" y2="1080" class="yard"/><line x1="1728" y1="0" x2="1728" y2="1080" class="yard"/><line x1="1920" y1="0" x2="1920" y2="1080" class="yard-strong"/>
+    <text x="94" y="106" class="kicker">DEPLOYMENT ROADMAP</text>
+    <text x="94" y="176" class="title">From Repo to Fabric</text>
+    <text x="94" y="222" class="progress">1 of 15 covered</text>
+    <rect x="315" y="197" width="500" height="20" rx="10" class="meter-bg"/>
+    <rect x="315" y="197" width="33" height="20" rx="10" class="meter-fill"/>
+    <line x1="441" y1="310" x2="465" y2="310" class="b-connector"/><line x1="825" y1="310" x2="849" y2="310" class="b-connector"/><line x1="1209" y1="310" x2="1233" y2="310" class="b-connector"/><line x1="441" y1="482" x2="465" y2="482" class="b-connector"/><line x1="825" y1="482" x2="849" y2="482" class="b-connector"/><line x1="1209" y1="482" x2="1233" y2="482" class="b-connector"/><line x1="441" y1="654" x2="465" y2="654" class="b-connector"/><line x1="825" y1="654" x2="849" y2="654" class="b-connector"/><line x1="1209" y1="654" x2="1233" y2="654" class="b-connector"/><line x1="441" y1="826" x2="465" y2="826" class="b-connector"/><line x1="825" y1="826" x2="849" y2="826" class="b-connector"/><line x1="1209" y1="826" x2="1233" y2="826" class="b-connector"/>
+    
+        <rect x="86" y="244" width="350" height="132" rx="30" class="b-pulse"/>
+        <g filter="url(#panelShadow)">
+          <rect x="94" y="252" width="334" height="116" rx="20" class="b-card done"/>
+        </g>
+        <text x="120" y="294" class="b-step done">1</text>
+        <text x="180" y="320" class="b-title done">Set Up Local</text><text x="180" y="343" class="b-title done">Python</text>
+      
+        
+        <g filter="url(#panelShadow)">
+          <rect x="478" y="252" width="334" height="116" rx="20" class="b-card todo"/>
+        </g>
+        <text x="504" y="294" class="b-step todo">2</text>
+        <text x="564" y="320" class="b-title todo">Acquire NFLVerse</text><text x="564" y="343" class="b-title todo">Data Locally</text>
+      
+        
+        <g filter="url(#panelShadow)">
+          <rect x="862" y="252" width="334" height="116" rx="20" class="b-card todo"/>
+        </g>
+        <text x="888" y="294" class="b-step todo">3</text>
+        <text x="948" y="320" class="b-title todo">Run Local Tests</text>
+      
+        
+        <g filter="url(#panelShadow)">
+          <rect x="1246" y="252" width="334" height="116" rx="20" class="b-card todo"/>
+        </g>
+        <text x="1272" y="294" class="b-step todo">4</text>
+        <text x="1332" y="320" class="b-title todo">Create a new</text><text x="1332" y="343" class="b-title todo">Workspace</text>
+      
+        
+        <g filter="url(#panelShadow)">
+          <rect x="94" y="424" width="334" height="116" rx="20" class="b-card todo"/>
+        </g>
+        <text x="120" y="466" class="b-step todo">5</text>
+        <text x="180" y="492" class="b-title todo">Create a new</text><text x="180" y="515" class="b-title todo">Lakehouse</text>
+      
+        
+        <g filter="url(#panelShadow)">
+          <rect x="478" y="424" width="334" height="116" rx="20" class="b-card todo"/>
+        </g>
+        <text x="504" y="466" class="b-step todo">6</text>
+        <text x="564" y="492" class="b-title todo">Upload Raw</text><text x="564" y="515" class="b-title todo">NFLVerse Files To</text><text x="564" y="538" class="b-title todo">Fabric</text>
+      
+        
+        <g filter="url(#panelShadow)">
+          <rect x="862" y="424" width="334" height="116" rx="20" class="b-card todo"/>
+        </g>
+        <text x="888" y="466" class="b-step todo">7</text>
+        <text x="948" y="492" class="b-title todo">Upload notebooks</text>
+      
+        
+        <g filter="url(#panelShadow)">
+          <rect x="1246" y="424" width="334" height="116" rx="20" class="b-card todo"/>
+        </g>
+        <text x="1272" y="466" class="b-step todo">8</text>
+        <text x="1332" y="492" class="b-title todo">Build Bronze</text>
+      
+        
+        <g filter="url(#panelShadow)">
+          <rect x="94" y="596" width="334" height="116" rx="20" class="b-card todo"/>
+        </g>
+        <text x="120" y="638" class="b-step todo">9</text>
+        <text x="180" y="664" class="b-title todo">Build Silver And</text><text x="180" y="687" class="b-title todo">Gold</text>
+      
+        
+        <g filter="url(#panelShadow)">
+          <rect x="478" y="596" width="334" height="116" rx="20" class="b-card todo"/>
+        </g>
+        <text x="504" y="638" class="b-step todo">10</text>
+        <text x="564" y="664" class="b-title todo">Validate Gold</text><text x="564" y="687" class="b-title todo">Metrics</text>
+      
+        
+        <g filter="url(#panelShadow)">
+          <rect x="862" y="596" width="334" height="116" rx="20" class="b-card todo"/>
+        </g>
+        <text x="888" y="638" class="b-step todo">11a</text>
+        <text x="948" y="664" class="b-title todo">Deploy Semantic</text><text x="948" y="687" class="b-title todo">Model with Python</text>
+      
+        
+        <g filter="url(#panelShadow)">
+          <rect x="1246" y="596" width="334" height="116" rx="20" class="b-card skipped"/>
+        </g>
+        <text x="1272" y="638" class="b-step skipped">11b</text>
+        <text x="1332" y="664" class="b-title skipped">Build Semantic</text><text x="1332" y="687" class="b-title skipped">Model Manually</text>
+      
+        
+        <g filter="url(#panelShadow)">
+          <rect x="94" y="768" width="334" height="116" rx="20" class="b-card todo"/>
+        </g>
+        <text x="120" y="810" class="b-step todo">12</text>
+        <text x="180" y="836" class="b-title todo">Configure Semantic</text><text x="180" y="859" class="b-title todo">Model Data Agent</text>
+      
+        
+        <g filter="url(#panelShadow)">
+          <rect x="478" y="768" width="334" height="116" rx="20" class="b-card todo"/>
+        </g>
+        <text x="504" y="810" class="b-step todo">13</text>
+        <text x="564" y="836" class="b-title todo">Evaluate Semantic</text><text x="564" y="859" class="b-title todo">Model Data Agent</text>
+      
+        
+        <g filter="url(#panelShadow)">
+          <rect x="862" y="768" width="334" height="116" rx="20" class="b-card todo"/>
+        </g>
+        <text x="888" y="810" class="b-step todo">14</text>
+        <text x="948" y="836" class="b-title todo">Configure Data</text><text x="948" y="859" class="b-title todo">Lake Fabric Data</text><text x="948" y="882" class="b-title todo">Agent</text>
+      
+        
+        <g filter="url(#panelShadow)">
+          <rect x="1246" y="768" width="334" height="116" rx="20" class="b-card todo"/>
+        </g>
+        <text x="1272" y="810" class="b-step todo">15</text>
+        <text x="1332" y="836" class="b-title todo">Evaluate Data Lake</text><text x="1332" y="859" class="b-title todo">Data Agent</text>
+      
+    <text x="94" y="999" class="caption">Muted node: Step 11b is not covered in this video series.</text>
+  </svg>
