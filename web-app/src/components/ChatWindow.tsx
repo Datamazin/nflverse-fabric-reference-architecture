@@ -50,20 +50,25 @@ export function ChatWindow({ agentType }: ChatWindowProps) {
         content: m.content,
       }));
 
+      const requestPayload = {
+        message: content,
+        agentType,
+        conversationHistory,
+      };
+
+      const startTime = performance.now();
+
       const response = await fetch("/api/chat", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({
-          message: content,
-          agentType,
-          conversationHistory,
-        }),
+        body: JSON.stringify(requestPayload),
       });
 
       const data = await response.json();
+      const durationMs = Math.round(performance.now() - startTime);
 
       const assistantMessage: ChatMessage = {
         id: crypto.randomUUID(),
@@ -73,6 +78,9 @@ export function ChatWindow({ agentType }: ChatWindowProps) {
           : data.reply || "No response received.",
         timestamp: new Date(),
         agentType,
+        durationMs,
+        debugRequest: requestPayload,
+        debugResponse: data,
       };
 
       setMessages((prev) => [...prev, assistantMessage]);

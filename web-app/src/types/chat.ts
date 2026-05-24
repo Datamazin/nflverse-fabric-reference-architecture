@@ -6,6 +6,9 @@ export interface ChatMessage {
   agentType?: "semantic-model" | "lakehouse";
   feedback?: "positive" | "negative" | null;
   feedbackComment?: string;
+  durationMs?: number;
+  debugRequest?: Record<string, unknown>;
+  debugResponse?: Record<string, unknown>;
 }
 
 export interface ChatRequest {
