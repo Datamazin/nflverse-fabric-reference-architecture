@@ -151,7 +151,7 @@ Browser (MSAL sign-in) → Next.js API Route → Fabric Data Agent REST API
 2. Frontend acquires a token scoped to your backend API (`api://<client-id>/access_as_user`)
 3. Frontend sends the user's message + token to `POST /api/chat`
 4. API route exchanges the token for a Fabric-scoped token (OBO flow)
-5. API route calls `POST https://api.fabric.microsoft.com/v1/workspaces/{id}/items/{agentId}/chat`
+5. API route calls `POST https://api.fabric.microsoft.com/v1/workspaces/{id}/dataagents/{agentId}/aiassistant/openai/chat/completions`
 6. Response is returned to the browser and rendered
 
 ## Notes

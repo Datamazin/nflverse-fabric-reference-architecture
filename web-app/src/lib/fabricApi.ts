@@ -3,7 +3,10 @@ export interface FabricChatResponse {
 }
 
 /**
- * Call the Fabric Data Agent chat REST API.
+ * Call the Fabric Data Agent OpenAI-compatible chat endpoint.
+ *
+ * Endpoint format:
+ * POST https://api.fabric.microsoft.com/v1/workspaces/{workspaceId}/dataagents/{agentId}/aiassistant/openai/chat/completions
  */
 export async function queryDataAgent(
   fabricToken: string,
@@ -11,7 +14,7 @@ export async function queryDataAgent(
   agentId: string,
   messages: { role: string; content: string }[]
 ): Promise<FabricChatResponse> {
-  const url = `https://api.fabric.microsoft.com/v1/workspaces/${workspaceId}/items/${agentId}/chat`;
+  const url = `https://api.fabric.microsoft.com/v1/workspaces/${workspaceId}/dataagents/${agentId}/aiassistant/openai/chat/completions`;
 
   const response = await fetch(url, {
     method: "POST",
@@ -19,7 +22,10 @@ export async function queryDataAgent(
       Authorization: `Bearer ${fabricToken}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ messages }),
+    body: JSON.stringify({
+      messages,
+      temperature: 0,
+    }),
   });
 
   if (!response.ok) {
@@ -31,11 +37,10 @@ export async function queryDataAgent(
 
   const data = await response.json();
 
-  // The response structure may vary — extract the assistant content
+  // OpenAI-compatible response format
   const content =
     data?.choices?.[0]?.message?.content ||
     data?.content ||
-    data?.reply ||
     JSON.stringify(data);
 
   return { content };
