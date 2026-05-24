@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
+import { exchangeTokenForFabric } from "@/lib/tokenUtils";
 import { queryDataAgent } from "@/lib/fabricApi";
 
 export async function POST(request: NextRequest) {
   try {
-    // Extract the Fabric access token from the Authorization header
-    // In this flow, the frontend acquires the Fabric token directly
+    // Extract the user's access token from the Authorization header
     const authHeader = request.headers.get("authorization");
     if (!authHeader?.startsWith("Bearer ")) {
       return NextResponse.json(
@@ -12,7 +12,7 @@ export async function POST(request: NextRequest) {
         { status: 401 }
       );
     }
-    const fabricToken = authHeader.slice(7);
+    const userToken = authHeader.slice(7);
 
     const body = await request.json();
     const { message, agentType, conversationHistory } = body;
@@ -39,13 +39,16 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Exchange user token for Fabric-scoped token via OBO
+    const fabricToken = await exchangeTokenForFabric(userToken);
+
     // Build messages array for the Data Agent
     const messages = [
       ...(conversationHistory || []),
       { role: "user", content: message },
     ];
 
-    // Call the Fabric Data Agent directly with the user's Fabric token
+    // Call the Fabric Data Agent via MCP
     const result = await queryDataAgent(
       fabricToken,
       workspaceId,

@@ -3,10 +3,11 @@ export interface FabricChatResponse {
 }
 
 /**
- * Call the Fabric Data Agent OpenAI-compatible chat endpoint.
+ * Call the Fabric Data Agent via the MCP (Model Context Protocol) endpoint.
  *
- * The published URL is used as the base, with /chat/completions appended
- * per Azure OpenAI conventions. Includes api-version query parameter.
+ * The MCP server exposes the Data Agent as a tool. We call:
+ * 1. initialize (handshake)
+ * 2. tools/call with the user question
  */
 export async function queryDataAgent(
   fabricToken: string,
@@ -14,38 +15,91 @@ export async function queryDataAgent(
   agentId: string,
   messages: { role: string; content: string }[]
 ): Promise<FabricChatResponse> {
-  // Use the published URL directly as the endpoint
-  const url = `https://api.fabric.microsoft.com/v1/workspaces/${workspaceId}/dataagents/${agentId}/aiassistant/openai`;
+  const mcpUrl = `https://api.fabric.microsoft.com/v1/mcp/workspaces/${workspaceId}/dataagents/${agentId}/agent`;
+  const headers = {
+    Authorization: `Bearer ${fabricToken}`,
+    "Content-Type": "application/json",
+    Accept: "application/json, text/event-stream",
+  };
 
-  console.log("[fabricApi] Calling:", url);
-
-  const response = await fetch(url, {
+  // Step 1: Initialize MCP session
+  const initResponse = await fetch(mcpUrl, {
     method: "POST",
-    headers: {
-      Authorization: `Bearer ${fabricToken}`,
-      "Content-Type": "application/json",
-    },
+    headers,
     body: JSON.stringify({
-      messages,
+      jsonrpc: "2.0",
+      id: 1,
+      method: "initialize",
+      params: {
+        protocolVersion: "2025-03-26",
+        capabilities: {},
+        clientInfo: { name: "nfl-data-agent-chat", version: "1.0.0" },
+      },
     }),
   });
 
-  if (!response.ok) {
-    const errorBody = await response.text();
-    console.error("[fabricApi] Error response:", response.status, errorBody);
-    throw new Error(
-      `Fabric Data Agent API error (${response.status}): ${errorBody}`
-    );
+  if (!initResponse.ok) {
+    const errorBody = await initResponse.text();
+    throw new Error(`MCP initialize failed (${initResponse.status}): ${errorBody}`);
   }
 
-  const data = await response.json();
-  console.log("[fabricApi] Response keys:", Object.keys(data));
+  // Step 2: Discover tool name
+  const toolsResponse = await fetch(mcpUrl, {
+    method: "POST",
+    headers,
+    body: JSON.stringify({
+      jsonrpc: "2.0",
+      id: 2,
+      method: "tools/list",
+      params: {},
+    }),
+  });
 
-  // OpenAI-compatible response format
+  if (!toolsResponse.ok) {
+    throw new Error(`MCP tools/list failed (${toolsResponse.status})`);
+  }
+
+  const toolsData = await toolsResponse.json();
+  const toolName = toolsData?.result?.tools?.[0]?.name;
+  if (!toolName) {
+    throw new Error("No tools found on the MCP server");
+  }
+
+  // Step 3: Call the Data Agent tool with the latest user message
+  const lastUserMessage = messages.filter((m) => m.role === "user").pop();
+  const userQuestion = lastUserMessage?.content || "";
+
+  const callResponse = await fetch(mcpUrl, {
+    method: "POST",
+    headers,
+    body: JSON.stringify({
+      jsonrpc: "2.0",
+      id: 3,
+      method: "tools/call",
+      params: {
+        name: toolName,
+        arguments: { userQuestion },
+      },
+    }),
+  });
+
+  if (!callResponse.ok) {
+    const errorBody = await callResponse.text();
+    throw new Error(`MCP tools/call failed (${callResponse.status}): ${errorBody}`);
+  }
+
+  const callData = await callResponse.json();
+
+  if (callData?.result?.isError) {
+    throw new Error(`Data Agent error: ${JSON.stringify(callData.result.content)}`);
+  }
+
+  // Extract text content from MCP response
   const content =
-    data?.choices?.[0]?.message?.content ||
-    data?.content ||
-    JSON.stringify(data);
+    callData?.result?.content
+      ?.filter((c: { type: string }) => c.type === "text")
+      .map((c: { text: string }) => c.text)
+      .join("\n") || "No response received.";
 
   return { content };
 }
