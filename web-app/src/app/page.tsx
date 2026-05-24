@@ -1,27 +1,33 @@
 "use client";
 
 import React, { useState } from "react";
-import { AuthProvider } from "@/components/AuthProvider";
+import { AuthProvider, useAuth } from "@/components/AuthProvider";
 import { Header } from "@/components/Header";
 import { ChatWindow } from "@/components/ChatWindow";
+import { SplashScreen } from "@/components/SplashScreen";
 import type { AgentType } from "@/types/chat";
 
 function AppContent() {
+  const { isAuthenticated } = useAuth();
   const [agentType, setAgentType] = useState<AgentType>("semantic-model");
+  const [chatKey, setChatKey] = useState(0);
 
   const handleNewChat = () => {
-    const clearFn = (window as unknown as Record<string, () => void>).__clearChat;
-    if (clearFn) clearFn();
+    setChatKey((k) => k + 1);
   };
 
+  if (!isAuthenticated) {
+    return <SplashScreen />;
+  }
+
   return (
-    <div className="flex flex-col h-screen bg-white dark:bg-gray-950">
+    <div className="flex flex-col h-screen bg-gray-50 dark:bg-gray-950">
       <Header
         agentType={agentType}
         onAgentChange={setAgentType}
         onNewChat={handleNewChat}
       />
-      <ChatWindow agentType={agentType} />
+      <ChatWindow key={chatKey} agentType={agentType} />
     </div>
   );
 }

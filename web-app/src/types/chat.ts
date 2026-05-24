@@ -4,6 +4,8 @@ export interface ChatMessage {
   content: string;
   timestamp: Date;
   agentType?: "semantic-model" | "lakehouse";
+  feedback?: "positive" | "negative" | null;
+  feedbackComment?: string;
 }
 
 export interface ChatRequest {
