@@ -50,18 +50,19 @@ Open [http://localhost:3000](http://localhost:3000).
 3. Supported account types: **Single tenant**
 4. Register the app
 
-#### Add Platforms
+#### Add Platform
 
 5. Go to **Authentication → Add a platform**
 6. Add **Single-page application (SPA):**
    - Redirect URI: `http://localhost:3000` (add production URL later)
-7. Add **Web** platform (needed for OBO confidential client):
-   - No redirect URI needed for OBO
+   - (No Web platform needed — OBO uses the client secret, not a redirect URI)
 
 #### Client Secret
 
 8. Go to **Certificates & Secrets → New client secret**
-9. Copy the secret value (you won't see it again)
+9. Description: `nfl-data-agent-chat-obo`
+10. Expiration: choose 6 months or 12 months (set a reminder to rotate)
+11. Copy the **Value** immediately (you won't see it again)
 
 #### Expose an API
 
@@ -142,21 +143,61 @@ Add a `.github/workflows/deploy.yml` that:
 
 ```
 Browser (MSAL sign-in) → Next.js API Route → Fabric Data Agent REST API
-                              ↕
-                    OBO token exchange
-                    (user token → Fabric token)
 ```
 
 1. User signs in via MSAL popup (Entra ID)
-2. Frontend acquires a token scoped to your backend API (`api://<client-id>/access_as_user`)
+2. Frontend acquires a token scoped to `https://api.fabric.microsoft.com/.default`
 3. Frontend sends the user's message + token to `POST /api/chat`
-4. API route exchanges the token for a Fabric-scoped token (OBO flow)
-5. API route calls `POST https://api.fabric.microsoft.com/v1/workspaces/{id}/dataagents/{agentId}/aiassistant/openai/chat/completions`
-6. Response is returned to the browser and rendered
+4. API route calls the Fabric Data Agent endpoint with the user's Fabric token
+5. Response is returned to the browser and rendered
+
+## Troubleshooting: Data Agent API "EntityNotFound" 404
+
+If the agent exists in the workspace but the API returns 404, check these items **in order**:
+
+### 1. Publish the Data Agent for external access
+
+The Data Agent must be **published** before the API/MCP endpoint becomes active.
+
+1. Open the Data Agent in the Fabric web UI
+2. Click **Publish** (top bar) — this makes the production version available
+3. Go to **Settings → Model Context Protocol** tab
+4. Verify the MCP server URL is shown as active
+5. Copy the **MCP server URL** — this is the endpoint to use
+
+### 2. Verify Tenant Admin Settings
+
+In **Fabric Admin Portal → Tenant Settings**, ensure ALL of these are enabled:
+
+- ✅ **Users can use Copilot and other features powered by Azure OpenAI**
+- ✅ **Capacities can be designated as Fabric Copilot capacities**
+- ✅ **Data sent to Azure OpenAI can be processed outside your capacity's geographic region** (if capacity is outside US/EU)
+- ✅ **Data sent to Azure OpenAI can be stored outside your capacity's geographic region** (if capacity is outside US/EU)
+
+Settings can take **up to 1 hour** to take effect.
+
+### 3. Verify Fabric Capacity Assignment
+
+- The workspace must be assigned to a **paid F2+ capacity** (or PPU with Fabric enabled)
+- The capacity must be **active** (not paused/suspended)
+- The capacity must be in an **AI-enabled region**
+
+### 4. Test with curl/PowerShell
+
+```powershell
+$token = az account get-access-token --resource https://api.fabric.microsoft.com --query accessToken -o tsv
+$url = "https://api.fabric.microsoft.com/v1/workspaces/<WORKSPACE_ID>/dataagents/<AGENT_ID>/aiassistant/openai"
+Invoke-WebRequest -Uri $url -Method POST `
+  -Headers @{Authorization="Bearer $token"; "Content-Type"="application/json"} `
+  -Body '{"messages":[{"role":"user","content":"How many games in 2025?"}]}'
+```
+
+If this still returns 404, the endpoint has not been activated for your tenant/region yet.
 
 ## Notes
 
 - The Fabric Data Agent chat API requires the workspace to be in an AI-enabled region
+- The Data Agent REST/MCP API is in **preview** and may not be available in all tenants
 - Response times are typically 8-25 seconds depending on query complexity
 - The app manages conversation history client-side and sends it with each request for context
 - Dark mode follows system preference via Tailwind CSS

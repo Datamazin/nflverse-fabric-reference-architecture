@@ -56,7 +56,7 @@ export function useAuth() {
 
   const signIn = async () => {
     await instance.loginPopup({
-      scopes: [`api://${process.env.NEXT_PUBLIC_AZURE_CLIENT_ID}/access_as_user`],
+      scopes: ["https://api.fabric.microsoft.com/.default"],
     });
   };
 
@@ -67,8 +67,9 @@ export function useAuth() {
   const getAccessToken = async (): Promise<string> => {
     if (!account) throw new Error("No authenticated account");
 
+    // Acquire token directly for Fabric API
     const result = await instance.acquireTokenSilent({
-      scopes: [`api://${process.env.NEXT_PUBLIC_AZURE_CLIENT_ID}/access_as_user`],
+      scopes: ["https://api.fabric.microsoft.com/.default"],
       account,
     });
 
