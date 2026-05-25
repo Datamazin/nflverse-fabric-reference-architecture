@@ -55,7 +55,7 @@ function wrap(text, maxChars) {
 }
 
 function completedCount(currentIndex) {
-  return currentIndex + 1;
+  return Math.max(0, currentIndex + 1);
 }
 
 function cardText(x, y, label, title, state, maxChars = 22) {
@@ -73,6 +73,10 @@ function cardText(x, y, label, title, state, maxChars = 22) {
 }
 
 function slideSubtitle(currentIndex) {
+  if (currentIndex < 0) {
+    return "Ready to begin: 16-step walkthrough";
+  }
+
   const [label, title] = steps[currentIndex];
   return `Step ${label} complete: ${title}`;
 }
@@ -93,7 +97,7 @@ function renderSlide(currentIndex) {
       const row = Math.floor(i / cols);
       const x = startX + col * (cardW + gapX);
       const y = startY + row * (cardH + gapY);
-      const state = i <= currentIndex ? "done" : "todo";
+      const state = currentIndex >= 0 && i <= currentIndex ? "done" : "todo";
       const check =
         state === "done"
           ? `<text x="${x + cardW - 61}" y="${y + 57}" class="a-check">✓</text>`
@@ -179,6 +183,13 @@ async function main() {
       console.log(pngPath);
     }),
   );
+
+  const notStartedSvg = renderSlide(-1);
+  const notStartedSvgPath = path.join(outDir, "16-step-16-none-completed.svg");
+  const notStartedPngPath = path.join(outDir, "16-step-16-none-completed.png");
+  await fs.writeFile(notStartedSvgPath, notStartedSvg);
+  await sharp(Buffer.from(notStartedSvg)).png().toFile(notStartedPngPath);
+  console.log(notStartedPngPath);
 }
 
 await main();

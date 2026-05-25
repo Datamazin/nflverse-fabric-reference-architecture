@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+    <defs>
+      <linearGradient id="bgA" x1="0" x2="1" y1="0" y2="1">
+        <stop offset="0%" stop-color="#071a2b"/>
+        <stop offset="42%" stop-color="#15354a"/>
+        <stop offset="100%" stop-color="#0e5f55"/>
+      </linearGradient>
+      <radialGradient id="glowA" cx="72%" cy="18%" r="55%">
+        <stop offset="0%" stop-color="#7ef2c8" stop-opacity=".30"/>
+        <stop offset="100%" stop-color="#7ef2c8" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="greenFill" x1="0" x2="1">
+        <stop offset="0%" stop-color="#18c48f"/>
+        <stop offset="100%" stop-color="#1bc6a8"/>
+      </linearGradient>
+      <linearGradient id="goldFill" x1="0" x2="1">
+        <stop offset="0%" stop-color="#f4c542"/>
+        <stop offset="100%" stop-color="#e7a83f"/>
+      </linearGradient>
+      <filter id="cardShadow" x="-20%" y="-30%" width="140%" height="170%">
+        <feDropShadow dx="0" dy="18" stdDeviation="17" flood-color="#020d13" flood-opacity=".36"/>
+      </filter>
+      <marker id="arrow" markerWidth="5" markerHeight="5" refX="3.4" refY="1.7" orient="auto">
+        <path d="M0,0 L3.4,1.7 L0,3.4 Z" fill="#83f3c8"/>
+      </marker>
+      <marker id="arrowDim" markerWidth="5" markerHeight="5" refX="3.4" refY="1.7" orient="auto">
+        <path d="M0,0 L3.4,1.7 L0,3.4 Z" fill="rgba(236,247,255,.56)"/>
+      </marker>
+      <style>
+        .bg { fill: url(#bgA); }
+        .glow { fill: url(#glowA); }
+        .grid { stroke: rgba(255,255,255,.075); stroke-width: 1; }
+        .eyebrow { font: 700 28px Arial, sans-serif; fill: #83f3c8; letter-spacing: 3px; }
+        .headline { font: 800 72px Arial, sans-serif; fill: #f8fbff; letter-spacing: 0; }
+        .subhead { font: 400 30px Arial, sans-serif; fill: rgba(236,247,255,.78); }
+        .loop-shell { fill: rgba(4,18,28,.26); stroke: rgba(131,243,200,.32); stroke-width: 2; }
+        .process-card { fill: rgba(255,255,255,.12); stroke: rgba(255,255,255,.24); stroke-width: 1.5; }
+        .process-card.primary { fill: url(#greenFill); stroke: rgba(255,255,255,.68); }
+        .process-card.gold { fill: rgba(244,197,66,.18); stroke: rgba(244,197,66,.58); }
+        .card-label { font: 800 17px Arial, sans-serif; fill: #83f3c8; letter-spacing: 2px; }
+        .primary .card-label { fill: rgba(255,255,255,.74); }
+        .gold .card-label { fill: #ffe59b; }
+        .card-title { font: 800 30px Arial, sans-serif; fill: #ffffff; letter-spacing: 0; }
+        .card-subtitle { font: 600 20px Arial, sans-serif; fill: rgba(236,247,255,.72); }
+        .primary .card-subtitle { fill: rgba(255,255,255,.78); }
+        .arrow-line { stroke: #83f3c8; stroke-width: 5; stroke-linecap: round; marker-end: url(#arrow); }
+        .arrow-dim { stroke: rgba(236,247,255,.56); stroke-width: 4; stroke-linecap: round; stroke-dasharray: 8 12; marker-end: url(#arrowDim); }
+        .loop-arrow { fill: none; stroke: #83f3c8; stroke-width: 6; stroke-linecap: round; stroke-dasharray: 1 13; marker-end: url(#arrow); }
+        .pill { fill: rgba(255,255,255,.14); stroke: rgba(255,255,255,.26); stroke-width: 1; }
+        .pill-text { font: 800 22px Arial, sans-serif; fill: #ffffff; }
+        .agent-dot { fill: rgba(255,255,255,.92); }
+        .agent-dot-text { font: 800 20px Arial, sans-serif; fill: #0d6d55; }
+        .bottom-note { font: 800 28px Arial, sans-serif; fill: rgba(236,247,255,.76); letter-spacing: 0; }
+      </style>
+    </defs>
+    <rect width="1920" height="1080" class="bg"/>
+    <rect width="1920" height="1080" class="glow"/>
+    <line x1="0" x2="-520" y1="0" y2="1080" class="grid"/><line x1="160" x2="-360" y1="0" y2="1080" class="grid"/><line x1="320" x2="-200" y1="0" y2="1080" class="grid"/><line x1="480" x2="-40" y1="0" y2="1080" class="grid"/><line x1="640" x2="120" y1="0" y2="1080" class="grid"/><line x1="800" x2="280" y1="0" y2="1080" class="grid"/><line x1="960" x2="440" y1="0" y2="1080" class="grid"/><line x1="1120" x2="600" y1="0" y2="1080" class="grid"/><line x1="1280" x2="760" y1="0" y2="1080" class="grid"/><line x1="1440" x2="920" y1="0" y2="1080" class="grid"/><line x1="1600" x2="1080" y1="0" y2="1080" class="grid"/><line x1="1760" x2="1240" y1="0" y2="1080" class="grid"/><line x1="1920" x2="1400" y1="0" y2="1080" class="grid"/><line x1="2080" x2="1560" y1="0" y2="1080" class="grid"/>
+
+    <text x="102" y="104" class="eyebrow">NFL FABRIC ANALYTICS</text>
+    <text x="102" y="178" class="headline">Data Agent Improvement Loop</text>
+    <text x="102" y="226" class="subhead">Accuracy improves by iterating on instructions, examples, and evaluation results</text>
+
+    <rect x="108" y="294" width="1704" height="598" rx="44" class="loop-shell"/>
+
+    
+    <g filter="url(#cardShadow)">
+      <rect x="154" y="390" width="330" height="168" rx="28" class="process-card"/>
+    </g>
+    <text x="188" y="435" class="card-label">START</text>
+    <text x="188" y="478" class="card-title">Data source</text>
+    <text x="188" y="514" class="card-subtitle">Lakehouse tables or</text><text x="188" y="541" class="card-subtitle">semantic model measures</text>
+  
+    <line x1="502" y1="474" x2="602" y2="474" class="arrow-line"/>
+
+    
+    <g filter="url(#cardShadow)">
+      <rect x="628" y="390" width="330" height="168" rx="28" class="process-card primary"/>
+    </g>
+    <text x="662" y="435" class="card-label">BUILD</text>
+    <text x="662" y="478" class="card-title">Data agent</text>
+    <text x="662" y="514" class="card-subtitle">Connect the source and</text><text x="662" y="541" class="card-subtitle">define the agent boundary</text>
+  
+    <circle cx="880" cy="430" r="30" class="agent-dot"/>
+    <text x="880" y="438" text-anchor="middle" class="agent-dot-text">AI</text>
+    <line x1="976" y1="474" x2="1076" y2="474" class="arrow-line"/>
+
+    
+    <g filter="url(#cardShadow)">
+      <rect x="1102" y="334" width="330" height="150" rx="28" class="process-card"/>
+    </g>
+    <text x="1136" y="379" class="card-label">REFINE</text>
+    <text x="1136" y="422" class="card-title">Instructions</text>
+    <text x="1136" y="458" class="card-subtitle">Terms, business rules,</text><text x="1136" y="485" class="card-subtitle">guardrails, and intent</text>
+  
+    <line x1="1267" y1="500" x2="1267" y2="574" class="arrow-line"/>
+
+    
+    <g filter="url(#cardShadow)">
+      <rect x="1102" y="604" width="330" height="150" rx="28" class="process-card"/>
+    </g>
+    <text x="1136" y="649" class="card-label">EXAMPLES</text>
+    <text x="1136" y="692" class="card-title">Sample queries</text>
+    <text x="1136" y="728" class="card-subtitle">Expected questions and</text><text x="1136" y="755" class="card-subtitle">good answer patterns</text>
+  
+    <line x1="1448" y1="679" x2="1548" y2="679" class="arrow-line"/>
+
+    
+    <g filter="url(#cardShadow)">
+      <rect x="1570" y="492" width="206" height="188" rx="28" class="process-card gold"/>
+    </g>
+    <text x="1604" y="537" class="card-label">CHECK</text>
+    <text x="1604" y="580" class="card-title">Evaluate</text>
+    <text x="1604" y="616" class="card-subtitle">Run tests,</text><text x="1604" y="643" class="card-subtitle">review misses,</text><text x="1604" y="670" class="card-subtitle">score quality</text>
+  
+
+    <path d="M1572,492 C1536,302 1138,252 946,352" class="loop-arrow"/>
+    <path d="M1572,680 C1484,870 1194,872 952,744" class="loop-arrow"/>
+
+    
+    <rect x="192" y="630" width="232" height="50" rx="25" class="pill"/>
+    <text x="308" y="663" text-anchor="middle" class="pill-text">Semantic model</text>
+  
+    
+    <rect x="192" y="694" width="232" height="50" rx="25" class="pill"/>
+    <text x="308" y="727" text-anchor="middle" class="pill-text">Data lake</text>
+  
+
+    <text x="958" y="958" text-anchor="middle" class="bottom-note">Evaluate results, tune guidance and examples, then run the checks again.</text>
+  </svg>

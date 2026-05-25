@@ -1,0 +1,146 @@
+import fs from "node:fs/promises";
+import path from "node:path";
+import { createRequire } from "node:module";
+
+const require = createRequire(import.meta.url);
+const sharp = require("/Users/rob/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/sharp");
+
+const width = 1280;
+const height = 720;
+const outDir = path.join(path.dirname(new URL(import.meta.url).pathname), "slides");
+
+function esc(value) {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;");
+}
+
+function node(x, y, label, className = "graph-node") {
+  return `
+    <circle cx="${x}" cy="${y}" r="38" class="${className}"/>
+    <text x="${x}" y="${y + 8}" text-anchor="middle" class="graph-label">${esc(label)}</text>
+  `;
+}
+
+function edge(x1, y1, x2, y2) {
+  return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" class="graph-edge"/>`;
+}
+
+function renderThumbnail() {
+  return `<?xml version="1.0" encoding="UTF-8"?>
+  <svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
+    <defs>
+      <linearGradient id="bgA" x1="0" x2="1" y1="0" y2="1">
+        <stop offset="0%" stop-color="#071a2b"/>
+        <stop offset="48%" stop-color="#15354a"/>
+        <stop offset="100%" stop-color="#0e5f55"/>
+      </linearGradient>
+      <radialGradient id="glowA" cx="76%" cy="18%" r="55%">
+        <stop offset="0%" stop-color="#7ef2c8" stop-opacity=".30"/>
+        <stop offset="100%" stop-color="#7ef2c8" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="footballFill" x1="0" x2="1">
+        <stop offset="0%" stop-color="#9c542f"/>
+        <stop offset="52%" stop-color="#c7793b"/>
+        <stop offset="100%" stop-color="#6d351f"/>
+      </linearGradient>
+      <linearGradient id="bubbleFill" x1="0" x2="1">
+        <stop offset="0%" stop-color="#18c48f"/>
+        <stop offset="100%" stop-color="#1bc6a8"/>
+      </linearGradient>
+      <filter id="shadow" x="-20%" y="-30%" width="150%" height="170%">
+        <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#020d13" flood-opacity=".38"/>
+      </filter>
+      <filter id="softShadow" x="-20%" y="-20%" width="140%" height="150%">
+        <feDropShadow dx="0" dy="12" stdDeviation="11" flood-color="#020d13" flood-opacity=".28"/>
+      </filter>
+      <style>
+        .bg { fill: url(#bgA); }
+        .glow { fill: url(#glowA); }
+        .grid { stroke: rgba(255,255,255,.075); stroke-width: 1; }
+        .eyebrow { font: 800 24px Arial, sans-serif; fill: #83f3c8; letter-spacing: 3px; }
+        .headline { font: 900 72px Arial, sans-serif; fill: #f8fbff; letter-spacing: 0; }
+        .headline-accent { fill: #83f3c8; }
+        .subhead { font: 700 30px Arial, sans-serif; fill: rgba(236,247,255,.78); letter-spacing: 0; }
+        .pill { fill: rgba(255,255,255,.13); stroke: rgba(255,255,255,.26); stroke-width: 1.4; }
+        .pill-text { font: 800 25px Arial, sans-serif; fill: #ffffff; }
+        .question { fill: url(#bubbleFill); stroke: rgba(255,255,255,.68); stroke-width: 2; }
+        .question-text { font: 900 32px Arial, sans-serif; fill: #ffffff; letter-spacing: 0; }
+        .question-mark { font: 900 58px Arial, sans-serif; fill: rgba(255,255,255,.92); }
+        .graph-panel { fill: rgba(4,18,28,.34); stroke: rgba(131,243,200,.42); stroke-width: 2; }
+        .graph-title { font: 800 22px Arial, sans-serif; fill: #83f3c8; letter-spacing: 2px; }
+        .graph-edge { stroke: rgba(131,243,200,.64); stroke-width: 5; stroke-linecap: round; }
+        .graph-node { fill: rgba(255,255,255,.16); stroke: rgba(255,255,255,.50); stroke-width: 2; }
+        .graph-node.hot { fill: #18c48f; stroke: rgba(255,255,255,.74); }
+        .graph-node.gold { fill: #f4c542; stroke: rgba(255,255,255,.72); }
+        .graph-label { font: 900 18px Arial, sans-serif; fill: #ffffff; }
+        .football { fill: url(#footballFill); stroke: rgba(255,255,255,.42); stroke-width: 3; }
+        .lace { stroke: #fff1d5; stroke-width: 7; stroke-linecap: round; fill: none; }
+        .lace-small { stroke: #fff1d5; stroke-width: 5; stroke-linecap: round; }
+        .football-stripe { stroke: #fff1d5; stroke-width: 8; stroke-linecap: round; fill: none; opacity: .88; }
+        .tiny { font: 800 20px Arial, sans-serif; fill: rgba(236,247,255,.78); }
+      </style>
+    </defs>
+
+    <rect width="1280" height="720" class="bg"/>
+    <rect width="1280" height="720" class="glow"/>
+    ${Array.from({ length: 11 }, (_, i) => `<line x1="${i * 140}" x2="${i * 140 - 360}" y1="0" y2="720" class="grid"/>`).join("")}
+
+    <text x="70" y="86" class="eyebrow">NFLVERSE + MICROSOFT FABRIC</text>
+    <text x="70" y="174" class="headline">Ask Your</text>
+    <text x="70" y="252" class="headline"><tspan class="headline-accent">NFL Data</tspan> with AI</text>
+    <text x="74" y="306" class="subhead">Lakehouse • Semantic Model • Data Agents</text>
+
+    <g filter="url(#softShadow)">
+      <rect x="72" y="344" width="462" height="78" rx="39" class="pill"/>
+    </g>
+    <text x="303" y="394" text-anchor="middle" class="pill-text">From play-by-play to Copilot answers</text>
+
+    <g filter="url(#shadow)" transform="translate(812 130) rotate(-15 0 0)">
+      <ellipse cx="0" cy="0" rx="172" ry="84" class="football"/>
+      <path d="M-88,-54 C-44,-24 48,-22 96,-54" class="football-stripe"/>
+      <path d="M-96,54 C-44,24 48,24 88,54" class="football-stripe"/>
+      <path d="M-80,0 C-28,-23 32,-23 84,0" class="lace"/>
+      <line x1="-38" y1="-19" x2="-28" y2="13" class="lace-small"/>
+      <line x1="-8" y1="-26" x2="2" y2="8" class="lace-small"/>
+      <line x1="24" y1="-25" x2="34" y2="8" class="lace-small"/>
+      <line x1="56" y1="-17" x2="66" y2="14" class="lace-small"/>
+    </g>
+
+    <g filter="url(#shadow)">
+      <rect x="682" y="270" width="494" height="300" rx="34" class="graph-panel"/>
+    </g>
+    <text x="724" y="322" class="graph-title">DATA MODEL</text>
+    ${edge(812, 414, 928, 368)}
+    ${edge(812, 414, 928, 470)}
+    ${edge(928, 368, 1050, 414)}
+    ${edge(928, 470, 1050, 414)}
+    ${edge(928, 368, 928, 470)}
+    ${node(812, 414, "Team", "graph-node hot")}
+    ${node(928, 368, "Game")}
+    ${node(928, 470, "Play")}
+    ${node(1050, 414, "EPA", "graph-node gold")}
+
+    <g filter="url(#shadow)">
+      <rect x="118" y="474" width="640" height="130" rx="32" class="question"/>
+    </g>
+    <text x="154" y="556" class="question-mark">?</text>
+    <text x="216" y="526" class="question-text">Which teams improved</text>
+    <text x="216" y="568" class="question-text">most after halftime?</text>
+
+  </svg>`;
+}
+
+async function main() {
+  await fs.mkdir(outDir, { recursive: true });
+  const svg = renderThumbnail();
+  const svgPath = path.join(outDir, "youtube-thumbnail-nfl-fabric-ai.svg");
+  const pngPath = path.join(outDir, "youtube-thumbnail-nfl-fabric-ai.png");
+
+  await fs.writeFile(svgPath, svg);
+  await sharp(Buffer.from(svg)).png().toFile(pngPath);
+  console.log(pngPath);
+}
+
+await main();
