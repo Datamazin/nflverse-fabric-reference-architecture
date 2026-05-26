@@ -1,5 +1,7 @@
 # NFL Fabric Analytics
 
+A video walk-through of this implementation is [available on YouTube]([url](https://youtu.be/CUAf4BonB-s)).
+
 This repo is an end-to-end NFL analytics reference implementation for Microsoft
 Fabric. It starts with full-league NFLVerse data acquisition using `nflreadpy`.
 
