@@ -1,0 +1,229 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "ts_standings",
+  "position": {
+    "x": 16,
+    "y": 96,
+    "z": 2,
+    "height": 608,
+    "width": 760,
+    "tabOrder": 2
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Team"
+                    }
+                  },
+                  "Property": "Team Name"
+                }
+              },
+              "queryRef": "Team.Team Name",
+              "nativeQueryRef": "Team",
+              "displayName": "Team"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calculations"
+                    }
+                  },
+                  "Property": "Wins"
+                }
+              },
+              "queryRef": "Calculations.Wins",
+              "nativeQueryRef": "W",
+              "displayName": "W"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calculations"
+                    }
+                  },
+                  "Property": "Losses"
+                }
+              },
+              "queryRef": "Calculations.Losses",
+              "nativeQueryRef": "L",
+              "displayName": "L"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calculations"
+                    }
+                  },
+                  "Property": "Ties"
+                }
+              },
+              "queryRef": "Calculations.Ties",
+              "nativeQueryRef": "T",
+              "displayName": "T"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calculations"
+                    }
+                  },
+                  "Property": "Points For"
+                }
+              },
+              "queryRef": "Calculations.Points For",
+              "nativeQueryRef": "PF",
+              "displayName": "PF"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calculations"
+                    }
+                  },
+                  "Property": "Points Against"
+                }
+              },
+              "queryRef": "Calculations.Points Against",
+              "nativeQueryRef": "PA",
+              "displayName": "PA"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calculations"
+                    }
+                  },
+                  "Property": "Point Differential"
+                }
+              },
+              "queryRef": "Calculations.Point Differential",
+              "nativeQueryRef": "Diff",
+              "displayName": "Diff"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Team Season Summary"
+                        }
+                      },
+                      "Property": "offensive_epa_per_play"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Avg(Team Season Summary.offensive_epa_per_play)",
+              "nativeQueryRef": "Off EPA/play",
+              "displayName": "Off EPA/play"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Team Season Summary"
+                        }
+                      },
+                      "Property": "defensive_epa_allowed_per_play"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Avg(Team Season Summary.defensive_epa_allowed_per_play)",
+              "nativeQueryRef": "Def EPA allowed/play",
+              "displayName": "Def EPA allowed/play"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Team Season Summary"
+                        }
+                      },
+                      "Property": "success_rate"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Avg(Team Season Summary.success_rate)",
+              "nativeQueryRef": "Success rate",
+              "displayName": "Success rate"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Calculations"
+                  }
+                },
+                "Property": "Wins"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Team standings and efficiency'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

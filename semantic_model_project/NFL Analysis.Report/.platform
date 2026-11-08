@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "NFL Analysis"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "736d360a-fe7c-41f9-a609-0a743214fc56"
+  }
+}

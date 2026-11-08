@@ -1,0 +1,184 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "pl_passing",
+  "position": {
+    "x": 16,
+    "y": 96,
+    "z": 2,
+    "height": 608,
+    "width": 616,
+    "tabOrder": 2
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Player Season Summary"
+                    }
+                  },
+                  "Property": "player_name"
+                }
+              },
+              "queryRef": "Player Season Summary.player_name",
+              "nativeQueryRef": "Player",
+              "displayName": "Player"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Team"
+                    }
+                  },
+                  "Property": "Team Code"
+                }
+              },
+              "queryRef": "Team.Team Code",
+              "nativeQueryRef": "Team",
+              "displayName": "Team"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calculations"
+                    }
+                  },
+                  "Property": "Pass Attempts"
+                }
+              },
+              "queryRef": "Calculations.Pass Attempts",
+              "nativeQueryRef": "Att",
+              "displayName": "Att"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calculations"
+                    }
+                  },
+                  "Property": "Passing Yards"
+                }
+              },
+              "queryRef": "Calculations.Passing Yards",
+              "nativeQueryRef": "Yds",
+              "displayName": "Yds"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calculations"
+                    }
+                  },
+                  "Property": "Passing TDs"
+                }
+              },
+              "queryRef": "Calculations.Passing TDs",
+              "nativeQueryRef": "TD",
+              "displayName": "TD"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calculations"
+                    }
+                  },
+                  "Property": "Interceptions Thrown"
+                }
+              },
+              "queryRef": "Calculations.Interceptions Thrown",
+              "nativeQueryRef": "INT",
+              "displayName": "INT"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calculations"
+                    }
+                  },
+                  "Property": "Completion Percentage"
+                }
+              },
+              "queryRef": "Calculations.Completion Percentage",
+              "nativeQueryRef": "Comp %",
+              "displayName": "Comp %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calculations"
+                    }
+                  },
+                  "Property": "Passing EPA per Dropback"
+                }
+              },
+              "queryRef": "Calculations.Passing EPA per Dropback",
+              "nativeQueryRef": "EPA/dropback",
+              "displayName": "EPA/dropback"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Calculations"
+                  }
+                },
+                "Property": "Passing Yards"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Passing leaders'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
