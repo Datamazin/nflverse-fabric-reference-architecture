@@ -55,6 +55,25 @@ def availability_notes(seasons: list[int]) -> dict[str, Any]:
     return notes
 
 
+def seasons_with_played_postseason(schedules: pl.DataFrame, seasons: list[int]) -> list[int]:
+    """Return requested seasons that have at least one completed postseason game.
+
+    nflverse only publishes ``stats_*_post_<season>`` files once playoff games
+    have been played, so requesting an in-progress season returns a 404.
+    """
+    if not {"season", "game_type", "home_score"}.issubset(schedules.columns):
+        return seasons
+    played = (
+        schedules.filter(
+            (pl.col("game_type") != "REG") & pl.col("home_score").is_not_null()
+        )
+        .get_column("season")
+        .unique()
+        .to_list()
+    )
+    return [season for season in seasons if season in set(played)]
+
+
 def configure_nflreadpy(cache_dir: Path) -> None:
     from nflreadpy.config import update_config
 
@@ -176,12 +195,13 @@ def run_acquisition(config: AcquisitionConfig) -> dict[str, Any]:
             )
         )
 
+    schedules_path = config.range_file_path(
+        "schedules", f"schedules_{config.start_season}_{config.end_season}.parquet"
+    )
     manifest["outputs"].append(
         fetch_and_write(
             dataset="schedules",
-            path=config.range_file_path(
-                "schedules", f"schedules_{config.start_season}_{config.end_season}.parquet"
-            ),
+            path=schedules_path,
             loader=lambda: nfl.load_schedules(seasons),
             config=config,
         )
@@ -236,16 +256,32 @@ def run_acquisition(config: AcquisitionConfig) -> dict[str, Any]:
                     )
                 )
 
-        for summary_level in ["reg", "post"]:
+        post_seasons = seasons_with_played_postseason(pl.read_parquet(schedules_path), seasons)
+        skipped_post = [season for season in seasons if season not in post_seasons]
+        if skipped_post:
+            LOGGER.warning(
+                "Skipping postseason stats for seasons with no completed playoff games: %s",
+                skipped_post,
+            )
+            manifest["availability_notes"]["stats_post"] = {
+                "reason": "no completed postseason games yet",
+                "skipped_seasons": skipped_post,
+            }
+
+        for summary_level, level_seasons in [("reg", seasons), ("post", post_seasons)]:
+            if not level_seasons:
+                continue
+            # Name range files by the seasons actually fetched so files never overlap.
+            range_label = f"{level_seasons[0]}_{level_seasons[-1]}"
             manifest["outputs"].append(
                 fetch_and_write(
                     dataset=f"player_stats_{summary_level}",
                     path=config.range_file_path(
                         f"player_stats_season/summary_level={summary_level}",
-                        f"player_stats_{summary_level}_{config.start_season}_{config.end_season}.parquet",
+                        f"player_stats_{summary_level}_{range_label}.parquet",
                     ),
-                    loader=lambda summary_level=summary_level: nfl.load_player_stats(
-                        seasons, summary_level=summary_level
+                    loader=lambda summary_level=summary_level, level_seasons=level_seasons: nfl.load_player_stats(
+                        level_seasons, summary_level=summary_level
                     ),
                     config=config,
                 )
@@ -255,10 +291,10 @@ def run_acquisition(config: AcquisitionConfig) -> dict[str, Any]:
                     dataset=f"team_stats_{summary_level}",
                     path=config.range_file_path(
                         f"team_stats_season/summary_level={summary_level}",
-                        f"team_stats_{summary_level}_{config.start_season}_{config.end_season}.parquet",
+                        f"team_stats_{summary_level}_{range_label}.parquet",
                     ),
-                    loader=lambda summary_level=summary_level: nfl.load_team_stats(
-                        seasons, summary_level=summary_level
+                    loader=lambda summary_level=summary_level, level_seasons=level_seasons: nfl.load_team_stats(
+                        level_seasons, summary_level=summary_level
                     ),
                     config=config,
                 )
