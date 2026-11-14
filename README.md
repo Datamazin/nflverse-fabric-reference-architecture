@@ -618,3 +618,33 @@ For a clean rebuild, run the artifacts in this order:
 10. Configure or refresh the NFL Lakehouse Fabric Data Agent.
 11. Run `notebooks/Lakehouse Data Agent Evaluations.ipynb`.
 
+
+## In-Season Weekly Update
+
+During the season you don't need a full rebuild after each week of games. Both ETL notebooks accept parameters (a cell tagged `parameters`, so they can also be passed when the notebook runs as a job or pipeline activity) that limit the run to recent weeks of the current season.
+
+1. Acquire only the current season. nflverse publishes play-by-play per season, so this downloads the whole season, which takes seconds:
+
+   ```powershell
+   python acquire_nflverse.py --start-season 2026 --end-season 2026 --out .\nflverse_local --force
+   ```
+
+2. Upload that season's files and `nflverse_local/manifest/` to the Lakehouse, replacing the previous copies. These are the `season=2026` folders, the `*_2026_2026.parquet` range files, `teams/teams.parquet`, and `players/players.parquet`. Don't delete the older seasons' files.
+3. Run `import_raw_nflverse_to_bronze` with `MIN_SEASON = 2026`, `MAX_SEASON = 2026`, `LOOKBACK_WEEKS = 2`.
+4. Run `build_silver_gold_nfl_model` with `SEASON = 2026`, `LOOKBACK_WEEKS = 2`.
+5. Refresh the `NFL Play by Play Model` semantic model.
+
+`LOOKBACK_WEEKS = 2` reloads the latest week in the data plus the week before it, which also picks up nflverse stat corrections. Use `FROM_WEEK` instead to start at a specific week.
+
+What a recent-weeks run touches:
+
+| Layer | Tables | Rows replaced |
+|---|---|---|
+| Bronze | play-by-play, schedules, weekly rosters, weekly player and team stats | `season = SEASON` and `week >= FROM_WEEK` |
+| Bronze | season rosters, season player and team stats | All of `season = SEASON` |
+| Bronze | teams, players | Whole table (no season column) |
+| Silver/Gold | `silver.play_by_play`, every `gold.fact_*`, `gold.agg_team_game` | `season = SEASON` and `week >= FROM_WEEK` |
+| Gold | `gold.agg_team_season`, `gold.agg_team_situation`, `gold.agg_player_season` | All of `season = SEASON` (season totals and ranks) |
+| Silver/Gold | teams, games, players, `player_team_season`, `dim_*` | Whole table (small, cross-season) |
+
+With all parameters left as `None`, both notebooks do the full rebuild described above. Run a full rebuild after changing any table definition in the notebooks, because recent-weeks runs append into the existing table schemas.
