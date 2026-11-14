@@ -1,0 +1,42 @@
+// One row per ball carrier for a single week of the selected season and season
+// type. Built from play rows with the same definitions as 'Player Season Summary'.
+DEFINE
+    VAR __Season = "__SEASON__"
+    VAR __SeasonType = "__SEASON_TYPE__"
+    VAR __Week = __WEEK__
+    VAR __MinVolume = __MIN_VOLUME__
+    VAR __Grouped =
+        SUMMARIZECOLUMNS (
+            'Rushing Play'[rusher_player_key],
+            TREATAS ( { __Season }, 'Rushing Play'[season] ),
+            TREATAS ( { __SeasonType }, 'Rushing Play'[season_type] ),
+            TREATAS ( { __Week }, 'Rushing Play'[week] ),
+            "@Name", MAX ( 'Rushing Play'[rusher_player_name] ),
+            "@Pos", MAX ( 'Rushing Play'[rusher_position] ),
+            "@Teams", CONCATENATEX ( VALUES ( 'Rushing Play'[offense_team_key] ), 'Rushing Play'[offense_team_key], "/" ),
+            "@Att", SUM ( 'Rushing Play'[rush_attempt_count] ),
+            "@Yds", SUMX ( 'Rushing Play', COALESCE ( 'Rushing Play'[rushing_yards], 'Rushing Play'[yards_gained], 0 ) ),
+            "@TD", SUM ( 'Rushing Play'[rushing_touchdown_count] ),
+            "@EPA", SUM ( 'Rushing Play'[epa] ),
+            "@Stuffed", SUM ( 'Rushing Play'[stuffed_rush_count] ),
+            "@Explosive", SUM ( 'Rushing Play'[explosive_rush_count] )
+        )
+EVALUATE
+SELECTCOLUMNS (
+    FILTER (
+        __Grouped,
+        NOT ISBLANK ( 'Rushing Play'[rusher_player_key] ) && [@Att] >= __MinVolume
+    ),
+    "Player", [@Name],
+    "Position", [@Pos],
+    "Team", [@Teams],
+    "Attempts", [@Att],
+    "Yards", [@Yds],
+    "YardsPerCarry", DIVIDE ( [@Yds], [@Att] ),
+    "TD", [@TD],
+    "StuffRate", DIVIDE ( [@Stuffed], [@Att] ),
+    "ExplosiveRate", DIVIDE ( [@Explosive], [@Att] ),
+    "EPA", [@EPA],
+    "EPAPerPlay", DIVIDE ( [@EPA], [@Att] )
+)
+ORDER BY [EPA] DESC

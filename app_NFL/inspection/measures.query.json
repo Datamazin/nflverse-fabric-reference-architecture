@@ -1,0 +1,1 @@
+{ "query": "EVALUATE SELECTCOLUMNS(INFO.VIEW.MEASURES(), \"Table\", [Table], \"Measure\", [Name], \"Folder\", [DisplayFolder])" }

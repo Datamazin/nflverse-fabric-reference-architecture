@@ -1,0 +1,1 @@
+{ "query": "EVALUATE SELECTCOLUMNS(INFO.VIEW.RELATIONSHIPS(), \"From\", [FromTable] & \"[\" & [FromColumn] & \"]\", \"To\", [ToTable] & \"[\" & [ToColumn] & \"]\", \"Active\", [IsActive], \"Dir\", [CrossFilteringBehavior])" }

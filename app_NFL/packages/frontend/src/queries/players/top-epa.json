@@ -1,0 +1,23 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Top 15 players by total EPA for the selected stat category.",
+  "transform": [
+    {
+      "window": [{ "op": "row_number", "as": "EPARank" }],
+      "sort": [{ "field": "EPA", "order": "descending" }]
+    },
+    { "filter": "datum.EPARank <= 15" },
+    { "calculate": "datum.Player + ' · ' + datum.Team", "as": "PlayerTeam" }
+  ],
+  "encoding": {
+    "y": { "field": "PlayerTeam", "type": "nominal", "sort": "-x", "title": null },
+    "x": { "field": "EPA", "type": "quantitative" }
+  },
+  "layer": [
+    { "mark": { "type": "bar" } },
+    {
+      "mark": { "type": "text", "style": "labelHorizontal" },
+      "encoding": { "text": { "field": "EPA", "type": "quantitative" } }
+    }
+  ]
+}

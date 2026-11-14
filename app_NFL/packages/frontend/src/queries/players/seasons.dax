@@ -1,0 +1,7 @@
+// Season and season-type combinations that have player rows, newest first.
+EVALUATE
+SUMMARIZECOLUMNS (
+    'Player Season Summary'[season],
+    'Player Season Summary'[season_type]
+)
+ORDER BY 'Player Season Summary'[season] DESC

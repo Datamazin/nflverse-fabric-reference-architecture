@@ -1,0 +1,45 @@
+id: app-nfl
+name: app_NFL
+version: 1.0.0
+services:
+  connectors:
+    enabled: true
+  auth:
+    enabled: true
+    fabric:
+      enabled: true
+      externalEntraExchange: true
+    password:
+      enabled: false
+    allowedRedirectUris:
+      - http://localhost:5173
+      - http://127.0.0.1:5173
+      - https://close-ember-ef6b659c58-eastus.webapp.fabricapps.net
+  data:
+    enabled: false
+    path: packages/data
+    buildCommand: npm run build
+  staticHosting:
+    enabled: true
+    path: packages/frontend
+    folder: dist
+    buildCommand: npm run build:fabric
+    indexDocument: index.html
+    assetAccess: protected
+    embedded:
+      only: false
+  storage:
+    enabled: false
+  functions:
+    enabled: false
+connectors:
+  - name: nflpbp
+    type: fabric-semanticmodel
+    config:
+      workspaceId: f4f174fc-f02b-4241-9138-815fabd9eb6d
+      itemId: a920a06d-b1a1-4391-98d7-f41556b0df05
+    auth:
+      type: delegated
+    version: "1"
+    operations:
+      - name: executeQuery

@@ -1,0 +1,37 @@
+// One row per ball carrier for the selected season and season type. Players
+// traded mid-season have several team rows; they are summed and rates recomputed.
+DEFINE
+    VAR __Season = "__SEASON__"
+    VAR __SeasonType = "__SEASON_TYPE__"
+    VAR __MinVolume = __MIN_VOLUME__
+    VAR __Grouped =
+        SUMMARIZECOLUMNS (
+            'Player Season Summary'[player_key],
+            'Player Season Summary'[player_name],
+            TREATAS ( { __Season }, 'Player Season Summary'[season] ),
+            TREATAS ( { __SeasonType }, 'Player Season Summary'[season_type] ),
+            "@Pos", MAX ( 'Player Season Summary'[position] ),
+            "@Teams", CONCATENATEX ( VALUES ( 'Player Season Summary'[team_key] ), 'Player Season Summary'[team_key], "/" ),
+            "@Att", SUM ( 'Player Season Summary'[rushing_attempts] ),
+            "@Yds", SUM ( 'Player Season Summary'[rushing_yards] ),
+            "@TD", SUM ( 'Player Season Summary'[rushing_tds] ),
+            "@EPA", SUM ( 'Player Season Summary'[rushing_epa] ),
+            "@Stuffed", SUM ( 'Player Season Summary'[stuffed_rushes] ),
+            "@Explosive", SUM ( 'Player Season Summary'[explosive_rushes] )
+        )
+EVALUATE
+SELECTCOLUMNS (
+    FILTER ( __Grouped, [@Att] >= __MinVolume ),
+    "Player", 'Player Season Summary'[player_name],
+    "Position", [@Pos],
+    "Team", [@Teams],
+    "Attempts", [@Att],
+    "Yards", [@Yds],
+    "YardsPerCarry", DIVIDE ( [@Yds], [@Att] ),
+    "TD", [@TD],
+    "StuffRate", DIVIDE ( [@Stuffed], [@Att] ),
+    "ExplosiveRate", DIVIDE ( [@Explosive], [@Att] ),
+    "EPA", [@EPA],
+    "EPAPerPlay", DIVIDE ( [@EPA], [@Att] )
+)
+ORDER BY [EPA] DESC

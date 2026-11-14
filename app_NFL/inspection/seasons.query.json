@@ -1,0 +1,1 @@
+{ "query": "EVALUATE SUMMARIZECOLUMNS('Player Season Summary'[season], 'Player Season Summary'[season_type], \"Rows\", COUNTROWS('Player Season Summary'), \"Players\", DISTINCTCOUNT('Player Season Summary'[player_key])) ORDER BY 'Player Season Summary'[season] DESC" }

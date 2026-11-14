@@ -1,0 +1,35 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Rusher efficiency: yards per rush vs EPA per rush, sized by attempts; top 8 by total EPA labelled.",
+  "transform": [
+    {
+      "window": [{ "op": "row_number", "as": "EPARank" }],
+      "sort": [{ "field": "EPA", "order": "descending" }]
+    }
+  ],
+  "encoding": {
+    "x": { "field": "YardsPerCarry", "type": "quantitative", "scale": { "zero": false } },
+    "y": { "field": "EPAPerPlay", "type": "quantitative", "scale": { "zero": false } }
+  },
+  "layer": [
+    {
+      "mark": { "type": "circle" },
+      "encoding": {
+        "size": { "field": "Attempts", "type": "quantitative", "legend": null },
+        "tooltip": [
+          { "field": "Player", "type": "nominal" },
+          { "field": "Team", "type": "nominal" },
+          { "field": "Attempts", "type": "quantitative" },
+          { "field": "YardsPerCarry", "type": "quantitative" },
+          { "field": "EPAPerPlay", "type": "quantitative" },
+          { "field": "EPA", "type": "quantitative" }
+        ]
+      }
+    },
+    {
+      "transform": [{ "filter": "datum.EPARank <= 8" }],
+      "mark": { "type": "text", "align": "left", "baseline": "middle", "dx": 8 },
+      "encoding": { "text": { "field": "Player", "type": "nominal" } }
+    }
+  ]
+}

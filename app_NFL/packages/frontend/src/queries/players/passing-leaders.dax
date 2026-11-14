@@ -1,0 +1,48 @@
+// One row per passer for the selected season and season type. Players traded
+// mid-season have several team rows; they are summed here and rates recomputed.
+DEFINE
+    VAR __Season = "__SEASON__"
+    VAR __SeasonType = "__SEASON_TYPE__"
+    VAR __MinVolume = __MIN_VOLUME__
+    VAR __Grouped =
+        SUMMARIZECOLUMNS (
+            'Player Season Summary'[player_key],
+            'Player Season Summary'[player_name],
+            TREATAS ( { __Season }, 'Player Season Summary'[season] ),
+            TREATAS ( { __SeasonType }, 'Player Season Summary'[season_type] ),
+            "@Pos", MAX ( 'Player Season Summary'[position] ),
+            "@Teams", CONCATENATEX ( VALUES ( 'Player Season Summary'[team_key] ), 'Player Season Summary'[team_key], "/" ),
+            "@Dropbacks", SUM ( 'Player Season Summary'[passing_dropbacks] ),
+            "@Att", SUM ( 'Player Season Summary'[attempts] ),
+            "@Cmp", SUM ( 'Player Season Summary'[completions] ),
+            "@Yds", SUM ( 'Player Season Summary'[passing_yards] ),
+            "@TD", SUM ( 'Player Season Summary'[passing_tds] ),
+            "@INT", SUM ( 'Player Season Summary'[interceptions] ),
+            "@EPA", SUM ( 'Player Season Summary'[passing_epa] ),
+            "@CpoeWeighted",
+                SUMX (
+                    FILTER ( 'Player Season Summary', NOT ISBLANK ( 'Player Season Summary'[avg_cpoe] ) ),
+                    'Player Season Summary'[avg_cpoe] * 'Player Season Summary'[attempts]
+                ),
+            "@CpoeAtt",
+                SUMX (
+                    FILTER ( 'Player Season Summary', NOT ISBLANK ( 'Player Season Summary'[avg_cpoe] ) ),
+                    'Player Season Summary'[attempts]
+                )
+        )
+EVALUATE
+SELECTCOLUMNS (
+    FILTER ( __Grouped, [@Dropbacks] >= __MinVolume ),
+    "Player", 'Player Season Summary'[player_name],
+    "Position", [@Pos],
+    "Team", [@Teams],
+    "Dropbacks", [@Dropbacks],
+    "Yards", [@Yds],
+    "TD", [@TD],
+    "INT", [@INT],
+    "CompPct", DIVIDE ( [@Cmp], [@Att] ),
+    "CPOE", DIVIDE ( [@CpoeWeighted], [@CpoeAtt] ),
+    "EPA", [@EPA],
+    "EPAPerPlay", DIVIDE ( [@EPA], [@Dropbacks] )
+)
+ORDER BY [EPA] DESC

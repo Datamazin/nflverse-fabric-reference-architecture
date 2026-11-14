@@ -1,0 +1,35 @@
+// One row per receiver for the selected season and season type. Players traded
+// mid-season have several team rows; they are summed and rates recomputed.
+DEFINE
+    VAR __Season = "__SEASON__"
+    VAR __SeasonType = "__SEASON_TYPE__"
+    VAR __MinVolume = __MIN_VOLUME__
+    VAR __Grouped =
+        SUMMARIZECOLUMNS (
+            'Player Season Summary'[player_key],
+            'Player Season Summary'[player_name],
+            TREATAS ( { __Season }, 'Player Season Summary'[season] ),
+            TREATAS ( { __SeasonType }, 'Player Season Summary'[season_type] ),
+            "@Pos", MAX ( 'Player Season Summary'[position] ),
+            "@Teams", CONCATENATEX ( VALUES ( 'Player Season Summary'[team_key] ), 'Player Season Summary'[team_key], "/" ),
+            "@Tgt", SUM ( 'Player Season Summary'[targets] ),
+            "@Rec", SUM ( 'Player Season Summary'[receptions] ),
+            "@Yds", SUM ( 'Player Season Summary'[receiving_yards] ),
+            "@YAC", SUM ( 'Player Season Summary'[yards_after_catch] ),
+            "@EPA", SUM ( 'Player Season Summary'[receiving_epa] )
+        )
+EVALUATE
+SELECTCOLUMNS (
+    FILTER ( __Grouped, [@Tgt] >= __MinVolume ),
+    "Player", 'Player Season Summary'[player_name],
+    "Position", [@Pos],
+    "Team", [@Teams],
+    "Targets", [@Tgt],
+    "Receptions", [@Rec],
+    "CatchRate", DIVIDE ( [@Rec], [@Tgt] ),
+    "Yards", [@Yds],
+    "YACPerReception", DIVIDE ( [@YAC], [@Rec] ),
+    "EPA", [@EPA],
+    "EPAPerPlay", DIVIDE ( [@EPA], [@Tgt] )
+)
+ORDER BY [EPA] DESC

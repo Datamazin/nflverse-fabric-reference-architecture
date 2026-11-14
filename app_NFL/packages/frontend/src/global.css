@@ -1,0 +1,226 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:is(.dark *));
+
+/* Bridged tokens — kept in `@theme static` so the CSS vars are always
+   emitted, not tree-shaken when no Tailwind utility consumes them.
+   Required because <VegaVisual> and <DataGrid> read these at runtime via
+   `useCssTheme()` and project them into a JS theme object (Vega's SVG output
+   cannot resolve `var()` references). */
+@theme static {
+  --color-brand: #1d6b43; /* bar/area fills, button-like brand surfaces */
+  --color-brand-foreground: #1d6b43; /* line/point marks, branded text & emphasis */
+  --color-hover: #eef4ef; /* row/cell hover surface in DataGrid + visuals */
+}
+
+@theme {
+  /* Color tokens — light theme
+     Usage: bg-*, text-*, border-* (e.g. bg-primary text-primary-foreground)
+     Each token has a -foreground pair for text on that surface. */
+  --color-background: #f4f3ee; /* page background — chalk-line off-white */
+  --color-foreground: #1b1f1c; /* default text */
+
+  --color-card: #ffffff; /* card surfaces */
+  --color-card-foreground: #1b1f1c;
+
+  --color-popover: #ffffff; /* popover/dropdown surfaces */
+  --color-popover-foreground: #1b1f1c;
+
+  --color-primary: #1d6b43; /* primary actions & buttons — turf green */
+  --color-primary-foreground: #ffffff;
+
+  --color-secondary: #e9e8e1; /* secondary actions */
+  --color-secondary-foreground: #1b1f1c;
+
+  --color-muted: #ebeae4; /* subtle backgrounds */
+  --color-muted-foreground: #5c625e; /* subdued text */
+
+  --color-accent: #e3eee6; /* accent highlights */
+  --color-accent-foreground: #133f29;
+
+  --color-destructive: #b3261e; /* errors & destructive actions */
+  --color-destructive-foreground: #ffffff;
+
+  --color-border: #d8d7cf; /* default border */
+  --color-input: #c9c8bf; /* input field borders */
+  --color-ring: #1d6b43; /* focus rings */
+
+  /* Field band — the striped header. */
+  --color-field: #154d31;
+  --color-field-foreground: #f4f3ee;
+  --color-field-muted: #b9d3c3;
+  --color-field-stripe: rgb(255 255 255 / 0.07);
+  --color-field-accent: #f2c14e; /* first-down yellow */
+
+  /* Fixed heights for chart and grid panels. Usage: h-chart, h-grid */
+  --spacing-chart: 380px;
+  --spacing-grid: 560px;
+
+  --radius-none: 0;
+  --radius-sm: 2px;
+  --radius-md: 3px;
+  --radius-lg: 4px;
+  --radius-xl: 6px;
+  --radius-2xl: 12px;
+  --radius-3xl: 16px;
+  --radius-4xl: 24px;
+  --radius-5xl: 32px;
+  --radius-6xl: 40px;
+  --radius-full: 9999px;
+  --radius: 6px;
+
+  /* Spacing — 4px grid; use only these tokens, no interpolation. *-nudge = base − 2px.
+     Usage: p-*, m-*, gap-* (e.g. p-400 gap-300) */
+  --spacing-none: 0;
+  --spacing-100-nudge: 2px;
+  --spacing-100: 4px;
+  --spacing-200-nudge: 6px;
+  --spacing-200: 8px;
+  --spacing-300-nudge: 10px;
+  --spacing-300: 12px;
+  --spacing-400: 16px;
+  --spacing-500: 20px;
+  --spacing-600: 24px;
+  --spacing-700: 28px;
+  --spacing-800: 32px;
+
+  /* Font Sizes — 100-based scale 
+     Usage: text-* (e.g. text-300, text-hero-900) */
+  --text-100: 10px;
+  --text-200: 12px;
+  --text-300: 14px;
+  --text-400: 16px;
+  --text-500: 20px;
+  --text-600: 24px;
+  --text-hero-700: 28px;
+  --text-hero-800: 32px;
+  --text-hero-900: 40px;
+  --text-hero-1000: 68px;
+
+  /* Line Heights — paired with font sizes
+     Usage: leading-* (e.g. leading-300) */
+  --leading-100: 14px;
+  --leading-200: 16px;
+  --leading-300: 20px;
+  --leading-400: 22px;
+  --leading-500: 28px;
+  --leading-600: 32px;
+  --leading-hero-700: 36px;
+  --leading-hero-800: 40px;
+  --leading-hero-900: 52px;
+  --leading-hero-1000: 92px;
+
+  /* Font Weights
+     Usage: font-* (e.g. font-semibold) */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Font Families
+     Usage: font-* (e.g. font-heading, font-base) */
+  --font-heading:
+    'Barlow Condensed', 'Arial Narrow',
+    /* headings, titles, display text */ 'Segoe UI', sans-serif;
+  --font-base:
+    'Barlow', /* body text, labels, UI controls */ 'Segoe UI', -apple-system,
+    BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  --font-monospace:
+    Consolas, 'Courier New', Courier, monospace; /* code, pre-formatted text */
+  --font-numeric:
+    'Barlow Semi Condensed', Bahnschrift,
+    /* KPI values, numeric displays */ 'Segoe UI', sans-serif;
+
+  /* Icon Sizes — 100-based scale
+     Usage: icon-size-* custom utility (e.g. icon-size-200) */
+  --icon-size-100: 12px;
+  --icon-size-200: 16px;
+  --icon-size-300: 20px;
+  --icon-size-400: 24px;
+  --icon-size-500: 28px;
+  --icon-size-600: 32px;
+  --icon-size-700: 48px;
+}
+
+/* Yard lines: a thin chalk stripe every 10% across the field band. */
+@utility field-stripes {
+  background-color: var(--color-field);
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent 0,
+    transparent calc(10% - 1px),
+    var(--color-field-stripe) calc(10% - 1px),
+    var(--color-field-stripe) 10%
+  );
+}
+
+@utility icon-size-* {
+  width: --value(--icon-size-*);
+  height: --value(--icon-size-*);
+}
+
+@layer base {
+  .dark {
+    /* Color tokens — dark theme */
+    --color-background: #121614;
+    --color-foreground: #eef1ee;
+
+    --color-card: #1b201d;
+    --color-card-foreground: #eef1ee;
+
+    --color-popover: #1b201d;
+    --color-popover-foreground: #eef1ee;
+
+    --color-primary: #2f8a5b;
+    --color-primary-foreground: #ffffff;
+
+    --color-secondary: #232924;
+    --color-secondary-foreground: #eef1ee;
+
+    --color-muted: #232924;
+    --color-muted-foreground: #a3aca6;
+
+    --color-accent: #1f3a2b;
+    --color-accent-foreground: #d6eadc;
+
+    --color-destructive: #e5534b;
+    --color-destructive-foreground: #ffffff;
+
+    --color-border: #343b36;
+    --color-input: #3f4741;
+    --color-ring: #5cc08a;
+
+    --color-field: #0e3020;
+    --color-field-foreground: #eef1ee;
+    --color-field-muted: #9cc2ab;
+    --color-field-stripe: rgb(255 255 255 / 0.05);
+    --color-field-accent: #f2c14e;
+
+    --color-brand: #3a9c68;
+    --color-brand-foreground: #5cc08a;
+    --color-hover: #26302a;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased font-base;
+  }
+
+  select,
+  input,
+  textarea,
+  button {
+    font-family: inherit;
+  }
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}

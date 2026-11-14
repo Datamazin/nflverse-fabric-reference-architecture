@@ -1,0 +1,40 @@
+// One row per receiver for a single week of the selected season and season
+// type. Built from play rows with the same definitions as 'Player Season Summary'.
+DEFINE
+    VAR __Season = "__SEASON__"
+    VAR __SeasonType = "__SEASON_TYPE__"
+    VAR __Week = __WEEK__
+    VAR __MinVolume = __MIN_VOLUME__
+    VAR __Grouped =
+        SUMMARIZECOLUMNS (
+            'Passing Play'[receiver_player_key],
+            TREATAS ( { __Season }, 'Passing Play'[season] ),
+            TREATAS ( { __SeasonType }, 'Passing Play'[season_type] ),
+            TREATAS ( { __Week }, 'Passing Play'[week] ),
+            "@Name", MAX ( 'Passing Play'[receiver_player_name] ),
+            "@Pos", MAX ( 'Passing Play'[receiver_position] ),
+            "@Teams", CONCATENATEX ( VALUES ( 'Passing Play'[offense_team_key] ), 'Passing Play'[offense_team_key], "/" ),
+            "@Tgt", SUM ( 'Passing Play'[pass_attempt_count] ),
+            "@Rec", SUM ( 'Passing Play'[Completion Count] ),
+            "@Yds", SUM ( 'Passing Play'[receiving_yards] ),
+            "@YAC", SUM ( 'Passing Play'[yards_after_catch] ),
+            "@EPA", SUM ( 'Passing Play'[EPA] )
+        )
+EVALUATE
+SELECTCOLUMNS (
+    FILTER (
+        __Grouped,
+        NOT ISBLANK ( 'Passing Play'[receiver_player_key] ) && [@Tgt] >= __MinVolume
+    ),
+    "Player", [@Name],
+    "Position", [@Pos],
+    "Team", [@Teams],
+    "Targets", [@Tgt],
+    "Receptions", [@Rec],
+    "CatchRate", DIVIDE ( [@Rec], [@Tgt] ),
+    "Yards", [@Yds],
+    "YACPerReception", DIVIDE ( [@YAC], [@Rec] ),
+    "EPA", [@EPA],
+    "EPAPerPlay", DIVIDE ( [@EPA], [@Tgt] )
+)
+ORDER BY [EPA] DESC

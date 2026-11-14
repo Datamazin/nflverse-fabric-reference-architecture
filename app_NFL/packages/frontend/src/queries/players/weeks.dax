@@ -1,0 +1,8 @@
+// Season, season type and week combinations that have passing plays.
+EVALUATE
+SUMMARIZECOLUMNS (
+    'Passing Play'[season],
+    'Passing Play'[season_type],
+    'Passing Play'[week]
+)
+ORDER BY 'Passing Play'[season] DESC, 'Passing Play'[week]

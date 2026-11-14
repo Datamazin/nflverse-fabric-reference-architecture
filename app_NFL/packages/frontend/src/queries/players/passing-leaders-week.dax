@@ -1,0 +1,44 @@
+// One row per passer for a single week of the selected season and season type.
+// Built from play rows with the same definitions as 'Player Season Summary'.
+DEFINE
+    VAR __Season = "__SEASON__"
+    VAR __SeasonType = "__SEASON_TYPE__"
+    VAR __Week = __WEEK__
+    VAR __MinVolume = __MIN_VOLUME__
+    VAR __Grouped =
+        SUMMARIZECOLUMNS (
+            'Passing Play'[passer_player_key],
+            TREATAS ( { __Season }, 'Passing Play'[season] ),
+            TREATAS ( { __SeasonType }, 'Passing Play'[season_type] ),
+            TREATAS ( { __Week }, 'Passing Play'[week] ),
+            "@Name", MAX ( 'Passing Play'[passer_player_name] ),
+            "@Pos", MAX ( 'Passing Play'[passer_position] ),
+            "@Teams", CONCATENATEX ( VALUES ( 'Passing Play'[offense_team_key] ), 'Passing Play'[offense_team_key], "/" ),
+            "@Dropbacks", SUM ( 'Passing Play'[Dropback Count] ),
+            "@Att", SUM ( 'Passing Play'[pass_attempt_count] ),
+            "@Cmp", SUM ( 'Passing Play'[Completion Count] ),
+            "@Yds", SUM ( 'Passing Play'[passing_yards] ),
+            "@TD", SUM ( 'Passing Play'[passing_touchdown_count] ),
+            "@INT", SUM ( 'Passing Play'[Interception Count] ),
+            "@EPA", SUM ( 'Passing Play'[EPA] ),
+            "@CpoeSum", SUM ( 'Passing Play'[cpoe] )
+        )
+EVALUATE
+SELECTCOLUMNS (
+    FILTER (
+        __Grouped,
+        NOT ISBLANK ( 'Passing Play'[passer_player_key] ) && [@Dropbacks] >= __MinVolume
+    ),
+    "Player", [@Name],
+    "Position", [@Pos],
+    "Team", [@Teams],
+    "Dropbacks", [@Dropbacks],
+    "Yards", [@Yds],
+    "TD", [@TD],
+    "INT", [@INT],
+    "CompPct", DIVIDE ( [@Cmp], [@Att] ),
+    "CPOE", DIVIDE ( [@CpoeSum], [@Att] ),
+    "EPA", [@EPA],
+    "EPAPerPlay", DIVIDE ( [@EPA], [@Dropbacks] )
+)
+ORDER BY [EPA] DESC

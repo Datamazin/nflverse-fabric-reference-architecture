@@ -1,0 +1,35 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Receiver efficiency: catch rate vs EPA per target, sized by targets; top 8 by total EPA labelled.",
+  "transform": [
+    {
+      "window": [{ "op": "row_number", "as": "EPARank" }],
+      "sort": [{ "field": "EPA", "order": "descending" }]
+    }
+  ],
+  "encoding": {
+    "x": { "field": "CatchRate", "type": "quantitative", "scale": { "zero": false } },
+    "y": { "field": "EPAPerPlay", "type": "quantitative", "scale": { "zero": false } }
+  },
+  "layer": [
+    {
+      "mark": { "type": "circle" },
+      "encoding": {
+        "size": { "field": "Targets", "type": "quantitative", "legend": null },
+        "tooltip": [
+          { "field": "Player", "type": "nominal" },
+          { "field": "Team", "type": "nominal" },
+          { "field": "Targets", "type": "quantitative" },
+          { "field": "CatchRate", "type": "quantitative" },
+          { "field": "EPAPerPlay", "type": "quantitative" },
+          { "field": "EPA", "type": "quantitative" }
+        ]
+      }
+    },
+    {
+      "transform": [{ "filter": "datum.EPARank <= 8" }],
+      "mark": { "type": "text", "align": "left", "baseline": "middle", "dx": 8 },
+      "encoding": { "text": { "field": "Player", "type": "nominal" } }
+    }
+  ]
+}

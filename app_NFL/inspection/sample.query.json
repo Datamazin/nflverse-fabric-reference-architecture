@@ -1,0 +1,1 @@
+{ "query": "EVALUATE TOPN(3, FILTER('Player Season Summary', 'Player Season Summary'[season] = \"2025\" && 'Player Season Summary'[season_type] = \"REG\"), 'Player Season Summary'[passing_dropbacks], DESC)" }

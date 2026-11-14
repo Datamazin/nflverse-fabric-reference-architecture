@@ -7,5 +7,9 @@
         "~/.copilot/skills": true,
         "~/.claude/skills": true,
         "~/.vscode/extensions/synapsevscode.synapse-1.25.0/copilot/skills": true
+    },
+    "python.analysis.stubPath": "..\\..\\..\\Users\\metsy\\dev\\development\\active-projects\\mlb-data-db-fabric\\.stubs\\pyspark34",
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportMissingModuleSource": "none"
     }
 }

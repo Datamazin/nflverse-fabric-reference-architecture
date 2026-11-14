@@ -1,0 +1,1 @@
+{ "query": "EVALUATE SELECTCOLUMNS(FILTER(INFO.VIEW.COLUMNS(), [Table] IN {\"Player\", \"Player Season Summary\", \"Season Week\", \"Team\"} && NOT [IsHidden]), \"T\", [Table], \"C\", [Name], \"Type\", [DataType])" }
