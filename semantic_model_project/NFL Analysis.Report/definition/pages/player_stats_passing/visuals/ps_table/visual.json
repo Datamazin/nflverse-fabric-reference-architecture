@@ -1,0 +1,425 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "ps_table",
+  "position": {
+    "x": 16,
+    "y": 212,
+    "z": 10,
+    "height": 492,
+    "width": 1248,
+    "tabOrder": 20
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Player Season Summary"
+                    }
+                  },
+                  "Property": "player_name"
+                }
+              },
+              "queryRef": "Player Season Summary.player_name",
+              "nativeQueryRef": "Player",
+              "displayName": "Player"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Team"
+                    }
+                  },
+                  "Property": "Team Code"
+                }
+              },
+              "queryRef": "Team.Team Code",
+              "nativeQueryRef": "Team",
+              "displayName": "Team"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Player Season Summary"
+                    }
+                  },
+                  "Property": "position"
+                }
+              },
+              "queryRef": "Player Season Summary.position",
+              "nativeQueryRef": "Pos",
+              "displayName": "Pos"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calculations"
+                    }
+                  },
+                  "Property": "Passing Yards"
+                }
+              },
+              "queryRef": "Calculations.Passing Yards",
+              "nativeQueryRef": "Pass Yds",
+              "displayName": "Pass Yds"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calculations"
+                    }
+                  },
+                  "Property": "Pass Attempts"
+                }
+              },
+              "queryRef": "Calculations.Pass Attempts",
+              "nativeQueryRef": "Att",
+              "displayName": "Att"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calculations"
+                    }
+                  },
+                  "Property": "Completions"
+                }
+              },
+              "queryRef": "Calculations.Completions",
+              "nativeQueryRef": "Cmp",
+              "displayName": "Cmp"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calculations"
+                    }
+                  },
+                  "Property": "Completion Percentage"
+                }
+              },
+              "queryRef": "Calculations.Completion Percentage",
+              "nativeQueryRef": "Cmp %",
+              "displayName": "Cmp %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calculations"
+                    }
+                  },
+                  "Property": "Passing TDs"
+                }
+              },
+              "queryRef": "Calculations.Passing TDs",
+              "nativeQueryRef": "TD",
+              "displayName": "TD"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calculations"
+                    }
+                  },
+                  "Property": "Interceptions Thrown"
+                }
+              },
+              "queryRef": "Calculations.Interceptions Thrown",
+              "nativeQueryRef": "INT",
+              "displayName": "INT"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calculations"
+                    }
+                  },
+                  "Property": "TD to INT Ratio"
+                }
+              },
+              "queryRef": "Calculations.TD to INT Ratio",
+              "nativeQueryRef": "TD:INT",
+              "displayName": "TD:INT"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Player Season Summary"
+                        }
+                      },
+                      "Property": "sacks_taken"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Player Season Summary.sacks_taken)",
+              "nativeQueryRef": "Sck",
+              "displayName": "Sck"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calculations"
+                    }
+                  },
+                  "Property": "Deep Attempts"
+                }
+              },
+              "queryRef": "Calculations.Deep Attempts",
+              "nativeQueryRef": "Deep Att",
+              "displayName": "Deep Att"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calculations"
+                    }
+                  },
+                  "Property": "Deep Completion Percentage"
+                }
+              },
+              "queryRef": "Calculations.Deep Completion Percentage",
+              "nativeQueryRef": "Deep Cmp %",
+              "displayName": "Deep Cmp %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calculations"
+                    }
+                  },
+                  "Property": "Average CPOE"
+                }
+              },
+              "queryRef": "Calculations.Average CPOE",
+              "nativeQueryRef": "CPOE",
+              "displayName": "CPOE"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calculations"
+                    }
+                  },
+                  "Property": "Passing EPA"
+                }
+              },
+              "queryRef": "Calculations.Passing EPA",
+              "nativeQueryRef": "EPA",
+              "displayName": "EPA"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calculations"
+                    }
+                  },
+                  "Property": "Passing EPA per Dropback"
+                }
+              },
+              "queryRef": "Calculations.Passing EPA per Dropback",
+              "nativeQueryRef": "EPA/Db",
+              "displayName": "EPA/Db"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Calculations"
+                  }
+                },
+                "Property": "Passing Yards"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#013369'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Passing leaders'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "ps_table_volume",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Calculations"
+              }
+            },
+            "Property": "Passing Yards"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "c",
+              "Entity": "Calculations",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Comparison": {
+                  "ComparisonKind": 1,
+                  "Left": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "c"
+                        }
+                      },
+                      "Property": "Passing Yards"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "0D"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
+  }
+}

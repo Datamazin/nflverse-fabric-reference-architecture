@@ -1,0 +1,390 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "ps_table",
+  "position": {
+    "x": 16,
+    "y": 212,
+    "z": 10,
+    "height": 492,
+    "width": 1248,
+    "tabOrder": 20
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Player Season Summary"
+                    }
+                  },
+                  "Property": "player_name"
+                }
+              },
+              "queryRef": "Player Season Summary.player_name",
+              "nativeQueryRef": "Player",
+              "displayName": "Player"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Team"
+                    }
+                  },
+                  "Property": "Team Code"
+                }
+              },
+              "queryRef": "Team.Team Code",
+              "nativeQueryRef": "Team",
+              "displayName": "Team"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Player Season Summary"
+                    }
+                  },
+                  "Property": "position"
+                }
+              },
+              "queryRef": "Player Season Summary.position",
+              "nativeQueryRef": "Pos",
+              "displayName": "Pos"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calculations"
+                    }
+                  },
+                  "Property": "Rushing Yards"
+                }
+              },
+              "queryRef": "Calculations.Rushing Yards",
+              "nativeQueryRef": "Rush Yds",
+              "displayName": "Rush Yds"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calculations"
+                    }
+                  },
+                  "Property": "Rushing Attempts"
+                }
+              },
+              "queryRef": "Calculations.Rushing Attempts",
+              "nativeQueryRef": "Att",
+              "displayName": "Att"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calculations"
+                    }
+                  },
+                  "Property": "Rushing TDs"
+                }
+              },
+              "queryRef": "Calculations.Rushing TDs",
+              "nativeQueryRef": "TD",
+              "displayName": "TD"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calculations"
+                    }
+                  },
+                  "Property": "Explosive Rushes"
+                }
+              },
+              "queryRef": "Calculations.Explosive Rushes",
+              "nativeQueryRef": "Explosive",
+              "displayName": "Explosive"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calculations"
+                    }
+                  },
+                  "Property": "Explosive Rush Rate"
+                }
+              },
+              "queryRef": "Calculations.Explosive Rush Rate",
+              "nativeQueryRef": "Explosive %",
+              "displayName": "Explosive %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calculations"
+                    }
+                  },
+                  "Property": "Stuffed Rushes"
+                }
+              },
+              "queryRef": "Calculations.Stuffed Rushes",
+              "nativeQueryRef": "Stuffed",
+              "displayName": "Stuffed"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calculations"
+                    }
+                  },
+                  "Property": "Stuff Rate"
+                }
+              },
+              "queryRef": "Calculations.Stuff Rate",
+              "nativeQueryRef": "Stuff %",
+              "displayName": "Stuff %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calculations"
+                    }
+                  },
+                  "Property": "Rush Conversions"
+                }
+              },
+              "queryRef": "Calculations.Rush Conversions",
+              "nativeQueryRef": "Conv",
+              "displayName": "Conv"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calculations"
+                    }
+                  },
+                  "Property": "Rush Conversion Rate"
+                }
+              },
+              "queryRef": "Calculations.Rush Conversion Rate",
+              "nativeQueryRef": "Conv %",
+              "displayName": "Conv %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calculations"
+                    }
+                  },
+                  "Property": "Rushing EPA"
+                }
+              },
+              "queryRef": "Calculations.Rushing EPA",
+              "nativeQueryRef": "EPA",
+              "displayName": "EPA"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calculations"
+                    }
+                  },
+                  "Property": "Rushing EPA per Play"
+                }
+              },
+              "queryRef": "Calculations.Rushing EPA per Play",
+              "nativeQueryRef": "EPA/Rush",
+              "displayName": "EPA/Rush"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Calculations"
+                  }
+                },
+                "Property": "Rushing Yards"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#013369'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Rushing leaders'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "ps_table_volume",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Calculations"
+              }
+            },
+            "Property": "Rushing Yards"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "c",
+              "Entity": "Calculations",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Comparison": {
+                  "ComparisonKind": 1,
+                  "Left": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "c"
+                        }
+                      },
+                      "Property": "Rushing Yards"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "0D"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
+  }
+}
