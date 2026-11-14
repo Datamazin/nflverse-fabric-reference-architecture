@@ -45,7 +45,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'PLAYER STATS  \u203a'"
+                  "Value": "'PLAYER STATS  ›'"
                 }
               }
             },

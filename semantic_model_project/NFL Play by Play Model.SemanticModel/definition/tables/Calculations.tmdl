@@ -472,10 +472,9 @@ table Calculations
 	measure 'Passing Yards' =
 			
 			SUM ( 'Player Season Summary'[passing_yards] )
+		formatString: #,0
 		displayFolder: Passing
 		lineageTag: 08f54d42-70cd-4568-977f-028e59cfc873
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Passing TDs' =
 			
@@ -607,10 +606,9 @@ table Calculations
 	measure 'Rushing Yards' =
 			
 			SUM ( 'Player Season Summary'[rushing_yards] )
+		formatString: #,0
 		displayFolder: Rushing
 		lineageTag: 5f9c7523-25ff-4154-b01f-3dc3ea1a464a
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Rushing TDs' =
 			
@@ -705,10 +703,9 @@ table Calculations
 	measure 'Receiving Yards' =
 			
 			SUM ( 'Player Season Summary'[receiving_yards] )
+		formatString: #,0
 		displayFolder: Receiving
 		lineageTag: 81980f87-640d-4c8c-91e6-29e1fe5068f9
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Receiving EPA' =
 			
@@ -729,10 +726,9 @@ table Calculations
 	measure 'Yards After Catch' =
 			
 			SUM ( 'Player Season Summary'[yards_after_catch] )
+		formatString: #,0
 		displayFolder: Receiving
 		lineageTag: ac20b2eb-846b-41b0-860f-3187c2663cb0
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'YAC per Reception' =
 			
@@ -761,18 +757,16 @@ table Calculations
 	measure 'Defensive Sacks' =
 			
 			SUM ( 'Player Season Summary'[sacks_defense] )
+		formatString: #,0.0
 		displayFolder: Defensive Player Stats
 		lineageTag: 84744c21-565d-482f-8692-8eb2a02b4426
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Defensive QB Hits' =
 			
 			SUM ( 'Player Season Summary'[qb_hits_defense] )
+		formatString: #,0
 		displayFolder: Defensive Player Stats
 		lineageTag: 0482cc96-a47d-4490-abdc-f5214386834f
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Penalty Count' =
 			

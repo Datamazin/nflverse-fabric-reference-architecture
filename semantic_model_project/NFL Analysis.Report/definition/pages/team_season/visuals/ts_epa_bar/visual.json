@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "ts_epa_bar",
   "position": {
     "x": 792,
@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "Team.Team Code",
-              "nativeQueryRef": "Team Code"
+              "nativeQueryRef": "Team Code",
+              "active": true
             }
           ]
         },
