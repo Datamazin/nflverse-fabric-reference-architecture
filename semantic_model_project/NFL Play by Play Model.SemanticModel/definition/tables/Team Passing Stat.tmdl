@@ -1,0 +1,49 @@
+table 'Team Passing Stat'
+	lineageTag: cc7f4344-d97a-4c96-a0c6-c1012b975b18
+
+	column 'Team Passing Stat Order'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 23a4f38c-8698-495c-9781-d44965761bb5
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+	column 'Team Passing Stat Fields'
+		dataType: string
+		isHidden
+		lineageTag: cbc85d2a-1f49-446e-b6d5-cd6111422825
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Team Passing Stat Order'
+
+		extendedProperty ParameterMetadata = {"version":3,"kind":2}
+
+	column 'Team Passing Stat'
+		dataType: string
+		lineageTag: 25b4cba9-c5b3-4c4d-9af4-4ca4ac6ea21e
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Team Passing Stat Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Team Passing Stat Fields'
+
+	partition 'Team Passing Stat' = calculated
+		mode: import
+		source =
+				{
+				    ("Passing Yards", NAMEOF('Calculations'[Passing Yards]), 0),
+				    ("Pass Attempts", NAMEOF('Calculations'[Pass Attempts]), 1),
+				    ("Completions", NAMEOF('Calculations'[Completions]), 2),
+				    ("Completion %", NAMEOF('Calculations'[Completion Percentage]), 3),
+				    ("Passing TDs", NAMEOF('Calculations'[Passing TDs]), 4),
+				    ("Interceptions", NAMEOF('Calculations'[Interceptions Thrown]), 5),
+				    ("TD to INT Ratio", NAMEOF('Calculations'[TD to INT Ratio]), 6),
+				    ("Sacks Taken", NAMEOF('Calculations'[Sacks Taken]), 7),
+				    ("Deep Attempts", NAMEOF('Calculations'[Deep Attempts]), 8),
+				    ("Deep Completion %", NAMEOF('Calculations'[Deep Completion Percentage]), 9),
+				    ("Passing EPA", NAMEOF('Calculations'[Passing EPA]), 10),
+				    ("EPA per Dropback", NAMEOF('Calculations'[Passing EPA per Dropback]), 11)
+				}
+

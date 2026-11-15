@@ -28,7 +28,8 @@
               },
               "queryRef": "Team.Team Code",
               "nativeQueryRef": "Team Code",
-              "active": true
+              "active": true,
+              "displayName": "Team"
             }
           ]
         },
@@ -135,6 +136,13 @@
                       "Value": "'#252423'"
                     }
                   }
+                }
+              }
+            },
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
                 }
               }
             }

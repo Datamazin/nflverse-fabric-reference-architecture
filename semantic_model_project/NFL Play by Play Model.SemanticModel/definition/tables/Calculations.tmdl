@@ -507,37 +507,38 @@ table Calculations
 		displayFolder: Passing
 		lineageTag: 70a266a0-1159-43f7-bc35-4a748514cfbc
 
+	measure 'Sacks Taken' = SUM ( 'Player Season Summary'[sacks_taken] )
+		formatString: 0
+		displayFolder: Passing
+		lineageTag: f2774934-f661-4585-b856-31ed1922c960
+
 	measure 'TD to INT Ratio' =
 			
 			DIVIDE ( [Passing TDs], [Interceptions Thrown] )
+		formatString: 0.00
 		displayFolder: Passing
 		lineageTag: 70b82184-7315-4382-aa63-4f8118964c2d
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Passing EPA' =
 			
 			SUM ( 'Player Season Summary'[passing_epa] )
+		formatString: 0.00
 		displayFolder: Passing
 		lineageTag: c606c960-36eb-4e21-87a9-7539f3af6f35
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Passing EPA per Dropback' =
 			
 			DIVIDE ( [Passing EPA], [Passing Dropbacks] )
+		formatString: 0.00
 		displayFolder: Passing
 		lineageTag: e1d422aa-bd49-404d-bb47-8be12b3eb385
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Average CPOE' =
 			
 			AVERAGE ( 'Player Season Summary'[avg_cpoe] )
+		formatString: 0.00
 		displayFolder: Passing
 		lineageTag: 2a1fcaf3-b84f-4877-9d8f-55d2d7980979
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Deep Attempts' =
 			
@@ -636,18 +637,16 @@ table Calculations
 	measure 'Rushing EPA' =
 			
 			SUM ( 'Player Season Summary'[rushing_epa] )
+		formatString: 0.00
 		displayFolder: Rushing
 		lineageTag: e493096d-94d6-4e9b-80b9-cf02755ed77b
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Rushing EPA per Play' =
 			
 			DIVIDE ( [Rushing EPA], [Rushing Attempts] )
+		formatString: 0.00
 		displayFolder: Rushing
 		lineageTag: 083cb5de-cf1d-414d-9f7e-3bbb60a74d43
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Stuffed Rushes' =
 			
@@ -722,18 +721,16 @@ table Calculations
 	measure 'Receiving EPA' =
 			
 			SUM ( 'Player Season Summary'[receiving_epa] )
+		formatString: 0.00
 		displayFolder: Receiving
 		lineageTag: 9f13f33a-f74b-4b84-855a-f6dfd9de9ea0
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Receiving EPA per Target' =
 			
 			DIVIDE ( [Receiving EPA], [Targets] )
+		formatString: 0.00
 		displayFolder: Receiving
 		lineageTag: 4341e2d2-21e9-4056-a06b-13890a91fdff
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Yards After Catch' =
 			
@@ -745,18 +742,16 @@ table Calculations
 	measure 'YAC per Reception' =
 			
 			DIVIDE ( [Yards After Catch], [Receptions] )
+		formatString: 0.00
 		displayFolder: Receiving
 		lineageTag: f150a5e8-cb93-4f67-96e1-16281e0331f5
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'YAC EPA' =
 			
 			SUM ( 'Player Season Summary'[yac_epa] )
+		formatString: 0.00
 		displayFolder: Receiving
 		lineageTag: bad010f6-69a8-4ecb-9718-431a1c57263d
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'YAC EPA per Reception' =
 			

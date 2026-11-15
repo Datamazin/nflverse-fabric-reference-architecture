@@ -1,0 +1,48 @@
+table 'Rushing Stat'
+	lineageTag: afc50d32-56ec-48a3-9c88-c861993cb9cd
+
+	column 'Rushing Stat Order'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 388591e5-be11-4929-ba93-a7142bdbcacd
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+	column 'Rushing Stat Fields'
+		dataType: string
+		isHidden
+		lineageTag: 9222aedf-eb29-4023-9c93-098e92fa1626
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Rushing Stat Order'
+
+		extendedProperty ParameterMetadata = {"version":3,"kind":2}
+
+	column 'Rushing Stat'
+		dataType: string
+		lineageTag: 22cb6aff-69d4-499d-868b-5933a9c69a01
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Rushing Stat Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Rushing Stat Fields'
+
+	partition 'Rushing Stat' = calculated
+		mode: import
+		source =
+				{
+				    ("Rushing Yards", NAMEOF('Calculations'[Rushing Yards]), 0),
+				    ("Rushing Attempts", NAMEOF('Calculations'[Rushing Attempts]), 1),
+				    ("Rushing TDs", NAMEOF('Calculations'[Rushing TDs]), 2),
+				    ("Explosive Rushes", NAMEOF('Calculations'[Explosive Rushes]), 3),
+				    ("Explosive Rush %", NAMEOF('Calculations'[Explosive Rush Rate]), 4),
+				    ("Stuffed Rushes", NAMEOF('Calculations'[Stuffed Rushes]), 5),
+				    ("Stuff %", NAMEOF('Calculations'[Stuff Rate]), 6),
+				    ("Rush Conversions", NAMEOF('Calculations'[Rush Conversions]), 7),
+				    ("Rush Conversion %", NAMEOF('Calculations'[Rush Conversion Rate]), 8),
+				    ("Rushing EPA", NAMEOF('Calculations'[Rushing EPA]), 9),
+				    ("EPA per Rush", NAMEOF('Calculations'[Rushing EPA per Play]), 10)
+				}
+

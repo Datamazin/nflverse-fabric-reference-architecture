@@ -1,0 +1,39 @@
+table 'Defense Stat'
+	lineageTag: f9b17aff-f8c6-4ed9-a446-a566e4615f22
+
+	column 'Defense Stat Order'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: a37c51ad-7c47-472a-b540-f0990da72969
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+	column 'Defense Stat Fields'
+		dataType: string
+		isHidden
+		lineageTag: 392c5c44-4242-4b23-8dab-2fa14b982832
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Defense Stat Order'
+
+		extendedProperty ParameterMetadata = {"version":3,"kind":2}
+
+	column 'Defense Stat'
+		dataType: string
+		lineageTag: d87957a3-3ed9-4f4c-b197-ae62ca1c81ff
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Defense Stat Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Defense Stat Fields'
+
+	partition 'Defense Stat' = calculated
+		mode: import
+		source =
+				{
+				    ("Sacks", NAMEOF('Calculations'[Defensive Sacks]), 0),
+				    ("QB Hits", NAMEOF('Calculations'[Defensive QB Hits]), 1)
+				}
+

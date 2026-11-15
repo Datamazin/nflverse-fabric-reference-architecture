@@ -31,6 +31,12 @@ ref table 'Special Teams Play'
 ref table 'Team Play'
 ref table Calculations
 ref table 'Standings Stat'
+ref table 'Passing Stat'
+ref table 'Team Passing Stat'
+ref table 'Rushing Stat'
+ref table 'Receiving Stat'
+ref table 'Defense Stat'
+ref table 'Field Goal Stat'
 
 ref cultureInfo en-US
 

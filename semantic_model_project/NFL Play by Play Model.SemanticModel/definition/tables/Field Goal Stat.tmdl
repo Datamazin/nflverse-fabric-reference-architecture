@@ -1,0 +1,40 @@
+table 'Field Goal Stat'
+	lineageTag: 2e74b706-930f-4cc2-ac2a-a0a448977a0b
+
+	column 'Field Goal Stat Order'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 9ed90eac-a252-4d01-bcff-e79421dbdfdb
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+	column 'Field Goal Stat Fields'
+		dataType: string
+		isHidden
+		lineageTag: 2bc056f4-d2ed-4d54-b345-79ddda7d82c8
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Field Goal Stat Order'
+
+		extendedProperty ParameterMetadata = {"version":3,"kind":2}
+
+	column 'Field Goal Stat'
+		dataType: string
+		lineageTag: 0ea05aa4-bfc1-460f-9b43-cef33c6d0124
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Field Goal Stat Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Field Goal Stat Fields'
+
+	partition 'Field Goal Stat' = calculated
+		mode: import
+		source =
+				{
+				    ("Field Goals Made", NAMEOF('Calculations'[Field Goals Made]), 0),
+				    ("Field Goal Attempts", NAMEOF('Calculations'[Field Goal Attempts]), 1),
+				    ("Field Goal %", NAMEOF('Calculations'[Field Goal Make Rate]), 2)
+				}
+

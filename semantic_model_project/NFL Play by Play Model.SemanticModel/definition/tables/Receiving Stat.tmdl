@@ -1,0 +1,46 @@
+table 'Receiving Stat'
+	lineageTag: 75d554aa-f5ed-4045-af5b-e4b084e67346
+
+	column 'Receiving Stat Order'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: cb27c367-578b-4778-a746-bbcd4fc10c48
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+	column 'Receiving Stat Fields'
+		dataType: string
+		isHidden
+		lineageTag: 2526c294-4a4b-4cbc-93f2-96f935952def
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Receiving Stat Order'
+
+		extendedProperty ParameterMetadata = {"version":3,"kind":2}
+
+	column 'Receiving Stat'
+		dataType: string
+		lineageTag: 1a972ddc-f35e-46f8-bf5d-368bd57538c0
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Receiving Stat Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Receiving Stat Fields'
+
+	partition 'Receiving Stat' = calculated
+		mode: import
+		source =
+				{
+				    ("Receiving Yards", NAMEOF('Calculations'[Receiving Yards]), 0),
+				    ("Receptions", NAMEOF('Calculations'[Receptions]), 1),
+				    ("Targets", NAMEOF('Calculations'[Targets]), 2),
+				    ("Catch %", NAMEOF('Calculations'[Catch Rate]), 3),
+				    ("Yards After Catch", NAMEOF('Calculations'[Yards After Catch]), 4),
+				    ("YAC per Reception", NAMEOF('Calculations'[YAC per Reception]), 5),
+				    ("Receiving EPA", NAMEOF('Calculations'[Receiving EPA]), 6),
+				    ("EPA per Target", NAMEOF('Calculations'[Receiving EPA per Target]), 7),
+				    ("YAC EPA", NAMEOF('Calculations'[YAC EPA]), 8)
+				}
+
