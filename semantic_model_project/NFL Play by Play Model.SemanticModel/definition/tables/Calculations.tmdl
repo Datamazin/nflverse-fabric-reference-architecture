@@ -464,10 +464,9 @@ table Calculations
 	measure 'Completion Percentage' =
 			
 			DIVIDE ( [Completions], [Pass Attempts] )
+		formatString: 0.0%
 		displayFolder: Passing
 		lineageTag: e686a23a-06fe-4078-9f1f-dbf38dc5397a
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Passing Yards' =
 			
@@ -539,10 +538,9 @@ table Calculations
 	measure 'Deep Completion Percentage' =
 			
 			DIVIDE ( [Deep Completions], [Deep Attempts] )
+		formatString: 0.0%
 		displayFolder: Passing
 		lineageTag: 1ce3e153-fbb2-45be-9ecc-357ba4935c44
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Deep Average CPOE' =
 			
@@ -643,10 +641,9 @@ table Calculations
 	measure 'Stuff Rate' =
 			
 			DIVIDE ( [Stuffed Rushes], [Rushing Attempts] )
+		formatString: 0.0%
 		displayFolder: Rushing
 		lineageTag: 49474204-dcf0-4f20-ba90-80aef13f1f43
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Explosive Rushes' =
 			
@@ -658,10 +655,9 @@ table Calculations
 	measure 'Explosive Rush Rate' =
 			
 			DIVIDE ( [Explosive Rushes], [Rushing Attempts] )
+		formatString: 0.0%
 		displayFolder: Rushing
 		lineageTag: a5d476e9-75d3-448f-a461-133dd218d9fd
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Rush Conversions' =
 			
@@ -673,10 +669,9 @@ table Calculations
 	measure 'Rush Conversion Rate' =
 			
 			DIVIDE ( [Rush Conversions], [Rushing Attempts] )
+		formatString: 0.0%
 		displayFolder: Rushing
 		lineageTag: 3b369e75-70f9-48f4-8252-d4ed521f82f9
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure Targets =
 			
@@ -695,10 +690,9 @@ table Calculations
 	measure 'Catch Rate' =
 			
 			DIVIDE ( [Receptions], [Targets] )
+		formatString: 0.0%
 		displayFolder: Receiving
 		lineageTag: d2c12f1f-7201-4251-9c2d-cec53d849ec2
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Receiving Yards' =
 			
@@ -800,10 +794,9 @@ table Calculations
 	measure 'Field Goal Make Rate' =
 			
 			DIVIDE ( [Field Goals Made], [Field Goal Attempts] )
+		formatString: 0.0%
 		displayFolder: Field Goals
 		lineageTag: 84b12eff-6763-4461-b40c-d6d4f9da905f
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Average Away Points' =
 			
