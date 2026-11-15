@@ -58,6 +58,24 @@ table Calculations
 		displayFolder: Team Record
 		lineageTag: b62a2d05-0f89-43e9-966b-0b1e0e3bc30a
 
+	/// Offensive EPA per play from Team Season Summary, so it follows the Team Season Summary season filters used on the Standings page.
+	measure 'Season Offensive EPA per Play' = DIVIDE ( SUM ( 'Team Season Summary'[offensive_epa] ), SUM ( 'Team Season Summary'[offensive_plays] ) )
+		formatString: 0.00
+		displayFolder: Team Record
+		lineageTag: a8bc4d3f-ada0-4836-88b8-f6fefbe523be
+
+	/// Defensive EPA allowed per play from Team Season Summary.
+	measure 'Season Defensive EPA Allowed per Play' = DIVIDE ( SUM ( 'Team Season Summary'[defensive_epa_allowed] ), SUM ( 'Team Season Summary'[defensive_plays] ) )
+		formatString: 0.00
+		displayFolder: Team Record
+		lineageTag: 238691c5-eed1-4bab-8f64-6dc65136ff0a
+
+	/// Offensive success rate from Team Season Summary.
+	measure 'Season Success Rate' = DIVIDE ( SUM ( 'Team Season Summary'[successful_plays] ), SUM ( 'Team Season Summary'[offensive_plays] ) )
+		formatString: 0.0%
+		displayFolder: Team Record
+		lineageTag: e1dd91c8-6c85-450a-a6dc-86ad161fed5a
+
 	measure 'Play Count' =
 			
 			SUM ( 'Team Play'[play_count] )

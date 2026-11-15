@@ -30,6 +30,7 @@ ref table 'Rushing Play'
 ref table 'Special Teams Play'
 ref table 'Team Play'
 ref table Calculations
+ref table 'Standings Stat'
 
 ref cultureInfo en-US
 

@@ -1,0 +1,46 @@
+table 'Standings Stat'
+	lineageTag: 28a81a31-12d5-4ab5-93f6-1bc4fe4432c0
+
+	column 'Standings Stat Order'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: a4bcbd7e-2710-419c-a80a-92125f9c4503
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+	column 'Standings Stat Fields'
+		dataType: string
+		isHidden
+		lineageTag: d70a8066-e172-444b-af5c-bccafb1b462b
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Standings Stat Order'
+
+		extendedProperty ParameterMetadata = {"version":3,"kind":2}
+
+	column 'Standings Stat'
+		dataType: string
+		lineageTag: 47d3d390-7def-4871-8960-db9a25c40d2a
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Standings Stat Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Standings Stat Fields'
+
+	partition 'Standings Stat' = calculated
+		mode: import
+		source =
+				{
+				    ("Wins", NAMEOF('Calculations'[Wins]), 0),
+				    ("Losses", NAMEOF('Calculations'[Losses]), 1),
+				    ("Ties", NAMEOF('Calculations'[Ties]), 2),
+				    ("Points For", NAMEOF('Calculations'[Points For]), 3),
+				    ("Points Against", NAMEOF('Calculations'[Points Against]), 4),
+				    ("Point Differential", NAMEOF('Calculations'[Point Differential]), 5),
+				    ("Offensive EPA per play", NAMEOF('Calculations'[Season Offensive EPA per Play]), 6),
+				    ("Defensive EPA allowed per play", NAMEOF('Calculations'[Season Defensive EPA Allowed per Play]), 7),
+				    ("Success rate", NAMEOF('Calculations'[Season Success Rate]), 8)
+				}
+

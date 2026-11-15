@@ -36,23 +36,33 @@
           "projections": [
             {
               "field": {
-                "Aggregation": {
+                "Measure": {
                   "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Team Season Summary"
-                        }
-                      },
-                      "Property": "offensive_epa_per_play"
+                    "SourceRef": {
+                      "Entity": "Calculations"
                     }
                   },
-                  "Function": 1
+                  "Property": "Season Offensive EPA per Play"
                 }
               },
-              "queryRef": "Avg(Team Season Summary.offensive_epa_per_play)",
-              "nativeQueryRef": "Off EPA/play",
-              "displayName": "Off EPA/play"
+              "queryRef": "Calculations.Season Offensive EPA per Play",
+              "nativeQueryRef": "Season Offensive EPA per Play"
+            }
+          ],
+          "fieldParameters": [
+            {
+              "parameterExpr": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Standings Stat"
+                    }
+                  },
+                  "Property": "Standings Stat"
+                }
+              },
+              "index": 0,
+              "length": 1
             }
           ]
         }
@@ -61,18 +71,13 @@
         "sort": [
           {
             "field": {
-              "Aggregation": {
+              "Measure": {
                 "Expression": {
-                  "Column": {
-                    "Expression": {
-                      "SourceRef": {
-                        "Entity": "Team Season Summary"
-                      }
-                    },
-                    "Property": "offensive_epa_per_play"
+                  "SourceRef": {
+                    "Entity": "Calculations"
                   }
                 },
-                "Function": 1
+                "Property": "Season Offensive EPA per Play"
               }
             },
             "direction": "Descending"
@@ -95,7 +100,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Offensive EPA per play'"
+                  "Value": "'Team comparison'"
                 }
               }
             }
@@ -103,6 +108,39 @@
         }
       ]
     },
-    "drillFilterOtherVisuals": true
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "9D"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#252423'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
   }
 }
