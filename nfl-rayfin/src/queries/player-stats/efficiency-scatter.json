@@ -1,0 +1,16 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+    "description": "Volume (ranked stat) against efficiency for the leaderboard players.",
+    "mark": "circle",
+    "encoding": {
+        "x": { "field": "Primary", "type": "quantitative", "scale": { "zero": false } },
+        "y": { "field": "Efficiency", "type": "quantitative", "scale": { "zero": false } },
+        "tooltip": [
+            { "field": "Player", "type": "nominal" },
+            { "field": "Team", "type": "nominal" },
+            { "field": "Position", "type": "nominal" },
+            { "field": "Primary", "type": "quantitative" },
+            { "field": "Efficiency", "type": "quantitative" }
+        ]
+    }
+}

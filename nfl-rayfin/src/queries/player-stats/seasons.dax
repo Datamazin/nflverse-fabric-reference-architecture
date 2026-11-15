@@ -1,0 +1,7 @@
+EVALUATE
+SUMMARIZE (
+    'Player Season Summary',
+    'Player Season Summary'[season],
+    'Player Season Summary'[season_type]
+)
+ORDER BY 'Player Season Summary'[season] DESC, 'Player Season Summary'[season_type] DESC

@@ -1,0 +1,223 @@
+@layer fabric-visual-tokens, theme, base, fabric-visuals, components, utilities;
+
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+/* These tokens are consumed directly as CSS variables, so emit them
+   even when no Tailwind utility references them. */
+@theme static {
+  --grid-gap: calc(var(--spacing) * 4);
+  --radius-scale: 1;
+  --color-brand:            #0b2a5b;  /* branded surfaces: scoreboard navy */
+  --color-brand-foreground: #0b3c87;  /* brand-colored content on standard surfaces */
+  --color-signal:           #c8102e;  /* signal red: active tab rule, live accents */
+  --color-turf:             #0f5132;  /* header band stripe base */
+  --color-hover:            rgba(11, 42, 91, 0.06);  /* row/cell hover surface in DataGrid + visuals */
+  --color-emphasis-foreground: #0d1b33;  /* page and visual titles, KPI values */
+
+  /* Categorical data palette (each >= 3:1 on the light card, alternating contrast) */
+  --color-data-1:  #0b3c87;
+  --color-data-2:  #c8102e;
+  --color-data-3:  #1f7a4d;
+  --color-data-4:  #b5650d;
+  --color-data-5:  #5b3fa0;
+  --color-data-6:  #0a7894;
+  --color-data-7:  #8a4b2d;
+  --color-data-8:  #a3195b;
+  --color-data-9:  #4d5b70;
+  --color-data-10: #3f7a00;
+  --font-page-title: var(--font-heading);
+  --font-page-subtitle: var(--font-base);
+  --font-visual-title: var(--font-heading);
+  --font-visual-subtitle: var(--font-base);
+  --font-data-label: var(--font-base);
+  --text-page-title: var(--text-hero-800);
+  --text-page-title--font-weight: var(--font-weight-bold);
+  --text-page-subtitle: var(--text-300);
+  --text-page-subtitle--font-weight: var(--font-weight-regular);
+  --text-visual-title: var(--text-400);
+  --text-visual-title--font-weight: var(--font-weight-bold);
+  --text-visual-subtitle: var(--text-300);
+  --text-visual-subtitle--font-weight: var(--font-weight-regular);
+  --text-data-label: 11px;
+  --text-data-label--font-weight: var(--font-weight-regular);
+  --text-kpi-value: var(--text-600);
+  --text-kpi-value--font-weight: var(--font-weight-bold);
+}
+
+@theme {
+  /* Color tokens — light theme
+     Usage: bg-*, text-*, border-* (e.g. bg-brand text-on-brand). */
+  --color-background: #eef1f6;                                       /* page background */
+  --color-foreground: #17223a;                                       /* default text */
+
+  --color-card: #ffffff;                                             /* card and elevated surfaces */
+
+  --color-on-brand: #ffffff;                                         /* text/icons on brand surfaces */
+
+  --color-muted: #e3e8f0;                                            /* subtle backgrounds */
+  --color-muted-foreground: #55617a;                                 /* subdued text */
+
+  --color-accent: #f3f5f9;                                           /* accent highlights */
+
+  --color-destructive: #b10e1c;                                      /* errors & destructive actions */
+  --color-destructive-foreground: #ffffff;
+
+  --color-success: #0e700e;                                          /* success surfaces */
+  --color-success-foreground: #ffffff;
+
+  --color-border: #d5dbe5;                                           /* default border */
+  --color-ring: #c8102e;                                             /* focus rings */
+
+  --shadow-container-2:  var(--shadow-xs);
+  --shadow-container-4:  var(--shadow-sm);
+  --shadow-container-8:  var(--shadow-md);
+  --shadow-container-16: var(--shadow-lg);
+
+  --radius-none: 0;
+  --radius-sm: calc(2px * var(--radius-scale));
+  --radius-md: calc(4px * var(--radius-scale));
+  --radius-lg: calc(6px * var(--radius-scale));
+  --radius-xl: calc(8px * var(--radius-scale));
+  --radius-2xl: calc(12px * var(--radius-scale));
+  --radius-3xl: calc(16px * var(--radius-scale));
+  --radius-4xl: calc(24px * var(--radius-scale));
+  --radius-5xl: calc(32px * var(--radius-scale));
+  --radius-6xl: calc(40px * var(--radius-scale));
+  --radius-full: calc(9999px * var(--radius-scale));
+  --radius: calc(4px * var(--radius-scale));
+
+  /* Spacing base unit
+     Usage: p-*, m-*, gap-* (e.g. p-4 gap-3) */
+  --spacing: 4px;
+
+  /* Font Sizes — 100-based scale 
+     Usage: text-* (e.g. text-300, text-hero-900) */
+  --text-100: 10px;
+  --text-200: 12px;
+  --text-300: 14px;
+  --text-400: 16px;
+  --text-500: 20px;
+  --text-600: 24px;
+  --text-hero-700: 28px;
+  --text-hero-800: 32px;
+  --text-hero-900: 40px;
+  --text-hero-1000: 68px;
+
+  /* Line Heights — paired with font sizes
+     Usage: leading-* (e.g. leading-300) */
+  --leading-100: 14px;
+  --leading-200: 16px;
+  --leading-300: 20px;
+  --leading-400: 22px;
+  --leading-500: 28px;
+  --leading-600: 32px;
+  --leading-hero-700: 36px;
+  --leading-hero-800: 40px;
+  --leading-hero-900: 52px;
+  --leading-hero-1000: 92px;
+
+  /* Font Weights
+     Usage: font-* (e.g. font-semibold) */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Font Families
+     Usage: font-* (e.g. font-heading, font-base) */
+  --font-heading: 'Barlow Condensed', 'Arial Narrow', sans-serif;   /* headings, titles, display text */
+  --font-base: 'Barlow', 'Segoe UI', sans-serif;                     /* body text, labels, UI controls */
+  --font-monospace: Consolas, 'Courier New', Courier, monospace;     /* code, pre-formatted text */
+  --font-numeric: 'Barlow Semi Condensed', 'Barlow', sans-serif;     /* KPI values, numeric displays */
+
+  /* Icon Sizes — 100-based scale
+     Usage: icon-size-* custom utility (e.g. icon-size-200) */
+  --icon-size-100: 12px;
+  --icon-size-200: 16px;
+  --icon-size-300: 20px;
+  --icon-size-400: 24px;
+  --icon-size-500: 28px;
+  --icon-size-600: 32px;
+  --icon-size-700: 48px;
+}
+
+@utility icon-size-* {
+  width: --value(--icon-size-*);
+  height: --value(--icon-size-*);
+}
+
+@layer base {
+  .dark {
+    /* Color tokens — dark theme */
+    --color-background: #070d1a;
+    --color-foreground: #e8edf6;
+
+    --color-card: #0f1830;
+
+    --color-on-brand: #ffffff;
+
+    --color-muted: #18233d;
+    --color-muted-foreground: #9aa7c0;
+
+    --color-accent: #1a2643;
+
+    --color-destructive: #dc626d;
+    --color-destructive-foreground: #ffffff;
+
+    --color-success: #54b054;
+    --color-success-foreground: #ffffff;
+
+    --color-border: #26345a;
+    --color-ring: #ff5a6e;
+
+    --color-brand:            #0b2a5b;
+    --color-brand-foreground: #8cb6ff;
+    --color-signal:           #ff4d63;
+    --color-turf:             #0d3b27;
+    --color-hover:            rgba(140, 182, 255, 0.10);
+    --color-emphasis-foreground: #ffffff;
+
+    --color-data-1:  #8cb6ff;
+    --color-data-2:  #ff6b7d;
+    --color-data-3:  #5fd39a;
+    --color-data-4:  #f2b04c;
+    --color-data-5:  #b49cff;
+    --color-data-6:  #4fd0ef;
+    --color-data-7:  #e0a07e;
+    --color-data-8:  #f27fb5;
+    --color-data-9:  #b8c4d8;
+    --color-data-10: #a6e05a;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased font-base;
+  }
+
+  select,
+  input,
+  textarea,
+  button {
+    font-family: inherit;
+  }
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+/* Signature detail: yard-line stripes across the scoreboard header band. */
+@utility yard-lines {
+  background-image:
+    repeating-linear-gradient(90deg, transparent 0 calc(10% - 1px), rgb(255 255 255 / 0.14) calc(10% - 1px) 10%),
+    linear-gradient(115deg, var(--color-brand) 0%, var(--color-brand) 55%, var(--color-turf) 100%);
+}
