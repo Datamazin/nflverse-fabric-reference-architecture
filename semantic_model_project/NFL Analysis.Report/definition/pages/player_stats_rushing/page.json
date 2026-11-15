@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
   "name": "player_stats_rushing",
-  "displayName": "Player Stats - Rushing",
+  "displayName": "Stats - Rushing",
   "displayOption": "FitToPage",
   "height": 720,
   "width": 1280,

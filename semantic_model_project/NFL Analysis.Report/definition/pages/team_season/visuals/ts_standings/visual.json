@@ -3,11 +3,11 @@
   "name": "ts_standings",
   "position": {
     "x": 16,
-    "y": 96,
-    "z": 2,
-    "height": 608,
+    "y": 212,
+    "z": 10,
+    "height": 492,
     "width": 760,
-    "tabOrder": 2
+    "tabOrder": 10
   },
   "visual": {
     "visualType": "tableEx",

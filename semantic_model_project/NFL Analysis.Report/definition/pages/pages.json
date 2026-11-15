@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/pagesMetadata/1.1.0/schema.json",
   "pageOrder": [
     "player_stats_passing",
-    "team_season",
     "player_stats_rushing",
     "player_stats_receiving",
     "player_stats_defense",
-    "player_stats_field_goals"
+    "player_stats_field_goals",
+    "team_season"
   ],
-  "activePageName": "player_stats_field_goals"
+  "activePageName": "player_stats_passing"
 }

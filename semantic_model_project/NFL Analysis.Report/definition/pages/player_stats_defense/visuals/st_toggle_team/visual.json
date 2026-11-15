@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "nav_player_stats",
+  "name": "st_toggle_team",
   "position": {
-    "x": 1104,
-    "y": 28,
-    "z": 10,
-    "height": 40,
-    "width": 160,
-    "tabOrder": 10
+    "x": 1168,
+    "y": 16,
+    "z": 2,
+    "height": 32,
+    "width": 96,
+    "tabOrder": 2
   },
   "visual": {
     "visualType": "actionButton",
@@ -45,7 +45,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'PLAYER STATS  ›'"
+                  "Value": "'TEAM'"
                 }
               }
             },
@@ -63,7 +63,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "10D"
                 }
               }
             },
@@ -131,7 +131,25 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
+                }
+              }
+            },
+            "lineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "weight": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
                 }
               }
             }
@@ -160,7 +178,7 @@
             "navigationSection": {
               "expr": {
                 "Literal": {
-                  "Value": "'player_stats_passing'"
+                  "Value": "'team_season'"
                 }
               }
             }

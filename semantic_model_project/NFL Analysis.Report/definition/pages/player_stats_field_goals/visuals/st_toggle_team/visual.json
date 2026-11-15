@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "ps_nav_team",
+  "name": "st_toggle_team",
   "position": {
-    "x": 1124,
+    "x": 1168,
     "y": 16,
-    "z": 1,
+    "z": 2,
     "height": 32,
-    "width": 140,
-    "tabOrder": 1
+    "width": 96,
+    "tabOrder": 2
   },
   "visual": {
     "visualType": "actionButton",
@@ -45,7 +45,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Team Season'"
+                  "Value": "'TEAM'"
                 }
               }
             },
@@ -54,7 +54,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#C8D1E0'"
+                      "Value": "'#FFFFFF'"
                     }
                   }
                 }
@@ -131,7 +131,25 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
+                }
+              }
+            },
+            "lineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "weight": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
                 }
               }
             }

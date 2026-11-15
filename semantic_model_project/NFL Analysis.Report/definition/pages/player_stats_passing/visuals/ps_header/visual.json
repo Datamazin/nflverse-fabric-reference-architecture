@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "PLAYER STATS",
+                    "value": "STATS",
                     "textStyle": {
                       "fontWeight": "bold",
                       "fontSize": "24pt",
@@ -31,7 +31,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Passing · ranked by passing yards",
+                    "value": "Player · Passing · ranked by passing yards",
                     "textStyle": {
                       "fontSize": "10pt",
                       "color": "#C8D1E0"

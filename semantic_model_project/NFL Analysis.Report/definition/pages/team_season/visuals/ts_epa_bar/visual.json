@@ -3,11 +3,11 @@
   "name": "ts_epa_bar",
   "position": {
     "x": 792,
-    "y": 96,
-    "z": 3,
-    "height": 608,
+    "y": 212,
+    "z": 11,
+    "height": 492,
     "width": 472,
-    "tabOrder": 3
+    "tabOrder": 11
   },
   "visual": {
     "visualType": "clusteredBarChart",

@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "PLAYER STATS",
+                    "value": "STATS",
                     "textStyle": {
                       "fontWeight": "bold",
                       "fontSize": "24pt",
@@ -31,7 +31,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Field Goals · ranked by field goals made",
+                    "value": "Player · Field Goals · ranked by field goals made",
                     "textStyle": {
                       "fontSize": "10pt",
                       "color": "#C8D1E0"
