@@ -1,0 +1,83 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+    "description": "Top 10 players by the category's ranked stat.",
+    "padding": {
+        "right": 40
+    },
+    "transform": [
+        {
+            "window": [
+                {
+                    "op": "row_number",
+                    "as": "LeaderRank"
+                }
+            ],
+            "sort": [
+                {
+                    "field": "Primary",
+                    "order": "descending"
+                },
+                {
+                    "field": "PlayerKey",
+                    "order": "ascending"
+                }
+            ]
+        },
+        {
+            "filter": "datum.LeaderRank <= 10"
+        }
+    ],
+    "encoding": {
+        "y": {
+            "field": "Player",
+            "type": "nominal",
+            "sort": "-x",
+            "axis": {
+                "title": null
+            }
+        },
+        "x": {
+            "field": "Primary",
+            "type": "quantitative"
+        },
+        "tooltip": [
+            {
+                "field": "Player",
+                "type": "nominal"
+            },
+            {
+                "field": "Team",
+                "type": "nominal"
+            },
+            {
+                "field": "Position",
+                "type": "nominal"
+            },
+            {
+                "field": "Primary",
+                "type": "quantitative"
+            },
+            {
+                "field": "Efficiency",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "layer": [
+        {
+            "mark": "bar"
+        },
+        {
+            "mark": {
+                "type": "text",
+                "style": "labelHorizontal"
+            },
+            "encoding": {
+                "text": {
+                    "field": "Primary",
+                    "type": "quantitative"
+                }
+            }
+        }
+    ]
+}

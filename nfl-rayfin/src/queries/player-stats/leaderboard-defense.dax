@@ -1,0 +1,21 @@
+DEFINE
+    VAR _Season =
+        TREATAS (
+            { ( "__SEASON__", "__SEASON_TYPE__" ) },
+            'Player Season Summary'[season],
+            'Player Season Summary'[season_type]
+        )
+    VAR _Players =
+        SUMMARIZECOLUMNS (
+            'Player'[player_key],
+            'Player'[Full Name],
+            'Player'[position],
+            'Player'[headshot_url],
+            _Season,
+            "Team", CONCATENATEX ( VALUES ( 'Player Season Summary'[team_key] ), 'Player Season Summary'[team_key], "/", 'Player Season Summary'[team_key], ASC ),
+            "Sck", [Defensive Sacks],
+            "QB Hits", [Defensive QB Hits]
+        )
+EVALUATE
+TOPN ( 50, FILTER ( _Players, [Sck] > 0 || [QB Hits] > 0 ), [Sck], DESC, [QB Hits], DESC, 'Player'[player_key], ASC )
+ORDER BY [Sck] DESC, [QB Hits] DESC, 'Player'[player_key] ASC

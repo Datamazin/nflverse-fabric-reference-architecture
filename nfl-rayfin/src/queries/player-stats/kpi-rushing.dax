@@ -1,0 +1,12 @@
+DEFINE
+    VAR _Season =
+        TREATAS (
+            { ( "__SEASON__", "__SEASON_TYPE__" ) },
+            'Player Season Summary'[season],
+            'Player Season Summary'[season_type]
+        )
+EVALUATE
+CALCULATETABLE (
+    ROW ( "Yds", [Rushing Yards], "TD", [Rushing TDs], "Explosive Pct", [Explosive Rush Rate], "EPA per Rush", [Rushing EPA per Play] ),
+    _Season/*__FILTER_ARGUMENTS__*/
+)
