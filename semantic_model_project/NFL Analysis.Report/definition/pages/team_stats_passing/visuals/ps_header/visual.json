@@ -31,7 +31,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Team \u00b7 Passing \u00b7 ranked by passing yards",
+                    "value": "Team · Passing · ranked by passing yards",
                     "textStyle": {
                       "fontSize": "10pt",
                       "color": "#C8D1E0"

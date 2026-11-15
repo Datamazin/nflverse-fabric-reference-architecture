@@ -391,6 +391,7 @@ table 'Team Season Summary'
 
 	column success_rate
 		dataType: double
+		formatString: 0.0%
 		lineageTag: 5ab937a3-284e-4631-baff-676d9863a97f
 		summarizeBy: sum
 		sourceColumn: success_rate
