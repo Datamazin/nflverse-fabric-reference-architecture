@@ -178,7 +178,7 @@
             "navigationSection": {
               "expr": {
                 "Literal": {
-                  "Value": "'team_season'"
+                  "Value": "'team_stats_receiving'"
                 }
               }
             }

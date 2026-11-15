@@ -6,7 +6,10 @@
     "player_stats_receiving",
     "player_stats_defense",
     "player_stats_field_goals",
-    "team_season"
+    "team_season",
+    "team_stats_passing",
+    "team_stats_rushing",
+    "team_stats_receiving"
   ],
   "activePageName": "player_stats_passing"
 }

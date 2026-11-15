@@ -178,7 +178,7 @@
             "navigationSection": {
               "expr": {
                 "Literal": {
-                  "Value": "'player_stats_passing'"
+                  "Value": "'player_stats_field_goals'"
                 }
               }
             }
