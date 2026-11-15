@@ -47,7 +47,8 @@
                 }
               },
               "queryRef": "Calculations.Field Goals Made",
-              "nativeQueryRef": "Field Goals Made"
+              "nativeQueryRef": "Field Goals Made",
+              "displayName": "Field Goals Made"
             }
           ],
           "fieldParameters": [
@@ -87,29 +88,6 @@
         "isDefaultSort": true
       }
     },
-    "visualContainerObjects": {
-      "title": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Player comparison'"
-                }
-              }
-            }
-          }
-        }
-      ]
-    },
-    "drillFilterOtherVisuals": true,
     "objects": {
       "labels": [
         {
@@ -149,6 +127,29 @@
           }
         }
       ]
-    }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Player comparison'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
   }
 }

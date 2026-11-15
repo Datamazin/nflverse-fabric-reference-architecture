@@ -6,7 +6,7 @@
     "y": 140,
     "z": 12,
     "height": 64,
-    "width": 320,
+    "width": 432,
     "tabOrder": 12
   },
   "visual": {
@@ -106,6 +106,56 @@
                               }
                             }
                           ]
+                        ]
+                      }
+                    },
+                    "Annotations": {
+                      "filterExpressionMetadata": {
+                        "expressions": [
+                          {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Entity": "Receiving Stat"
+                                }
+                              },
+                              "Property": "Receiving Stat"
+                            }
+                          }
+                        ],
+                        "decomposedIdentities": {
+                          "values": [
+                            [
+                              {
+                                "0": [
+                                  {
+                                    "Literal": {
+                                      "Value": "'''Calculations''[Receiving Yards]'"
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                          ],
+                          "columns": [
+                            {
+                              "value": {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "Receiving Stat"
+                                    }
+                                  },
+                                  "Property": "Receiving Stat Fields"
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        "valueMap": [
+                          {
+                            "0": "Receiving Yards"
+                          }
                         ]
                       }
                     }

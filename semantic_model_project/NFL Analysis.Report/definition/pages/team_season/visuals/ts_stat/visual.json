@@ -6,7 +6,7 @@
     "y": 140,
     "z": 12,
     "height": 64,
-    "width": 320,
+    "width": 472,
     "tabOrder": 12
   },
   "visual": {
@@ -106,6 +106,56 @@
                               }
                             }
                           ]
+                        ]
+                      }
+                    },
+                    "Annotations": {
+                      "filterExpressionMetadata": {
+                        "expressions": [
+                          {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Entity": "Standings Stat"
+                                }
+                              },
+                              "Property": "Standings Stat"
+                            }
+                          }
+                        ],
+                        "decomposedIdentities": {
+                          "values": [
+                            [
+                              {
+                                "0": [
+                                  {
+                                    "Literal": {
+                                      "Value": "'''Calculations''[Season Offensive EPA per Play]'"
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                          ],
+                          "columns": [
+                            {
+                              "value": {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "Standings Stat"
+                                    }
+                                  },
+                                  "Property": "Standings Stat Fields"
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        "valueMap": [
+                          {
+                            "0": "Offensive EPA per play"
+                          }
                         ]
                       }
                     }

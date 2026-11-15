@@ -6,7 +6,7 @@
     "y": 140,
     "z": 12,
     "height": 64,
-    "width": 320,
+    "width": 432,
     "tabOrder": 12
   },
   "visual": {
@@ -77,7 +77,7 @@
                 "Version": 2,
                 "From": [
                   {
-                    "Name": "s",
+                    "Name": "r",
                     "Entity": "Rushing Stat",
                     "Type": 0
                   }
@@ -91,7 +91,7 @@
                             "Column": {
                               "Expression": {
                                 "SourceRef": {
-                                  "Source": "s"
+                                  "Source": "r"
                                 }
                               },
                               "Property": "Rushing Stat Fields"
@@ -106,6 +106,56 @@
                               }
                             }
                           ]
+                        ]
+                      }
+                    },
+                    "Annotations": {
+                      "filterExpressionMetadata": {
+                        "expressions": [
+                          {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Entity": "Rushing Stat"
+                                }
+                              },
+                              "Property": "Rushing Stat"
+                            }
+                          }
+                        ],
+                        "decomposedIdentities": {
+                          "values": [
+                            [
+                              {
+                                "0": [
+                                  {
+                                    "Literal": {
+                                      "Value": "'''Calculations''[Rushing Yards]'"
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                          ],
+                          "columns": [
+                            {
+                              "value": {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "Rushing Stat"
+                                    }
+                                  },
+                                  "Property": "Rushing Stat Fields"
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        "valueMap": [
+                          {
+                            "0": "Rushing Yards"
+                          }
                         ]
                       }
                     }
@@ -288,5 +338,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "887d15167823c05d9893",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Rushing Stat"
+              }
+            },
+            "Property": "Rushing Stat"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
   }
 }
