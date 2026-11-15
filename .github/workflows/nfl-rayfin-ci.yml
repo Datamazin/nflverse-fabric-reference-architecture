@@ -1,0 +1,52 @@
+name: nfl-rayfin CI
+
+# Runs the nfl-rayfin app's unit tests, lint, and production build on every pull
+# request to main (and on pushes to main). The "test-lint-build" job is the
+# required status check in main's branch protection, so it deliberately has no
+# path filter: a required check that never starts would block unrelated PRs.
+
+on:
+  pull_request:
+    branches: [ "main" ]
+  push:
+    branches: [ "main" ]
+
+concurrency:
+  group: nfl-rayfin-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  test-lint-build:
+    name: test-lint-build
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: nfl-rayfin
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: nfl-rayfin/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Unit tests
+        run: npm test
+
+      - name: Lint
+        run: npm run lint
+
+      # Calls tsc and vite directly instead of `npm run build`: its `prebuild`
+      # hook (`rayfin env`) generates .env.local from the developer's local,
+      # gitignored rayfin/.env, which CI does not have. The type check and
+      # bundle are the same.
+      - name: Type check and build
+        run: npx tsc -b && npx vite build
