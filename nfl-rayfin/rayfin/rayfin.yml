@@ -26,6 +26,7 @@ services:
     enabled: false
 connectors:
   - name: nflmodel
+    type: fabric-semanticmodel
     config:
       workspaceId: f4f174fc-f02b-4241-9138-815fabd9eb6d
       itemId: a920a06d-b1a1-4391-98d7-f41556b0df05
@@ -34,4 +35,3 @@ connectors:
     version: "1"
     operations:
       - name: executeQuery
-    type: fabric-semanticmodel

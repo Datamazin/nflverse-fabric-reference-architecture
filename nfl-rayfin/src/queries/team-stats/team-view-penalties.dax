@@ -1,0 +1,38 @@
+DEFINE
+    MEASURE 'Calculations'[Team Penalties] =
+        CALCULATE ( [Penalty Count], TREATAS ( VALUES ( 'Team'[team_key] ), 'Penalty'[penalty_team_key] ) )
+    MEASURE 'Calculations'[Team Penalty Yards] =
+        CALCULATE ( [Penalty Yards], TREATAS ( VALUES ( 'Team'[team_key] ), 'Penalty'[penalty_team_key] ) )
+    VAR _PEN =
+        TREATAS (
+            { ( "__SEASON__", "__SEASON_TYPE__" ) },
+            'Penalty'[season],
+            'Penalty'[season_type]
+        )
+    VAR _TSS =
+        TREATAS (
+            { ( "__SEASON__", "__SEASON_TYPE__" ) },
+            'Team Season Summary'[season],
+            'Team Season Summary'[season_type]
+        )
+EVALUATE
+SUMMARIZECOLUMNS (
+    ROLLUPADDISSUBTOTAL (
+        ROLLUPGROUP (
+            'Team'[team_key],
+            'Team'[Team Name],
+            'Team'[Team Code],
+            'Team'[team_logo_espn],
+            'Team'[Team Conference],
+            'Team'[Team Division]
+        ),
+        "IsGrandTotal"
+    ),
+    _PEN,
+    _TSS,
+    /*__FILTER_ARGUMENTS__*/"Penalties", [Team Penalties],
+    "Penalties per G", DIVIDE ( [Team Penalties], [Games] ),
+    "Penalty Yds", [Team Penalty Yards],
+    "Penalty Yds per G", DIVIDE ( [Team Penalty Yards], [Games] )
+)
+ORDER BY [IsGrandTotal] DESC, [Penalties per G] ASC, 'Team'[Team Code] ASC

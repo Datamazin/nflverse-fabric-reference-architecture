@@ -1,0 +1,42 @@
+DEFINE
+    VAR _TSS =
+        TREATAS (
+            { ( "__SEASON__", "__SEASON_TYPE__" ) },
+            'Team Season Summary'[season],
+            'Team Season Summary'[season_type]
+        )
+    VAR _TP =
+        TREATAS (
+            { ( "__SEASON__", "__SEASON_TYPE__" ) },
+            'Team Play'[season],
+            'Team Play'[season_type]
+        )
+EVALUATE
+SUMMARIZECOLUMNS (
+    ROLLUPADDISSUBTOTAL (
+        ROLLUPGROUP (
+            'Team'[team_key],
+            'Team'[Team Name],
+            'Team'[Team Code],
+            'Team'[team_logo_espn],
+            'Team'[Team Conference],
+            'Team'[Team Division]
+        ),
+        "IsGrandTotal"
+    ),
+    _TSS,
+    _TP,
+    /*__FILTER_ARGUMENTS__*/"W", [Wins],
+    "L", [Losses],
+    "T", [Ties],
+    "PF", [Points For],
+    "PF per G", DIVIDE ( [Points For], [Games] ),
+    "Off EPA per Play", [Season Offensive EPA per Play],
+    "Success Pct", [Season Success Rate],
+    "Pass Rate", [Pass Rate],
+    "Third Down Pct", [Third Down Conversion Rate],
+    "Fourth Down Pct", [Fourth Down Conversion Rate],
+    "Red Zone TD Pct", [Red Zone TD Rate],
+    "TO", [Turnovers]
+)
+ORDER BY [IsGrandTotal] DESC, [PF per G] DESC, 'Team'[Team Code] ASC

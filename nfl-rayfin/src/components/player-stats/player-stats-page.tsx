@@ -1,5 +1,6 @@
 import { useMemo, useState, type ReactElement } from "react";
-import { Moon, Sun, X } from "lucide-react";
+import { X } from "lucide-react";
+import { AppHeader } from "@/components/app-shell/app-header";
 import type { DataTable, SemanticSelection } from "@microsoft/fabric-visuals-core";
 import { InteractionManager } from "@microsoft/fabric-interaction-manager";
 import {
@@ -7,7 +8,6 @@ import {
     useInteractionManager,
     useManagedInteractionSource,
 } from "@microsoft/fabric-interaction-manager/react";
-import { useThemeContext } from "@/hooks/theme.context";
 import { useSemanticModelQuery } from "@/hooks/use-semantic-model-query";
 import { toDataTable } from "@/lib/to-data-table";
 import {
@@ -78,7 +78,6 @@ export function selectedPlayerNames(selections: readonly SemanticSelection[], ta
 }
 
 function PlayerStatsContent(): ReactElement {
-    const { isDark, toggleTheme } = useThemeContext();
     const manager = useInteractionManager();
 
     const [category, setCategory] = useState<StatCategory>("passing");
@@ -137,32 +136,12 @@ function PlayerStatsContent(): ReactElement {
 
     return (
         <div className="min-h-full bg-background">
-            <header className="yard-lines text-on-brand">
-                <div className="mx-auto flex max-w-screen-2xl flex-col gap-4 px-4 pt-6 md:px-8">
-                    <div className="flex items-start justify-between gap-4">
-                        <div className="min-w-0">
-                            <p className="font-heading text-300 font-bold uppercase tracking-[0.2em] text-on-brand/80">
-                                Gridiron · Player Stats
-                            </p>
-                            <h1 className="font-page-title text-page-title uppercase leading-none tracking-wide text-on-brand">
-                                {definition.label} Leaders
-                            </h1>
-                            <p className="font-page-subtitle text-page-subtitle mt-1 text-on-brand/80">
-                                {seasonLabel ? `${seasonLabel} · ` : ""}Top 50 by {definition.primaryLabel.toLowerCase()}
-                            </p>
-                        </div>
-                        <button
-                            type="button"
-                            onClick={toggleTheme}
-                            aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-                            className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-on-brand/30 text-on-brand hover:bg-on-brand/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-on-brand"
-                        >
-                            {isDark ? <Sun aria-hidden className="icon-size-200" /> : <Moon aria-hidden className="icon-size-200" />}
-                        </button>
-                    </div>
-                    <CategoryTabs value={category} onChange={(next) => changeParams(() => setCategory(next))} />
-                </div>
-            </header>
+            <AppHeader
+                route="players"
+                title={`${definition.label} Leaders`}
+                subtitle={`${seasonLabel ? `${seasonLabel} · ` : ""}Top 50 by ${definition.primaryLabel.toLowerCase()}`}
+                tabs={<CategoryTabs value={category} onChange={(next) => changeParams(() => setCategory(next))} />}
+            />
 
             <main className="mx-auto flex max-w-screen-2xl flex-col gap-(--grid-gap) px-4 py-6 md:px-8">
                 {seasonsResult.data?.status === "error" ? (

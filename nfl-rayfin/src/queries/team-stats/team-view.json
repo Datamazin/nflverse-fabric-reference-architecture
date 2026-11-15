@@ -1,0 +1,27 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+    "description": "Every team ranked by the view's primary stat, best first.",
+    "padding": { "right": 40 },
+    "transform": [{ "filter": "!datum.IsGrandTotal" }],
+    "encoding": {
+        "y": {
+            "field": "TeamCode",
+            "type": "nominal",
+            "sort": "-x",
+            "axis": { "title": null }
+        },
+        "x": { "field": "Primary", "type": "quantitative" },
+        "tooltip": [
+            { "field": "Team", "type": "nominal" },
+            { "field": "Division", "type": "nominal" },
+            { "field": "Primary", "type": "quantitative" }
+        ]
+    },
+    "layer": [
+        { "mark": "bar" },
+        {
+            "mark": { "type": "text", "style": "labelHorizontal" },
+            "encoding": { "text": { "field": "Primary", "type": "quantitative" } }
+        }
+    ]
+}

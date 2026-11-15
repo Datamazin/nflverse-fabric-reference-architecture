@@ -1,0 +1,26 @@
+DEFINE
+    VAR _PSS =
+        TREATAS (
+            { ( "__SEASON__", "__SEASON_TYPE__" ) },
+            'Player Season Summary'[season],
+            'Player Season Summary'[season_type]
+        )
+EVALUATE
+SUMMARIZECOLUMNS (
+    ROLLUPADDISSUBTOTAL (
+        ROLLUPGROUP (
+            'Team'[team_key],
+            'Team'[Team Name],
+            'Team'[Team Code],
+            'Team'[team_logo_espn],
+            'Team'[Team Conference],
+            'Team'[Team Division]
+        ),
+        "IsGrandTotal"
+    ),
+    _PSS,
+    /*__FILTER_ARGUMENTS__*/"FGM", [Field Goals Made],
+    "FGA", [Field Goal Attempts],
+    "FG Pct", [Field Goal Make Rate]
+)
+ORDER BY [IsGrandTotal] DESC, [FGM] DESC, 'Team'[Team Code] ASC

@@ -1,0 +1,15 @@
+DEFINE
+    VAR _TSS =
+        TREATAS (
+            { ( "__SEASON__", "__SEASON_TYPE__" ) },
+            'Team Season Summary'[season],
+            'Team Season Summary'[season_type]
+        )
+EVALUATE
+SUMMARIZECOLUMNS (
+    'Team'[Team Conference],
+    'Team'[Team Division],
+    _TSS,
+    "Games", [Games]
+)
+ORDER BY 'Team'[Team Conference] ASC, 'Team'[Team Division] ASC

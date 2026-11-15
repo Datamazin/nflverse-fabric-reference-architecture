@@ -20,8 +20,9 @@ export function isSeasonType(value: unknown): value is SeasonType {
 }
 
 /**
- * Substitutes the validated season and season type into the `.dax` file's
- * `TREATAS` string literals. Only closed or digit-only values are accepted, so no
+ * Substitutes the validated season and season type into every `TREATAS` season filter in a
+ * `.dax` file. Team queries filter several fact tables (each has its own season columns), so a
+ * query may hold several placeholder pairs. Only closed or digit-only values are accepted, so no
  * caller-supplied text reaches the query unescaped.
  */
 export function applySeasonFilter(query: string, { season, seasonType }: SeasonParams): string {
@@ -31,9 +32,11 @@ export function applySeasonFilter(query: string, { season, seasonType }: SeasonP
     if (!isSeasonType(seasonType)) {
         throw new Error(`Invalid season type "${String(seasonType)}".`);
     }
-    if (query.split(SEASON_TOKEN).length !== 2 || query.split(SEASON_TYPE_TOKEN).length !== 2) {
-        throw new Error("Expected exactly one season and one season-type placeholder in the query.");
+    const seasonCount = query.split(SEASON_TOKEN).length - 1;
+    const seasonTypeCount = query.split(SEASON_TYPE_TOKEN).length - 1;
+    if (seasonCount === 0 || seasonCount !== seasonTypeCount) {
+        throw new Error("Expected matching season and season-type placeholders in the query.");
     }
 
-    return query.replace(SEASON_TOKEN, season).replace(SEASON_TYPE_TOKEN, seasonType);
+    return query.replaceAll(SEASON_TOKEN, season).replaceAll(SEASON_TYPE_TOKEN, seasonType);
 }

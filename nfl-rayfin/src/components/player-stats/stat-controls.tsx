@@ -1,4 +1,5 @@
-import { useRef, type KeyboardEvent, type ReactElement } from "react";
+import type { ReactElement } from "react";
+import { TabStrip } from "@/components/app-shell/header-tabs";
 import { cn } from "@/lib/utils";
 import { STAT_CATEGORIES, statCategories, type SeasonType, type StatCategory } from "@/queries/player-stats";
 
@@ -13,47 +14,11 @@ interface CategoryTabsProps {
     onChange: (category: StatCategory) => void;
 }
 
-/** NFL.com-style stat category tabs: a keyboard-navigable tablist with a signal-red active rule. */
+const CATEGORY_OPTIONS = STAT_CATEGORIES.map((category) => ({ value: category, label: statCategories[category].label }));
+
+/** NFL.com-style stat category tabs on the scoreboard band. */
 export function CategoryTabs({ value, onChange }: CategoryTabsProps): ReactElement {
-    const refs = useRef<Record<string, HTMLButtonElement | null>>({});
-
-    const onKeyDown = (event: KeyboardEvent<HTMLButtonElement>, index: number): void => {
-        const delta = event.key === "ArrowRight" ? 1 : event.key === "ArrowLeft" ? -1 : 0;
-        if (delta === 0) return;
-        event.preventDefault();
-        const next = STAT_CATEGORIES[(index + delta + STAT_CATEGORIES.length) % STAT_CATEGORIES.length];
-        onChange(next);
-        refs.current[next]?.focus();
-    };
-
-    return (
-        <div role="tablist" aria-label="Stat category" className="-mb-px flex gap-1 overflow-x-auto [scrollbar-width:none]">
-            {STAT_CATEGORIES.map((category, index) => {
-                const selected = category === value;
-                return (
-                    <button
-                        key={category}
-                        ref={(el) => { refs.current[category] = el; }}
-                        type="button"
-                        role="tab"
-                        aria-selected={selected}
-                        tabIndex={selected ? 0 : -1}
-                        onClick={() => onChange(category)}
-                        onKeyDown={(event) => onKeyDown(event, index)}
-                        className={cn(
-                            "shrink-0 border-b-4 px-4 py-3 font-heading text-400 font-bold uppercase tracking-wider transition-colors",
-                            "focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-on-brand",
-                            selected
-                                ? "border-signal text-on-brand"
-                                : "border-transparent text-on-brand/70 hover:border-on-brand/40 hover:text-on-brand",
-                        )}
-                    >
-                        {statCategories[category].label}
-                    </button>
-                );
-            })}
-        </div>
-    );
+    return <TabStrip options={CATEGORY_OPTIONS} value={value} onChange={onChange} ariaLabel="Stat category" />;
 }
 
 interface SeasonControlsProps {

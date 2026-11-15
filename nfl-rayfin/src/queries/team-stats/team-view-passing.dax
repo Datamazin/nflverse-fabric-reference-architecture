@@ -1,0 +1,39 @@
+DEFINE
+    VAR _PSS =
+        TREATAS (
+            { ( "__SEASON__", "__SEASON_TYPE__" ) },
+            'Player Season Summary'[season],
+            'Player Season Summary'[season_type]
+        )
+    VAR _TSS =
+        TREATAS (
+            { ( "__SEASON__", "__SEASON_TYPE__" ) },
+            'Team Season Summary'[season],
+            'Team Season Summary'[season_type]
+        )
+EVALUATE
+SUMMARIZECOLUMNS (
+    ROLLUPADDISSUBTOTAL (
+        ROLLUPGROUP (
+            'Team'[team_key],
+            'Team'[Team Name],
+            'Team'[Team Code],
+            'Team'[team_logo_espn],
+            'Team'[Team Conference],
+            'Team'[Team Division]
+        ),
+        "IsGrandTotal"
+    ),
+    _PSS,
+    _TSS,
+    /*__FILTER_ARGUMENTS__*/"Pass Yds", [Passing Yards],
+    "Yds per G", DIVIDE ( [Passing Yards], [Games] ),
+    "Att", [Pass Attempts],
+    "Cmp", [Completions],
+    "Cmp Pct", [Completion Percentage],
+    "TD", [Passing TDs],
+    "INT", [Interceptions Thrown],
+    "Sck", [Sacks Taken],
+    "EPA per DB", [Passing EPA per Dropback]
+)
+ORDER BY [IsGrandTotal] DESC, [Pass Yds] DESC, 'Team'[Team Code] ASC
