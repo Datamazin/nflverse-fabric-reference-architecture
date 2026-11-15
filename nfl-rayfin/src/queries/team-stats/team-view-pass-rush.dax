@@ -1,0 +1,35 @@
+DEFINE
+    VAR _TSS =
+        TREATAS (
+            { ( "__SEASON__", "__SEASON_TYPE__" ) },
+            'Team Season Summary'[season],
+            'Team Season Summary'[season_type]
+        )
+    VAR _TP =
+        TREATAS (
+            { ( "__SEASON__", "__SEASON_TYPE__" ) },
+            'Team Play'[season],
+            'Team Play'[season_type]
+        )
+EVALUATE
+SUMMARIZECOLUMNS (
+    ROLLUPADDISSUBTOTAL (
+        ROLLUPGROUP (
+            'Team'[team_key],
+            'Team'[Team Name],
+            'Team'[Team Code],
+            'Team'[team_logo_espn],
+            'Team'[Team Conference],
+            'Team'[Team Division]
+        ),
+        "IsGrandTotal"
+    ),
+    _TSS,
+    _TP,
+    /*__FILTER_ARGUMENTS__*/"Sacks", [Sacks Generated],
+    "Sacks per G", DIVIDE ( [Sacks Generated], [Games] ),
+    "QB Hits", [QB Hits Generated],
+    "Hit Sack Pct", [QB Hit Plus Sack Rate],
+    "Dropbacks Faced", [Defensive Dropbacks Faced]
+)
+ORDER BY [IsGrandTotal] DESC, [Sacks] DESC, 'Team'[Team Code] ASC

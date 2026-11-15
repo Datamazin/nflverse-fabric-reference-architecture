@@ -1,0 +1,38 @@
+DEFINE
+    VAR _PSS =
+        TREATAS (
+            { ( "__SEASON__", "__SEASON_TYPE__" ) },
+            'Player Season Summary'[season],
+            'Player Season Summary'[season_type]
+        )
+    VAR _TSS =
+        TREATAS (
+            { ( "__SEASON__", "__SEASON_TYPE__" ) },
+            'Team Season Summary'[season],
+            'Team Season Summary'[season_type]
+        )
+EVALUATE
+SUMMARIZECOLUMNS (
+    ROLLUPADDISSUBTOTAL (
+        ROLLUPGROUP (
+            'Team'[team_key],
+            'Team'[Team Name],
+            'Team'[Team Code],
+            'Team'[team_logo_espn],
+            'Team'[Team Conference],
+            'Team'[Team Division]
+        ),
+        "IsGrandTotal"
+    ),
+    _PSS,
+    _TSS,
+    /*__FILTER_ARGUMENTS__*/"Rec Yds", [Receiving Yards],
+    "Yds per G", DIVIDE ( [Receiving Yards], [Games] ),
+    "Rec", [Receptions],
+    "Tgt", [Targets],
+    "Catch Pct", [Catch Rate],
+    "YAC", [Yards After Catch],
+    "YAC per Rec", [YAC per Reception],
+    "EPA per Tgt", [Receiving EPA per Target]
+)
+ORDER BY [IsGrandTotal] DESC, [Rec Yds] DESC, 'Team'[Team Code] ASC

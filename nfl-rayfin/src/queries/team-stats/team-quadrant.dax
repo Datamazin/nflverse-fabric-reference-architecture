@@ -1,0 +1,23 @@
+DEFINE
+    VAR _TSS =
+        TREATAS (
+            { ( "__SEASON__", "__SEASON_TYPE__" ) },
+            'Team Season Summary'[season],
+            'Team Season Summary'[season_type]
+        )
+EVALUATE
+SUMMARIZECOLUMNS (
+    'Team'[team_key],
+    'Team'[Team Name],
+    'Team'[Team Code],
+    'Team'[Team Conference],
+    'Team'[Team Division],
+    _TSS,
+    /*__FILTER_ARGUMENTS__*/"Off EPA per Play", [Season Offensive EPA per Play],
+    // Negated so that better defenses (less EPA allowed) plot higher on the chart.
+    "Def EPA Saved per Play", - [Season Defensive EPA Allowed per Play],
+    "W", [Wins],
+    "L", [Losses],
+    "T", [Ties]
+)
+ORDER BY 'Team'[Team Code] ASC

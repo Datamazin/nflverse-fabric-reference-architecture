@@ -18,8 +18,16 @@ describe("applySeasonFilter", () => {
         expect(() => applySeasonFilter(template, { season: "2025", seasonType: "PRE" as never })).toThrow(/Invalid season type/);
     });
 
-    it("requires exactly one placeholder of each kind", () => {
+    it("replaces every placeholder pair, one per filtered fact table", () => {
+        const twoTables = `${template}\n${template.replaceAll("Player Season Summary", "Team Play")}`;
+        const result = applySeasonFilter(twoTables, { season: "2024", seasonType: "REG" });
+        expect(result).not.toContain("__SEASON");
+        expect(result.match(/\{ \( "2024", "REG" \) \}/g)).toHaveLength(2);
+    });
+
+    it("requires at least one placeholder pair, with matching counts", () => {
         expect(() => applySeasonFilter("EVALUATE {1}", { season: "2025", seasonType: "REG" })).toThrow(/placeholder/);
+        expect(() => applySeasonFilter(`${template} "__SEASON__"`, { season: "2025", seasonType: "REG" })).toThrow(/placeholder/);
     });
 });
 

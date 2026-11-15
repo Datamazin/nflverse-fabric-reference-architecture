@@ -1,0 +1,107 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+    "description": "Offensive EPA per play against negated defensive EPA allowed per play. Higher is better on both axes, so the top-right quadrant is good on both sides of the ball.",
+    "layer": [
+        {
+            "data": {
+                "values": [
+                    {}
+                ]
+            },
+            "mark": {
+                "type": "rule",
+                "strokeDash": [
+                    4,
+                    4
+                ]
+            },
+            "encoding": {
+                "x": {
+                    "datum": 0
+                }
+            }
+        },
+        {
+            "data": {
+                "values": [
+                    {}
+                ]
+            },
+            "mark": {
+                "type": "rule",
+                "strokeDash": [
+                    4,
+                    4
+                ]
+            },
+            "encoding": {
+                "y": {
+                    "datum": 0
+                }
+            }
+        },
+        {
+            "mark": "circle",
+            "encoding": {
+                "x": {
+                    "field": "OffEpa",
+                    "type": "quantitative"
+                },
+                "y": {
+                    "field": "DefEpaSaved",
+                    "type": "quantitative"
+                },
+                "tooltip": [
+                    {
+                        "field": "Team",
+                        "type": "nominal"
+                    },
+                    {
+                        "field": "Division",
+                        "type": "nominal"
+                    },
+                    {
+                        "field": "W",
+                        "type": "quantitative"
+                    },
+                    {
+                        "field": "L",
+                        "type": "quantitative"
+                    },
+                    {
+                        "field": "T",
+                        "type": "quantitative"
+                    },
+                    {
+                        "field": "OffEpa",
+                        "type": "quantitative"
+                    },
+                    {
+                        "field": "DefEpaSaved",
+                        "type": "quantitative"
+                    }
+                ]
+            }
+        },
+        {
+            "mark": {
+                "type": "text",
+                "style": "labelVertical"
+            },
+            "encoding": {
+                "x": {
+                    "field": "OffEpa",
+                    "type": "quantitative"
+                },
+                "y": {
+                    "field": "DefEpaSaved",
+                    "type": "quantitative"
+                },
+                "text": {
+                    "field": "TeamCode",
+                    "type": "nominal"
+                }
+            }
+        }
+    ]
+}

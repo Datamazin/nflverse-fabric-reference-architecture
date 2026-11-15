@@ -1,0 +1,43 @@
+DEFINE
+    MEASURE 'Calculations'[Dropback Yards Allowed] =
+        CALCULATE ( SUM ( 'Team Play'[yards] ), 'Team Play'[unit] = "Defense", 'Team Play'[play_type_group] = "Dropback" )
+    MEASURE 'Calculations'[Designed Rush Yards Allowed] =
+        CALCULATE ( SUM ( 'Team Play'[yards] ), 'Team Play'[unit] = "Defense", 'Team Play'[play_type_group] = "Designed rush" )
+    MEASURE 'Calculations'[Yards Allowed] = [Dropback Yards Allowed] + [Designed Rush Yards Allowed]
+    VAR _TSS =
+        TREATAS (
+            { ( "__SEASON__", "__SEASON_TYPE__" ) },
+            'Team Season Summary'[season],
+            'Team Season Summary'[season_type]
+        )
+    VAR _TP =
+        TREATAS (
+            { ( "__SEASON__", "__SEASON_TYPE__" ) },
+            'Team Play'[season],
+            'Team Play'[season_type]
+        )
+EVALUATE
+SUMMARIZECOLUMNS (
+    ROLLUPADDISSUBTOTAL (
+        ROLLUPGROUP (
+            'Team'[team_key],
+            'Team'[Team Name],
+            'Team'[Team Code],
+            'Team'[team_logo_espn],
+            'Team'[Team Conference],
+            'Team'[Team Division]
+        ),
+        "IsGrandTotal"
+    ),
+    _TSS,
+    _TP,
+    /*__FILTER_ARGUMENTS__*/"Yds Allowed", [Yards Allowed],
+    "Yds Allowed per G", DIVIDE ( [Yards Allowed], [Games] ),
+    "Dropback Yds Allowed", [Dropback Yards Allowed],
+    "Dropback Yds per G", DIVIDE ( [Dropback Yards Allowed], [Games] ),
+    "Rush Yds Allowed", [Designed Rush Yards Allowed],
+    "Rush Yds per G", DIVIDE ( [Designed Rush Yards Allowed], [Games] ),
+    "Def Plays", [Defensive Plays],
+    "Yds per Play", DIVIDE ( [Yards Allowed], [Defensive Plays] )
+)
+ORDER BY [IsGrandTotal] DESC, [Yds Allowed per G] ASC, 'Team'[Team Code] ASC

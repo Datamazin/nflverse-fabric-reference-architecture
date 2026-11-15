@@ -1,0 +1,43 @@
+DEFINE
+    MEASURE 'Calculations'[Dropback Yards Allowed] =
+        CALCULATE ( SUM ( 'Team Play'[yards] ), 'Team Play'[unit] = "Defense", 'Team Play'[play_type_group] = "Dropback" )
+    MEASURE 'Calculations'[Designed Rush Yards Allowed] =
+        CALCULATE ( SUM ( 'Team Play'[yards] ), 'Team Play'[unit] = "Defense", 'Team Play'[play_type_group] = "Designed rush" )
+    MEASURE 'Calculations'[Yards Allowed] = [Dropback Yards Allowed] + [Designed Rush Yards Allowed]
+    VAR _TSS =
+        TREATAS (
+            { ( "__SEASON__", "__SEASON_TYPE__" ) },
+            'Team Season Summary'[season],
+            'Team Season Summary'[season_type]
+        )
+    VAR _TP =
+        TREATAS (
+            { ( "__SEASON__", "__SEASON_TYPE__" ) },
+            'Team Play'[season],
+            'Team Play'[season_type]
+        )
+EVALUATE
+SUMMARIZECOLUMNS (
+    ROLLUPADDISSUBTOTAL (
+        ROLLUPGROUP (
+            'Team'[team_key],
+            'Team'[Team Name],
+            'Team'[Team Code],
+            'Team'[team_logo_espn],
+            'Team'[Team Conference],
+            'Team'[Team Division]
+        ),
+        "IsGrandTotal"
+    ),
+    _TSS,
+    _TP,
+    /*__FILTER_ARGUMENTS__*/"PA", [Points Against],
+    "PA per G", DIVIDE ( [Points Against], [Games] ),
+    "Yds Allowed", [Yards Allowed],
+    "Yds Allowed per G", DIVIDE ( [Yards Allowed], [Games] ),
+    "Def EPA per Play", [Season Defensive EPA Allowed per Play],
+    "Success Allowed Pct", [Defensive Success Rate Allowed],
+    "Takeaways", [Takeaways],
+    "Explosive Allowed per G", [Explosive Plays Allowed per Game]
+)
+ORDER BY [IsGrandTotal] DESC, [PA per G] ASC, 'Team'[Team Code] ASC
